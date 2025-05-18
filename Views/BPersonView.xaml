@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="gestion_concrets.Views.BPersonView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:gestion_concrets.Views"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      mc:Ignorable="d" 
+      d:DesignHeight="1250" d:DesignWidth="800"
+      >
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <Grid Background="White">
+            <!-- BPerson Section -->
+            <Label Content="B - Filazalazana momba ilay olona hadihadiana" HorizontalAlignment="Left" Margin="45,41,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+            <!-- B1 -->
+            <Label Content="B1. Anarana sy fanampin'anarana&#xD;&#xA;" HorizontalAlignment="Left" Margin="54,77,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,111,0,0" TextWrapping="Wrap" Text="{Binding BPerson.B1, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- B2 -->
+            <Label Content="B2. Taona&#xD;&#xA;" HorizontalAlignment="Left" Margin="54,157,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,191,0,0" TextWrapping="Wrap" Text="{Binding BPerson.B2, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- B3 -->
+            <Label Content="B3. " HorizontalAlignment="Left" Margin="54,237,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ComboBox ItemsSource="{Binding SexeOptions}" HorizontalAlignment="Left" Margin="54,271,0,0" VerticalAlignment="Top" Width="120" Height="32" SelectedItem="{Binding BPerson.B3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <!-- Adress -->
+            <Label Content="Adiresy&#xD;&#xA;" HorizontalAlignment="Left" Margin="54,317,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,351,0,0" TextWrapping="Wrap" Text="{Binding BPerson.Adress, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- Phone -->
+            <Label Content="Laharana finday&#xD;&#xA;" HorizontalAlignment="Left" Margin="54,397,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,431,0,0" TextWrapping="Wrap" Text="{Binding BPerson.Phone, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- Email -->
+            <Label Content="Mailaka&#xD;&#xA;" HorizontalAlignment="Left" Margin="54,477,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,511,0,0" TextWrapping="Wrap" Text="{Binding BPerson.Email, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- B4 -->
+            <Label Content="B4. Faripahaizana&#xD;&#xA;" HorizontalAlignment="Left" Margin="54,557,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,591,0,0" TextWrapping="Wrap" Text="{Binding BPerson.B4, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- B51 -->
+            <Label Content="B51" HorizontalAlignment="Left" Margin="54,637,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,671,0,0" TextWrapping="Wrap" Text="{Binding BPerson.B51, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- B52 -->
+            <Label Content="B52" HorizontalAlignment="Left" Margin="54,717,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,751,0,0" TextWrapping="Wrap" Text="{Binding BPerson.B52, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- B6 -->
+            <Label Content="B6" HorizontalAlignment="Left" Margin="54,797,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,831,0,0" TextWrapping="Wrap" Text="{Binding BPerson.B6, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- B7 -->
+            <Label Content="B7" HorizontalAlignment="Left" Margin="54,877,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,911,0,0" TextWrapping="Wrap" Text="{Binding BPerson.B7, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- B71 -->
+            <Label Content="B71" HorizontalAlignment="Left" Margin="54,957,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,991,0,0" TextWrapping="Wrap" Text="{Binding BPerson.B71, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- B72 -->
+            <Label Content="B72" HorizontalAlignment="Left" Margin="54,1037,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,1070,0,0" TextWrapping="Wrap" Text="{Binding BPerson.B72, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- B8 -->
+            <Label Content="B8" HorizontalAlignment="Left" Margin="54,1117,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,1151,0,0" TextWrapping="Wrap" Text="{Binding BPerson.B8, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

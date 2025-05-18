@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using gestion_concrets.Models;
-using System.Windows.Input;
 using System.Windows;
-using Wpf.Ui.Input;
+using System.Windows.Input;
+using gestion_concrets.Models;
 using gestion_concrets.Services;
 
 namespace gestion_concrets.ViewModels
 {
-    class PersonViewModel : BaseViewModel
+    public class PersonViewModel : BaseViewModel
     {
         // Propriétés liées aux 8 modèles
         private readonly DatabaseService _databaseService;
@@ -71,18 +67,40 @@ namespace gestion_concrets.ViewModels
             set => SetProperty(ref _viPartnerCollab, value);
         }
 
-    
+        // Navigation properties
+        private int _selectedTabIndex;
+        public int SelectedTabIndex
+        {
+            get => _selectedTabIndex;
+            set
+            {
+                if (SetProperty(ref _selectedTabIndex, value))
+                {
+                    OnPropertyChanged(nameof(CanGoNext));
+                    OnPropertyChanged(nameof(CanGoPrevious));
+                }
+            }
+        }
+
+        public bool CanGoNext => SelectedTabIndex < 7; // 8 onglets (0 à 7)
+        public bool CanGoPrevious => SelectedTabIndex > 0;
+
+        // Commandes
         public ICommand SaveCommand { get; }
+        public ICommand NextTabCommand { get; }
+        public ICommand PreviousTabCommand { get; }
 
         public PersonViewModel()
         {
             _databaseService = new DatabaseService();
             SaveCommand = new RelayCommand(SaveData);
+            NextTabCommand = new RelayCommand(NextTab, () => CanGoNext);
+            PreviousTabCommand = new RelayCommand(PreviousTab, () => CanGoPrevious);
+            SelectedTabIndex = 0; // Commencer au premier onglet
         }
 
         public List<string> SexeOptions { get; } = new List<string> { "Lahy", "Vavy" };
 
-        
         private void SaveData()
         {
             try
@@ -103,7 +121,22 @@ namespace gestion_concrets.ViewModels
             {
                 MessageBox.Show("Erreur lors de l'enregistrement : " + ex.Message);
             }
+        }
 
+        private void NextTab()
+        {
+            if (CanGoNext)
+            {
+                SelectedTabIndex++;
+            }
+        }
+
+        private void PreviousTab()
+        {
+            if (CanGoPrevious)
+            {
+                SelectedTabIndex--;
+            }
         }
     }
 }

@@ -12,21 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using gestion_concrets.Models;
-using gestion_concrets.ViewModels;
-
 
 namespace gestion_concrets.Views
 {
     /// <summary>
-    /// Logique d'interaction pour PersonView.xaml
+    /// Logique d'interaction pour VIpartnerCollab.xaml
     /// </summary>
-    public partial class PersonView : Page
+    public partial class VIpartnerCollabView : UserControl
     {
-        public PersonView()
+        public VIpartnerCollabView()
         {
             InitializeComponent();
-            this.DataContext = new PersonViewModel();
         }
     }
 }

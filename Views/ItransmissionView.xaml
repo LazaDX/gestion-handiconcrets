@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="gestion_concrets.Views.ItransmissionView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:gestion_concrets.Views"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      mc:Ignorable="d" 
+      d:DesignHeight="1650" d:DesignWidth="800"
+     >
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <Grid Background="White">
+
+
+            <!-- Itransmission Section -->
+            <Label Content="I - Transmission" HorizontalAlignment="Left" Margin="45,41,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+            <!-- I11 -->
+            <Label Content="I11" HorizontalAlignment="Left" Margin="54,77,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,111,0,0" TextWrapping="Wrap" Text="{Binding Itransmission.I11, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- I12 -->
+            <Label Content="I12" HorizontalAlignment="Left" Margin="54,157,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,191,0,0" TextWrapping="Wrap" Text="{Binding Itransmission.I12, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- I2 -->
+            <Label Content="I2" HorizontalAlignment="Left" Margin="54,237,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,271,0,0" TextWrapping="Wrap" Text="{Binding Itransmission.I2, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- I3 -->
+            <Label Content="I3" HorizontalAlignment="Left" Margin="54,317,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,351,0,0" TextWrapping="Wrap" Text="{Binding Itransmission.I3, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- I4 -->
+            <Label Content="I4" HorizontalAlignment="Left" Margin="54,397,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,431,0,0" TextWrapping="Wrap" Text="{Binding Itransmission.I4, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- I51 -->
+            <Label Content="I51" HorizontalAlignment="Left" Margin="54,477,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,511,0,0" TextWrapping="Wrap" Text="{Binding Itransmission.I51, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- I52 -->
+            <Label Content="I52" HorizontalAlignment="Left" Margin="54,557,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,591,0,0" TextWrapping="Wrap" Text="{Binding Itransmission.I52, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- I53 -->
+            <Label Content="I53" HorizontalAlignment="Left" Margin="54,637,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,671,0,0" TextWrapping="Wrap" Text="{Binding Itransmission.I53, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- I54 -->
+            <Label Content="I54" HorizontalAlignment="Left" Margin="54,717,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,751,0,0" TextWrapping="Wrap" Text="{Binding Itransmission.I54, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- I55 -->
+            <Label Content="I55" HorizontalAlignment="Left" Margin="54,797,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,831,0,0" TextWrapping="Wrap" Text="{Binding Itransmission.I55, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- I56 -->
+            <Label Content="I56" HorizontalAlignment="Left" Margin="54,877,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,911,0,0" TextWrapping="Wrap" Text="{Binding Itransmission.I56, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- I57 -->
+            <Label Content="I57" HorizontalAlignment="Left" Margin="54,957,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,991,0,0" TextWrapping="Wrap" Text="{Binding Itransmission.I57, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- I58 -->
+            <Label Content="I58" HorizontalAlignment="Left" Margin="54,1037,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,1037,0,0" TextWrapping="Wrap" Text="{Binding Itransmission.I58, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- I59 -->
+            <Label Content="I59" HorizontalAlignment="Left" Margin="54,1117,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,1151,0,0" TextWrapping="Wrap" Text="{Binding Itransmission.I59, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- I510 -->
+            <Label Content="I510" HorizontalAlignment="Left" Margin="54,1197,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,1231,0,0" TextWrapping="Wrap" Text="{Binding Itransmission.I510, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- I6 -->
+            <Label Content="I6" HorizontalAlignment="Left" Margin="54,1277,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,1311,0,0" TextWrapping="Wrap" Text="{Binding Itransmission.I6, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- I7 -->
+            <Label Content="I7" HorizontalAlignment="Left" Margin="54,1357,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,1391,0,0" TextWrapping="Wrap" Text="{Binding Itransmission.I7, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- I8 -->
+            <Label Content="I8" HorizontalAlignment="Left" Margin="54,1437,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,1471,0,0" TextWrapping="Wrap" Text="{Binding Itransmission.I8, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- I9 -->
+            <Label Content="I9" HorizontalAlignment="Left" Margin="54,1517,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,1551,0,0" TextWrapping="Wrap" Text="{Binding Itransmission.I9, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+
+        </Grid>
+    </ScrollViewer>
+</UserControl>
