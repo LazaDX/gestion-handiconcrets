@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
 using gestion_concrets.Models;
@@ -105,6 +107,15 @@ namespace gestion_concrets.ViewModels
         {
             try
             {
+                SetNonDefinedValues(BPerson);
+                SetNonDefinedValues(Alocalisation);
+                SetNonDefinedValues(IIapplicationCDPH);
+                SetNonDefinedValues(IIIright);
+                SetNonDefinedValues(Itransmission);
+                SetNonDefinedValues(IVdutyGov);
+                SetNonDefinedValues(VdevSupport);
+                SetNonDefinedValues(VIpartnerCollab);
+
                 _databaseService.AddFullPerson(
                     BPerson,
                     Alocalisation,
@@ -120,6 +131,24 @@ namespace gestion_concrets.ViewModels
             catch (Exception ex)
             {
                 MessageBox.Show("Erreur lors de l'enregistrement : " + ex.Message);
+                Debug.WriteLine($"[ERREUR DE L'AJOUT] : {ex.Message}");
+            }
+        }
+
+        private void SetNonDefinedValues(object model)
+        {
+            // Parcourir toutes les propriétés du modèle
+            foreach (PropertyInfo prop in model.GetType().GetProperties())
+            {
+                // Vérifier uniquement les propriétés de type string
+                if (prop.PropertyType == typeof(string))
+                {
+                    string value = (string)prop.GetValue(model);
+                    if (string.IsNullOrWhiteSpace(value))
+                    {
+                        prop.SetValue(model, "Non définie");
+                    }
+                }
             }
         }
 

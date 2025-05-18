@@ -25,26 +25,28 @@ namespace gestion_concrets.Services
 
             try
             {
-                
-                //if (!Directory.Exists(dataFolder))
+
+                //if (!directory.exists(datafolder))
                 //{
-                //    Debug.WriteLine($"[INFO] Création du dossier racine Data : {dataFolder}");
-                //    Directory.CreateDirectory(dataFolder);
-                //} else
+                //    debug.writeline($"[info] création du dossier racine data : {datafolder}");
+                //    directory.createdirectory(datafolder);
+                //}
+                //else
                 //{
-                //    Debug.WriteLine($"[INFO] Dossier racine Data existe déjà : {dataFolder}");
+                //    debug.writeline($"[info] dossier racine data existe déjà : {datafolder}");
                 //}
 
 
-                //if (!File.Exists(dbPath))
+                //if (!file.exists(dbpath))
                 //{
-                //    Debug.WriteLine($"[INFO] Création du fichier database.db : {dbPath}");
-                //    SQLiteConnection.CreateFile(dbPath);
-                //} else
-                //{
-                //    Debug.WriteLine($"[INFO] Fichier database.db existe déjà : {dbPath}");
+                //    debug.writeline($"[info] création du fichier database.db : {dbpath}");
+                //    sqliteconnection.createfile(dbpath);
                 //}
-                    return new SQLiteConnection(connectionString);
+                //else
+                //{
+                //    debug.writeline($"[info] fichier database.db existe déjà : {dbpath}");
+                //}
+                return new SQLiteConnection(connectionString);
             }
             catch (Exception ex)
             {
@@ -438,8 +440,8 @@ namespace gestion_concrets.Services
                     try
                     {
                         var personQuery = @"
-                            INSERT INTO Alocalisation (IdBPerson, A1, A2, A3, A4)
-                            VALUES (@IdBPerson, @A1, @A2, @A3, @A4); SELECT last_insert_rowid()";
+                           INSERT INTO BPerson (B1, B2, B3, Adress, Phone, Email, B4, B51, B52, B6, B7, B71, B72, B8)
+                           VALUES (@B1, @B2, @B3, @Adress, @Phone, @Email, @B4, @B51, @B52, @B6, @B7, @B71, @B72, @B8); SELECT last_insert_rowid()";
 
                         long idPerson;
 
@@ -469,7 +471,7 @@ namespace gestion_concrets.Services
                             ";
                         using (var cmd = new SQLiteCommand(localisationQuery, con, transaction))
                         {
-                            cmd.Parameters.AddWithValue("@IdBPerson", localisation.IdBPerson);
+                            cmd.Parameters.AddWithValue("@IdBPerson", idPerson);
                             cmd.Parameters.AddWithValue("@A1", localisation.A1);
                             cmd.Parameters.AddWithValue("@A2", localisation.A2);
                             cmd.Parameters.AddWithValue("@A3", localisation.A3);
@@ -486,7 +488,7 @@ namespace gestion_concrets.Services
 
                         using (var cmd = new SQLiteCommand(applicationQuery, con, transaction))
                         {
-                            cmd.Parameters.AddWithValue("@IdBPerson", applicationCDPH.IdBPerson);
+                            cmd.Parameters.AddWithValue("@IdBPerson", idPerson);
                             cmd.Parameters.AddWithValue("@II1", applicationCDPH.II1);
                             cmd.Parameters.AddWithValue("@II2", applicationCDPH.II2);
                             cmd.Parameters.AddWithValue("@II3", applicationCDPH.II3);
@@ -505,7 +507,7 @@ namespace gestion_concrets.Services
                             ";
 
                         using (var cmd = new SQLiteCommand(rightQuery, con, transaction)) { 
-                             cmd.Parameters.AddWithValue("@IdBPerson", right.IdBPerson);
+                             cmd.Parameters.AddWithValue("@IdBPerson", idPerson);
                             cmd.Parameters.AddWithValue("@III1", right.III1);
                             cmd.Parameters.AddWithValue("@III2", right.III2);
                             cmd.Parameters.AddWithValue("@III3", right.III3);
@@ -534,7 +536,7 @@ namespace gestion_concrets.Services
 
                         using (var cmd = new SQLiteCommand(transmissionQuery, con, transaction))
                         {
-                            cmd.Parameters.AddWithValue("@IdBPerson", transmission.IdBPerson);
+                            cmd.Parameters.AddWithValue("@IdBPerson", idPerson);
                             cmd.Parameters.AddWithValue("@I11", transmission.I11);
                             cmd.Parameters.AddWithValue("@I12", transmission.I12);
                             cmd.Parameters.AddWithValue("@I2", transmission.I2);
@@ -564,7 +566,7 @@ namespace gestion_concrets.Services
                         ";
 
                         using (var cmd = new SQLiteCommand(dutygovQuery, con, transaction)) {
-                            cmd.Parameters.AddWithValue("@IdBPerson", dutyGov.IdBPerson);
+                            cmd.Parameters.AddWithValue("@IdBPerson", idPerson);
                             cmd.Parameters.AddWithValue("@IV11", dutyGov.IV11);
                             cmd.Parameters.AddWithValue("@IV12", dutyGov.IV12);
                             cmd.Parameters.AddWithValue("@IV13", dutyGov.IV13);
@@ -584,7 +586,7 @@ namespace gestion_concrets.Services
 
                         using (var cmd = new SQLiteCommand(devsupportQuery, con, transaction))
                         {
-                            cmd.Parameters.AddWithValue("@IdBPerson", devSupport.IdBPerson);
+                            cmd.Parameters.AddWithValue("@IdBPerson", idPerson);
                             cmd.Parameters.AddWithValue("@V1", devSupport.V1);
                             cmd.Parameters.AddWithValue("@V2", devSupport.V2);
                             cmd.Parameters.AddWithValue("@V3", devSupport.V3);
@@ -604,7 +606,7 @@ namespace gestion_concrets.Services
 
                         using (var cmd = new SQLiteCommand(partnercollabQuery, con, transaction))
                         {
-                            cmd.Parameters.AddWithValue("@IdBPerson", partnerCollab.IdBPerson);
+                            cmd.Parameters.AddWithValue("@IdBPerson", idPerson);
                             cmd.Parameters.AddWithValue("@VI1", partnerCollab.VI1);
                             cmd.Parameters.AddWithValue("@VI2", partnerCollab.VI2);
                             cmd.Parameters.AddWithValue("@VI3", partnerCollab.VI3);

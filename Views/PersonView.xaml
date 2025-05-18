@@ -61,7 +61,7 @@
                        Margin="10" 
                        Command="{Binding NextTabCommand}" 
                        IsEnabled="{Binding CanGoNext}"/>
-            <ui:Button Content="Sauvegarder" 
+            <ui:Button Content="Enregistrer" 
                        Width="120" 
                        Height="40" 
                        Margin="10" 
