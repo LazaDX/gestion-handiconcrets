@@ -203,233 +203,8 @@ namespace gestion_concrets.Services
 
         }
 
-        // Method to Add BPerson
-    //    public void AddPerson(BPerson person)
-    //    {
-    //        using var con = GetConnection();
-    //        con.Open();
 
-    //        string sql = @"
-    //    INSERT INTO BPerson (B1, B2, B3, Adress, Phone, Email, B4, B51, B52, B6, B7, B71, B72, B8)
-    //    VALUES (@B1, @B2, @B3, @Adress, @Phone, @Email, @B4, @B51, @B52, @B6, @B7, @B71, @B72, @B8);
-    //";
-
-    //        using var cmd = new SQLiteCommand(sql, con);
-    //        cmd.Parameters.AddWithValue("@B1", person.B1);
-    //        cmd.Parameters.AddWithValue("@B2", person.B2);
-    //        cmd.Parameters.AddWithValue("@B3", person.B3);
-    //        cmd.Parameters.AddWithValue("@Adress", person.Adress);
-    //        cmd.Parameters.AddWithValue("@Phone", person.Phone);
-    //        cmd.Parameters.AddWithValue("@Email", person.Email);
-    //        cmd.Parameters.AddWithValue("@B4", person.B4);
-    //        cmd.Parameters.AddWithValue("@B51", person.B51);
-    //        cmd.Parameters.AddWithValue("@B52", person.B52);
-    //        cmd.Parameters.AddWithValue("@B6", person.B6);
-    //        cmd.Parameters.AddWithValue("@B7", person.B7);
-    //        cmd.Parameters.AddWithValue("@B71", person.B71);
-    //        cmd.Parameters.AddWithValue("@B72", person.B72);
-    //        cmd.Parameters.AddWithValue("@B8", person.B8);
-
-    //        cmd.ExecuteNonQuery();
-    //    }
-
-        //public int GetLastInsertedPersonId()
-        //{
-        //    using var con = GetConnection();
-        //    con.Open();
-
-        //    using var cmd = new SQLiteCommand("SELECT last_insert_rowid();", con);
-        //    return Convert.ToInt32(cmd.ExecuteScalar());
-        //}
-
-        // Method to Add Alocalisation
-    //    public void AddAlocalisation(Alocalisation model)
-    //    {
-    //        using var con = GetConnection();
-    //        con.Open();
-
-    //        string sql = @"
-    //    INSERT INTO Alocalisation (IdBPerson, A1, A2, A3, A4)
-    //    VALUES (@IdBPerson, @A1, @A2, @A3, @A4);
-    //";
-
-    //        using var cmd = new SQLiteCommand(sql, con);
-    //        cmd.Parameters.AddWithValue("@IdBPerson", model.IdBPerson);
-    //        cmd.Parameters.AddWithValue("@A1", model.A1);
-    //        cmd.Parameters.AddWithValue("@A2", model.A2);
-    //        cmd.Parameters.AddWithValue("@A3", model.A3);
-    //        cmd.Parameters.AddWithValue("@A4", model.A4);
-
-    //        cmd.ExecuteNonQuery();
-    //    }
-
-        // Method to Add IIapplicationCDPH
-    //    public void AddIIapplicationCDPH(IIapplicationCDPH model)
-    //    {
-    //        using var con = GetConnection();
-    //        con.Open();
-
-    //        string sql = @"
-    //    INSERT INTO IIapplicationCDPH (IdBPerson, II1, II2, II3, II4, II5, II6)
-    //    VALUES (@IdBPerson, @II1, @II2, @II3, @II4, @II5, @II6);
-    //";
-
-    //        using var cmd = new SQLiteCommand(sql, con);
-    //        cmd.Parameters.AddWithValue("@IdBPerson", model.IdBPerson);
-    //        cmd.Parameters.AddWithValue("@II1", model.II1);
-    //        cmd.Parameters.AddWithValue("@II2", model.II2);
-    //        cmd.Parameters.AddWithValue("@II3", model.II3);
-    //        cmd.Parameters.AddWithValue("@II4", model.II4);
-    //        cmd.Parameters.AddWithValue("@II5", model.II5);
-    //        cmd.Parameters.AddWithValue("@II6", model.II6);
-
-    //        cmd.ExecuteNonQuery();
-    //    }
-
-        // Method to Add IIIright
-    //    public void AddIIIright(IIIright model)
-    //    {
-    //        using var con = GetConnection();
-    //        con.Open();
-
-    //        string sql = @"
-    //    INSERT INTO IIIright (IdBPerson, III1, III2, III3, III21, III22, III23, III24, III25,
-    //                          III31, III32, III33, III41, III42, III43, III51, III52, III53)
-    //    VALUES (@IdBPerson, @III1, @III2, @III3, @III21, @III22, @III23, @III24, @III25,
-    //            @III31, @III32, @III33, @III41, @III42, @III43, @III51, @III52, @III53);
-    //";
-
-    //        using var cmd = new SQLiteCommand(sql, con);
-    //        cmd.Parameters.AddWithValue("@IdBPerson", model.IdBPerson);
-    //        cmd.Parameters.AddWithValue("@III1", model.III1);
-    //        cmd.Parameters.AddWithValue("@III2", model.III2);
-    //        cmd.Parameters.AddWithValue("@III3", model.III3);
-    //        cmd.Parameters.AddWithValue("@III21", model.III21);
-    //        cmd.Parameters.AddWithValue("@III22", model.III22);
-    //        cmd.Parameters.AddWithValue("@III23", model.III23);
-    //        cmd.Parameters.AddWithValue("@III24", model.III24);
-    //        cmd.Parameters.AddWithValue("@III25", model.III25);
-    //        cmd.Parameters.AddWithValue("@III31", model.III31);
-    //        cmd.Parameters.AddWithValue("@III32", model.III32);
-    //        cmd.Parameters.AddWithValue("@III33", model.III33);
-    //        cmd.Parameters.AddWithValue("@III41", model.III41);
-    //        cmd.Parameters.AddWithValue("@III42", model.III42);
-    //        cmd.Parameters.AddWithValue("@III43", model.III43);
-    //        cmd.Parameters.AddWithValue("@III51", model.III51);
-    //        cmd.Parameters.AddWithValue("@III52", model.III52);
-    //        cmd.Parameters.AddWithValue("@III53", model.III53);
-
-    //        cmd.ExecuteNonQuery();
-    //    }
-
-
-        // Method to Add Itransmission
-    //    public void AddItransmission(Itransmission model)
-    //    {
-    //        using var con = GetConnection();
-    //        con.Open();
-
-    //        string sql = @"
-    //    INSERT INTO Itransmission (IdBPerson, I11, I12, I2, I3, I4, I51, I52, I53, I54, I55, I56, I57, I58, I59, I510, I6, I7, I8, I9)
-    //    VALUES (@IdBPerson, @I11, @I12, @I2, @I3, @I4, @I51, @I52, @I53, @I54, @I55, @I56, @I57, @I58, @I59, @I510, @I6, @I7, @I8, @I9);
-    //";
-
-    //        using var cmd = new SQLiteCommand(sql, con);
-    //        cmd.Parameters.AddWithValue("@IdBPerson", model.IdBPerson);
-    //        cmd.Parameters.AddWithValue("@I11", model.I11);
-    //        cmd.Parameters.AddWithValue("@I12", model.I12);
-    //        cmd.Parameters.AddWithValue("@I2", model.I2);
-    //        cmd.Parameters.AddWithValue("@I3", model.I3);
-    //        cmd.Parameters.AddWithValue("@I4", model.I4);
-    //        cmd.Parameters.AddWithValue("@I51", model.I51);
-    //        cmd.Parameters.AddWithValue("@I52", model.I52);
-    //        cmd.Parameters.AddWithValue("@I53", model.I53);
-    //        cmd.Parameters.AddWithValue("@I54", model.I54);
-    //        cmd.Parameters.AddWithValue("@I55", model.I55);
-    //        cmd.Parameters.AddWithValue("@I56", model.I56);
-    //        cmd.Parameters.AddWithValue("@I57", model.I57);
-    //        cmd.Parameters.AddWithValue("@I58", model.I58);
-    //        cmd.Parameters.AddWithValue("@I59", model.I59);
-    //        cmd.Parameters.AddWithValue("@I510", model.I510);
-    //        cmd.Parameters.AddWithValue("@I6", model.I6);
-    //        cmd.Parameters.AddWithValue("@I7", model.I7);
-    //        cmd.Parameters.AddWithValue("@I8", model.I8);
-    //        cmd.Parameters.AddWithValue("@I9", model.I9);
-
-    //        cmd.ExecuteNonQuery();
-    //    }
-
-        // Method to Add IVdutyGov
-    //    public void AddIVdutyGov(IVdutyGov model)
-    //    {
-    //        using var con = GetConnection();
-    //        con.Open();
-
-    //        string sql = @"
-    //    INSERT INTO IVdutyGov (IdBPerson, IV11, IV12, IV13, IV2, IV3, IV4, IV51, IV52)
-    //    VALUES (@IdBPerson, @IV11, @IV12, @IV13, @IV2, @IV3, @IV4, @IV51, @IV52);
-    //";
-
-    //        using var cmd = new SQLiteCommand(sql, con);
-    //        cmd.Parameters.AddWithValue("@IdBPerson", model.IdBPerson);
-    //        cmd.Parameters.AddWithValue("@IV11", model.IV11);
-    //        cmd.Parameters.AddWithValue("@IV12", model.IV12);
-    //        cmd.Parameters.AddWithValue("@IV13", model.IV13);
-    //        cmd.Parameters.AddWithValue("@IV2", model.IV2);
-    //        cmd.Parameters.AddWithValue("@IV3", model.IV3);
-    //        cmd.Parameters.AddWithValue("@IV4", model.IV4);
-    //        cmd.Parameters.AddWithValue("@IV51", model.IV51);
-    //        cmd.Parameters.AddWithValue("@IV52", model.IV52);
-
-    //        cmd.ExecuteNonQuery();
-    //    }
-
-
-        // Method to Add VdevSupport
-    //    public void AddVdevSupport(VdevSupport model)
-    //    {
-    //        using var con = GetConnection();
-    //        con.Open();
-
-    //        string sql = @"
-    //    INSERT INTO VdevSupport (IdBPerson, V1, V2, V3, V41, V42, V51, V52, V53)
-    //    VALUES (@IdBPerson, @V1, @V2, @V3, @V41, @V42, @V51, @V52, @V53);
-    //";
-
-    //        using var cmd = new SQLiteCommand(sql, con);
-    //        cmd.Parameters.AddWithValue("@IdBPerson", model.IdBPerson);
-    //        cmd.Parameters.AddWithValue("@V1", model.V1);
-    //        cmd.Parameters.AddWithValue("@V2", model.V2);
-    //        cmd.Parameters.AddWithValue("@V3", model.V3);
-    //        cmd.Parameters.AddWithValue("@V41", model.V41);
-    //        cmd.Parameters.AddWithValue("@V42", model.V42);
-    //        cmd.Parameters.AddWithValue("@V51", model.V51);
-    //        cmd.Parameters.AddWithValue("@V52", model.V52);
-    //        cmd.Parameters.AddWithValue("@V53", model.V53);
-
-    //        cmd.ExecuteNonQuery();
-    //    }
-
-        // Method to Add VIpartnerCollab    
-    //    public void AddVIpartnerCollab(VIpartnerCollab model)
-    //    {
-    //        using var con = GetConnection();
-    //        con.Open();
-
-    //        string sql = @"
-    //    INSERT INTO VIpartnerCollab (IdBPerson, VI1, VI2, VI3)
-    //    VALUES (@IdBPerson, @VI1, @VI2, @VI3);
-    //";
-
-    //        using var cmd = new SQLiteCommand(sql, con);
-    //        cmd.Parameters.AddWithValue("@IdBPerson", model.IdBPerson);
-    //        cmd.Parameters.AddWithValue("@VI1", model.VI1);
-    //        cmd.Parameters.AddWithValue("@VI2", model.VI2);
-    //        cmd.Parameters.AddWithValue("@VI3", model.VI3);
-
-    //        cmd.ExecuteNonQuery();
-    //    }
-
+        // ADD all information of person
         public void AddFullPerson(BPerson person, Alocalisation localisation, IIapplicationCDPH applicationCDPH, IIIright right, Itransmission transmission, IVdutyGov dutyGov, VdevSupport devSupport, VIpartnerCollab partnerCollab)
         {
             using (var con = GetConnection())
@@ -626,7 +401,35 @@ namespace gestion_concrets.Services
 
                 con.Close();
             }
-        }   
+        }
+
+        //GET All Person
+        public List<BPerson> GetAllPersons()
+        {
+            var persons = new List<BPerson>();
+            using (var con = GetConnection())
+            {
+                con.Open();
+                using (var cmd = new SQLiteCommand("SELECT Id, B1, B2, B3, Adress, Phone, Email FROM BPerson", con))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        persons.Add(new BPerson
+                        {
+                            Id = reader.GetInt32(0),
+                            B1 = reader.GetString(1),
+                            B2 = reader.GetInt32(2),
+                            B3 = reader.GetString(3),
+                            Adress = reader.GetString(4),
+                            Phone = reader.GetString(5),
+                            Email = reader.GetString(6)
+                        });
+                    }
+                }
+            }
+            return persons;
+        }
     }
 }
 

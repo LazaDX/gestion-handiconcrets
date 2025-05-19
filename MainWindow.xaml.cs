@@ -14,9 +14,7 @@ using gestion_concrets.Views;
 
 namespace gestion_concrets
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+    
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -33,7 +31,7 @@ namespace gestion_concrets
 
         private void gestBtn(object sender, RoutedEventArgs e)
         {
-           
+            MainFrame.Navigate(new PersonListPage());
         }
 
         private void addBtn_Click(object sender, RoutedEventArgs e)

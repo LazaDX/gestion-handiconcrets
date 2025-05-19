@@ -7,7 +7,7 @@
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" 
     x:Class="gestion_concrets.Views.PersonView"
     mc:Ignorable="d" d:DesignWidth="800">
-    <Grid Background="White" Margin="10">
+    <Grid Background="White" Margin="10,0,10,0" Height="607">
         <!-- Indicateur de progression -->
         <Label Content="{Binding SelectedTabIndex, StringFormat={}Étape {0} sur 8}" 
                HorizontalAlignment="Center" 
@@ -61,11 +61,12 @@
                        Margin="10" 
                        Command="{Binding NextTabCommand}" 
                        IsEnabled="{Binding CanGoNext}"/>
-            <ui:Button Content="Enregistrer" 
+            <ui:Button Content="Ajouter" 
                        Width="120" 
                        Height="40" 
                        Margin="10" 
                        Command="{Binding SaveCommand}"/>
         </StackPanel>
+        <Label Content="FAKAN-KEVITRA ISAM-PARITRA AVY AMIN'NY OLONA MANANA FAHASEMBANANA&#xD;&#xA;" HorizontalAlignment="Left" Margin="152,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.026,0.25" Height="25" Width="495" FontWeight="Bold" Background="White" Foreground="#FF6D6464"/>
     </Grid>
 </Page>

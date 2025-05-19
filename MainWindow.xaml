@@ -78,7 +78,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Border Margin="248,0,10,0"  BorderBrush="DarkGray" BorderThickness="2" CornerRadius="30" Grid.ColumnSpan="2" Background="White" Height="684" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1">
-            <Frame x:Name="MainFrame" Content="" NavigationUIVisibility="Hidden" Margin="9,73,9,9" BorderBrush="#FF3A46FF"/>
+            <Frame x:Name="MainFrame" Content="" NavigationUIVisibility="Hidden" Margin="9,8,9,9" BorderBrush="#FF3A46FF"/>
         </Border>
         <ui:Button x:Name="dashBt"
            HorizontalAlignment="Left"
@@ -109,7 +109,7 @@
             </StackPanel>
         </ui:Button>
 
-        <ui:Button x:Name="gestBt" HorizontalAlignment="Left" Margin="25,289,0,0"
+        <ui:Button x:Name="gestBtn_Click" HorizontalAlignment="Left" Margin="25,289,0,0"
            Grid.Row="1" VerticalAlignment="Top" Height="43" Width="249"
            Background="{x:Null}" Foreground="White" FontSize="14" FontWeight="Bold"
            Click="gestBtn" Style="{StaticResource CustomButtonStyle}" Grid.ColumnSpan="2">
@@ -173,7 +173,7 @@
                 <TextBlock Text="Aide" VerticalAlignment="Center" />
             </StackPanel>
         </ui:Button>
-        <Label Content="    SIGPH" HorizontalAlignment="Left" Margin="34,40,0,0" Grid.Row="1" VerticalAlignment="Top" Height="86" Width="230" Background="{x:Null}" FontSize="48" FontFamily="Segoe UI Variable Display Semibold" Foreground="White" FontWeight="Bold" Cursor="AppStarting" Grid.ColumnSpan="2"/>
+        <Label Content="    SIGPH" HorizontalAlignment="Left" Margin="34,40,0,0" Grid.Row="1" VerticalAlignment="Top" Height="86" Width="230" Background="{x:Null}" FontSize="22" FontFamily="Segoe UI Variable Display Semibold" Foreground="White" FontWeight="Bold" Cursor="AppStarting" Grid.ColumnSpan="2"/>
 
     </Grid>
 
