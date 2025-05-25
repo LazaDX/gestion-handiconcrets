@@ -12,20 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using gestion_concrets.Services;
-using gestion_concrets.ViewModels;
 
 namespace gestion_concrets.Views
 {
     /// <summary>
-    /// Logique d'interaction pour PersonListPage.xaml
+    /// Logique d'interaction pour VdevSupportViewAdd.xaml
     /// </summary>
-    public partial class PersonListPage : Page
+    public partial class VdevSupportViewAdd : UserControl
     {
-        public PersonListPage()
+        public VdevSupportViewAdd()
         {
             InitializeComponent();
-            DataContext = new PersonListViewModel(new DatabaseService());
         }
     }
 }

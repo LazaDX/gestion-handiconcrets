@@ -36,6 +36,7 @@ namespace gestion_concrets
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
+            
             MainFrame.Navigate(new PersonView());
         }
     }

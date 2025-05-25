@@ -10,25 +10,25 @@
       >
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
         <Grid Background="White">
-            <Label Content="II - Application CDPH" HorizontalAlignment="Left" Margin="45,41,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+            <Label Content="II - Fampiharana ny CDPH" HorizontalAlignment="Left" Margin="45,41,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
             <!-- II1 -->
-            <Label Content="II1" HorizontalAlignment="Left" Margin="54,77,0,0" VerticalAlignment="Top" FontSize="14"/>
-            <ui:TextBox HorizontalAlignment="Left" Margin="54,111,0,0" TextWrapping="Wrap" Text="{Binding IIapplicationCDPH.II1, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <Label Content="II1. Fantatrao ve ny fisian'ny CDPH" HorizontalAlignment="Left" Margin="54,77,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,111,0,0" TextWrapping="Wrap" Text="{Binding II1, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="371" Height="29"/>
             <!-- II2 -->
-            <Label Content="II2" HorizontalAlignment="Left" Margin="54,157,0,0" VerticalAlignment="Top" FontSize="14"/>
-            <ui:TextBox HorizontalAlignment="Left" Margin="54,191,0,0" TextWrapping="Wrap" Text="{Binding IIapplicationCDPH.II2, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <Label Content="II2. Raha eny, efa nisy ve ny fampiharana izany teo aminn'ny: " HorizontalAlignment="Left" Margin="54,157,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,191,0,0" TextWrapping="Wrap" Text="{Binding II2, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="371" Height="29"/>
             <!-- II3 -->
-            <Label Content="II3" HorizontalAlignment="Left" Margin="54,237,0,0" VerticalAlignment="Top" FontSize="14"/>
-            <ui:TextBox HorizontalAlignment="Left" Margin="54,271,0,0" TextWrapping="Wrap" Text="{Binding IIapplicationCDPH.II3, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <Label Content="II3. Azonao azavaina ve ny fomba nampiharana io CDPH io tamin'ny faritra voalazanao tetsy ambony ?" HorizontalAlignment="Left" Margin="54,237,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,271,0,0" TextWrapping="Wrap" Text="{Binding II3, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
             <!-- II4 -->
-            <Label Content="II4" HorizontalAlignment="Left" Margin="54,317,0,0" VerticalAlignment="Top" FontSize="14"/>
-            <ui:TextBox HorizontalAlignment="Left" Margin="54,351,0,0" TextWrapping="Wrap" Text="{Binding IIapplicationCDPH.II4, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <Label Content="II4. Raha tsia, inona non antony tsy nahatanteraka izany ?" HorizontalAlignment="Left" Margin="54,317,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,351,0,0" TextWrapping="Wrap" Text="{Binding II4, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="371" Height="29"/>
             <!-- II5 -->
-            <Label Content="II5" HorizontalAlignment="Left" Margin="54,397,0,0" VerticalAlignment="Top" FontSize="14"/>
-            <ui:TextBox HorizontalAlignment="Left" Margin="54,431,0,0" TextWrapping="Wrap" Text="{Binding IIapplicationCDPH.II5, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <Label Content="II5. Inona no sosokevitrao mba ho fanantanterahana ny CDPH any amin'ny toerana misy anao." HorizontalAlignment="Left" Margin="54,397,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,431,0,0" TextWrapping="Wrap" Text="{Binding II5, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
             <!-- II6 -->
-            <Label Content="II6" HorizontalAlignment="Left" Margin="54,477,0,0" VerticalAlignment="Top" FontSize="14"/>
-            <ui:TextBox HorizontalAlignment="Left" Margin="54,511,0,0" TextWrapping="Wrap" Text="{Binding IIapplicationCDPH.II6, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <Label Content="II6. Inona no andraikitra ho raisinao ho fanantanterahana ny CDPH ?" HorizontalAlignment="Left" Margin="54,477,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,511,0,0" TextWrapping="Wrap" Text="{Binding II6, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
 
         </Grid>
     </ScrollViewer>

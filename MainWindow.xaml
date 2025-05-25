@@ -82,7 +82,7 @@
         </Border>
         <ui:Button x:Name="dashBt"
            HorizontalAlignment="Left"
-           Margin="25,186,0,0"
+           Margin="25,230,0,0"
            Grid.Row="1"
            VerticalAlignment="Top"
            Height="43"
@@ -173,7 +173,7 @@
                 <TextBlock Text="Aide" VerticalAlignment="Center" />
             </StackPanel>
         </ui:Button>
-        <Label Content="    SIGPH" HorizontalAlignment="Left" Margin="34,40,0,0" Grid.Row="1" VerticalAlignment="Top" Height="86" Width="230" Background="{x:Null}" FontSize="22" FontFamily="Segoe UI Variable Display Semibold" Foreground="White" FontWeight="Bold" Cursor="AppStarting" Grid.ColumnSpan="2"/>
+        <Label Content="    SIGPH" HorizontalAlignment="Left" Margin="34,40,0,0" Grid.Row="1" VerticalAlignment="Top" Height="86" Width="230" Background="{x:Null}" FontSize="48" FontFamily="Segoe UI Variable Display Semibold" Foreground="White" FontWeight="Bold" Cursor="AppStarting" Grid.ColumnSpan="2"/>
 
     </Grid>
 

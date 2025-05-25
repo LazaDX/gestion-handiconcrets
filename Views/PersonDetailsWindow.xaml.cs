@@ -10,22 +10,25 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using gestion_concrets.Services;
 using gestion_concrets.ViewModels;
 
 namespace gestion_concrets.Views
 {
     /// <summary>
-    /// Logique d'interaction pour PersonListPage.xaml
+    /// Logique d'interaction pour PersonDetailsWindow.xaml
     /// </summary>
-    public partial class PersonListPage : Page
+    public partial class PersonDetailsWindow : Window
     {
-        public PersonListPage()
+        public PersonDetailsWindow(PersonViewModel viewModel)
         {
             InitializeComponent();
-            DataContext = new PersonListViewModel(new DatabaseService());
+            DataContext = viewModel;
+            Content = new PersonDetailsView
+            {
+                DataContext = viewModel
+            };
+
         }
     }
 }

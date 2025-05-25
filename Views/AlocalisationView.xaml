@@ -14,17 +14,17 @@
             <Label Content="A - Faritra anaovana fanadiadihana&#xD;&#xA;" HorizontalAlignment="Left" Margin="45,41,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
             <!-- A1 -->
             <Label Content="A1. Datin'ny fanadiahadiana&#xD;&#xA;" HorizontalAlignment="Left" Margin="54,77,0,0" VerticalAlignment="Top" FontSize="14"/>
-            <ui:TextBox HorizontalAlignment="Left" Margin="54,111,0,0" TextWrapping="Wrap" Text="{Binding Alocalisation.A1, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,111,0,0" TextWrapping="Wrap" Text="{Binding A1, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="371" Height="29"/>
             <!-- A2 -->
             <Label Content="A2. Faritra&#xD;&#xA;" HorizontalAlignment="Left" Margin="54,157,0,0" VerticalAlignment="Top" FontSize="14"/>
-            <ui:TextBox HorizontalAlignment="Left" Margin="54,191,0,0" TextWrapping="Wrap" Text="{Binding Alocalisation.A2, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,191,0,0" TextWrapping="Wrap" Text="{Binding A2, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="371" Height="29"/>
             <!-- A3 -->
             <Label Content="A3. Distrika&#xD;&#xA;" HorizontalAlignment="Left" Margin="54,237,0,0" VerticalAlignment="Top" FontSize="14"/>
-            <ui:TextBox HorizontalAlignment="Left" Margin="54,271,0,0" TextWrapping="Wrap" Text="{Binding Alocalisation.A3, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,271,0,0" TextWrapping="Wrap" Text="{Binding A3, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="371" Height="29"/>
 
             <!-- A4 -->
             <Label Content="A4. Fikambanana misy azy&#xD;&#xA;" HorizontalAlignment="Left" Margin="54,317,0,0" VerticalAlignment="Top" FontSize="14"/>
-            <ui:TextBox HorizontalAlignment="Left" Margin="54,351,0,0" TextWrapping="Wrap" Text="{Binding Alocalisation.A4, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,351,0,0" TextWrapping="Wrap" Text="{Binding A4, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="371" Height="29"/>
         </Grid>
     </ScrollViewer>
 </UserControl>

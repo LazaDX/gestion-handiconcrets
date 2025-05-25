@@ -7,8 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PersonListPage">
-
     <Grid Background="White">
-        <local:PersonListView />
+        <local:PersonListView Margin="10,105,10,10" />
     </Grid>
 </Page>

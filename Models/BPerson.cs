@@ -16,12 +16,17 @@ namespace gestion_concrets.Models
         public string Phone { get; set; }
         public string Email { get; set; }
         public string B4 { get; set; }
+        public string B42 { get; set; }
         public string B51 { get; set; }
         public string B52 { get; set; }
         public string B6 { get; set; }
+        public string B61 { get; set; }
         public string B7 { get; set; }
         public string B71 { get; set; }
         public string B72 { get; set; }
+        public string B73 { get; set; }
+        public string B74 { get; set; }
+
         public string B8 { get; set; }
     }
 }

@@ -11,32 +11,32 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
         <Grid Background="White">
             <!-- IVdutyGov Section -->
-            <Label Content="IV - Duty Government" HorizontalAlignment="Left" Margin="45,41,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+            <Label Content="IV - Fandraisana andraikitry ny Fanjakana" HorizontalAlignment="Left" Margin="45,41,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
             <!-- IV11 -->
-            <Label Content="IV11" HorizontalAlignment="Left" Margin="54,77,0,0" VerticalAlignment="Top" FontSize="14"/>
-            <ui:TextBox HorizontalAlignment="Left" Margin="54,111,0,0" TextWrapping="Wrap" Text="{Binding IVdutyGov.IV11, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <Label Content="IV11. Ho anao, misy ve ny fandraisana andraikitra avy amin'ny fanjakàna ny amin'ny fanajàna sy &#xD;&#xA;fanatanterahana ny zon'ny olona manana fahasembanana ?" HorizontalAlignment="Left" Margin="54,77,0,0" VerticalAlignment="Top" FontSize="14" Height="46"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,123,0,0" TextWrapping="Wrap" Text="{Binding IV11, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="371" Height="29"/>
             <!-- IV12 -->
-            <Label Content="IV12" HorizontalAlignment="Left" Margin="54,157,0,0" VerticalAlignment="Top" FontSize="14"/>
-            <ui:TextBox HorizontalAlignment="Left" Margin="54,191,0,0" TextWrapping="Wrap" Text="{Binding IVdutyGov.IV12, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <Label Content="IV12. Raha eny, hazavao" HorizontalAlignment="Left" Margin="54,163,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,197,0,0" TextWrapping="Wrap" Text="{Binding IV12, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="653" Height="29"/>
             <!-- IV13 -->
-            <Label Content="IV13" HorizontalAlignment="Left" Margin="54,237,0,0" VerticalAlignment="Top" FontSize="14"/>
-            <ui:TextBox HorizontalAlignment="Left" Margin="54,271,0,0" TextWrapping="Wrap" Text="{Binding IVdutyGov.IV13, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <Label Content="IV13. Raha tsia, hazavao" HorizontalAlignment="Left" Margin="54,237,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,271,0,0" TextWrapping="Wrap" Text="{Binding IV13, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="653" Height="29"/>
             <!-- IV2 -->
-            <Label Content="IV2" HorizontalAlignment="Left" Margin="54,317,0,0" VerticalAlignment="Top" FontSize="14"/>
-            <ui:TextBox HorizontalAlignment="Left" Margin="54,351,0,0" TextWrapping="Wrap" Text="{Binding IVdutyGov.IV2, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <Label Content="IV2. Inona no heverinao ho sakana tsy ahafahan'ny Fanjakàna mandray andraikitra amin'ny fanajàna sy &#xD;&#xA;fanatanterahana ny zon'ny olona manana fahasembanana ?" HorizontalAlignment="Left" Margin="54,317,0,0" VerticalAlignment="Top" FontSize="14" Height="42"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,361,0,0" TextWrapping="Wrap" Text="{Binding IV2, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="653" Height="29"/>
             <!-- IV3 -->
-            <Label Content="IV3" HorizontalAlignment="Left" Margin="54,397,0,0" VerticalAlignment="Top" FontSize="14"/>
-            <ui:TextBox HorizontalAlignment="Left" Margin="54,431,0,0" TextWrapping="Wrap" Text="{Binding IVdutyGov.IV3, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <Label Content="IV3. Inona no sosokevitra avy aminao ho fanatsaràna bebe kokoa ny fandraisan'andraikitry ny Fanjàkana momba ny fanajàna sy&#xD;&#xA; fampiharana ny zon'ny olona manana fahasembanana ?" HorizontalAlignment="Left" Margin="54,409,0,0" VerticalAlignment="Top" FontSize="14" Height="47"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,461,0,0" TextWrapping="Wrap" Text="{Binding IV3, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="653" Height="43"/>
             <!-- IV4 -->
-            <Label Content="IV4" HorizontalAlignment="Left" Margin="54,477,0,0" VerticalAlignment="Top" FontSize="14"/>
-            <ui:TextBox HorizontalAlignment="Left" Margin="54,511,0,0" TextWrapping="Wrap" Text="{Binding IVdutyGov.IV4, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <Label Content="IV4. Inona no andraikitry ny olona manana fahasembanana momba ny fanatsaràna &#xD;&#xA;izany fandraisana andraikitry ny Fanjàkana izany ?" HorizontalAlignment="Left" Margin="54,509,0,0" VerticalAlignment="Top" FontSize="14" Height="44"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,553,0,0" TextWrapping="Wrap" Text="{Binding IV4, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="653" Height="42"/>
             <!-- IV51 -->
-            <Label Content="IV51" HorizontalAlignment="Left" Margin="54,557,0,0" VerticalAlignment="Top" FontSize="14"/>
-            <ui:TextBox HorizontalAlignment="Left" Margin="54,591,0,0" TextWrapping="Wrap" Text="{Binding IVdutyGov.IV51, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <Label Content="IV51. Efa nandray anjara tamin'ny atrikasa nandrafetana paikady na drafitrasa &#xD;&#xA;nasionaly momba ny fampandrosoana ve ianao ?" HorizontalAlignment="Left" Margin="54,613,0,0" VerticalAlignment="Top" FontSize="14" Height="41"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,659,0,0" TextWrapping="Wrap" Text="{Binding IV51, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="371" Height="29"/>
             <!-- IV52 -->
-            <Label Content="IV52" HorizontalAlignment="Left" Margin="54,637,0,0" VerticalAlignment="Top" FontSize="14"/>
-            <ui:TextBox HorizontalAlignment="Left" Margin="54,671,0,0" TextWrapping="Wrap" Text="{Binding IVdutyGov.IV52, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <Label Content="IV52. Raha eny, farito sy hazavao" HorizontalAlignment="Left" Margin="54,699,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,735,0,0" TextWrapping="Wrap" Text="{Binding IV52, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="653" Height="41"/>
 
         </Grid>
-    </ScrollViewer>    
+    </ScrollViewer>
 </UserControl>

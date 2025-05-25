@@ -14,5 +14,6 @@ namespace gestion_concrets.Models
         public string VI1 { get; set; }
         public string VI2 { get; set; }
         public string VI3 { get; set; }
+        public string VI4 { get; set; }
     }
 }

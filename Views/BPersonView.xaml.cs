@@ -16,15 +16,17 @@ using gestion_concrets.ViewModels;
 
 namespace gestion_concrets.Views
 {
-    /// <summary>
-    /// Logique d'interaction pour BPerson.xaml
-    /// </summary>
+   
     public partial class BPersonView : UserControl
     {
         public BPersonView()
         {
             InitializeComponent();
-            
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

@@ -11,6 +11,8 @@ using gestion_concrets.Services;
 using Wpf.Ui.Controls;
 using System.Windows;
 using System.Diagnostics;
+using gestion_concrets.Views;
+using System.Windows.Input;
 
 namespace gestion_concrets.ViewModels
 {
@@ -29,9 +31,12 @@ namespace gestion_concrets.ViewModels
             }
         }
 
+        public ICommand ViewDetailsCommand { get; }
+
         public PersonListViewModel(DatabaseService databaseService)
         {
             _databaseService = databaseService;
+            ViewDetailsCommand = new RelayCommand(ViewDetails);
             LoadPersons();
         }
 
@@ -49,6 +54,44 @@ namespace gestion_concrets.ViewModels
             }
         }
 
+
+
+        private void ViewDetails(object parameter)
+        {
+            System.Diagnostics.Debug.WriteLine($"ViewDetails appelé avec parameter: {parameter}");
+            if (parameter is BPerson selectedPerson)
+            {
+                System.Diagnostics.Debug.WriteLine($"SelectedPerson Id: {selectedPerson.Id}");
+                try
+                {
+                   
+                    var personViewModel = new PersonViewModel
+                    {
+                        BPerson = _databaseService.GetBPersonById(selectedPerson.Id) ?? new BPerson(),
+                        Alocalisation = _databaseService.GetAlocalisationById(selectedPerson.Id) ?? new Alocalisation(),
+                        IIapplicationCDPH = _databaseService.GetIIapplicationCDPHById(selectedPerson.Id) ?? new IIapplicationCDPH(),
+                        IIIright = _databaseService.GetIIIrightById(selectedPerson.Id) ?? new IIIright(),
+                        Itransmission = _databaseService.GetItransmissionById(selectedPerson.Id) ?? new Itransmission(),
+                        IVdutyGov = _databaseService.GetIVdutyGovById(selectedPerson.Id) ?? new IVdutyGov(),
+                        VdevSupport = _databaseService.GetVdevSupportById(selectedPerson.Id) ?? new VdevSupport(),
+                        VIpartnerCollab = _databaseService.GetVIpartnerCollabById(selectedPerson.Id) ?? new VIpartnerCollab(),
+                        IsReadOnly = true
+                    };
+
+                    var personDetailsWindow = new PersonDetailsWindow(personViewModel);
+                    personDetailsWindow.Show();
+                    Debug.WriteLine("PersonDetailsWindow affichée");
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Erreur dans ViewDetails : {ex.Message}\n{ex.StackTrace}");
+                }
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("Parameter n'est pas un BPerson");
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

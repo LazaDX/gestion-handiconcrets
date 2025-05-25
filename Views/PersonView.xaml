@@ -1,13 +1,14 @@
-﻿<Page
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-    xmlns:local="clr-namespace:gestion_concrets.Views"
-    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" 
-    x:Class="gestion_concrets.Views.PersonView"
-    mc:Ignorable="d" d:DesignWidth="800">
-    <Grid Background="White" Margin="10,0,10,0" Height="607">
+﻿<Page x:Class="gestion_concrets.Views.PersonView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:gestion_concrets.Views"
+      mc:Ignorable="d" 
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" d:DesignWidth="800"
+      Title="PersonView" Height="633">
+
+    <Grid Background="White" Margin="10,13,10,-24">
         <!-- Indicateur de progression -->
         <Label Content="{Binding SelectedTabIndex, StringFormat={}Étape {0} sur 8}" 
                HorizontalAlignment="Center" 
@@ -19,28 +20,28 @@
         <TabControl SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}" 
                     Margin="0,40,0,120">
             <TabItem Header="A - Faritra anaovana fanadihadiana">
-                <local:AlocalisationView/>
+                <local:AlocalisationViewAdd/>
             </TabItem>
             <TabItem Header="B - Filazalazana momba ilay olona hadihadiana">
-                <local:BPersonView/>
+                <local:BPersonViewAdd/>
             </TabItem>
             <TabItem Header="I - Fampiatiana">
-                <local:ItransmissionView/>
+                <local:ItransmissionViewAdd/>
             </TabItem>
             <TabItem Header="II - Fampiharana ny CDPH">
-                <local:IIapplicationCDPHView/>
+                <local:IIapplicationCDPHViewAdd/>
             </TabItem>
             <TabItem Header="III - Ny zon'ny olona manana fahasembanana">
-                <local:IIIrightView/>
+                <local:IIIrightViewAdd/>
             </TabItem>
             <TabItem Header="IV - Fandraisana andraikitra ny fanjakana">
-                <local:IVdutyGovView/>
+                <local:IVdutyGovViewAdd/>
             </TabItem>
             <TabItem Header="V - Fampiatiana ny olona manana fahasembanana amin'ny fampandrosoana">
-                <local:VdevSupportView/>
+                <local:VdevSupportViewAdd/>
             </TabItem>
             <TabItem Header="VI - Fiarahana amin'ny mpiaramiombon'antoka samihafa">
-                <local:VIpartnerCollabView/>
+                <local:VIpartnerCollabViewAdd/>
             </TabItem>
         </TabControl>
 

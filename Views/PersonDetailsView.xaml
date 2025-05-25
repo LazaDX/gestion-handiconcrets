@@ -1,0 +1,84 @@
+﻿<Page x:Class="gestion_concrets.Views.PersonDetailsView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:gestion_concrets.Views"
+      xmlns:converters="clr-namespace:gestion_concrets.Converters"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      >
+
+    <Grid Background="White">
+        <!-- Indicateur de progression -->
+        <Label Content="{Binding SelectedTabIndex, StringFormat={}Étape {0} sur 8}" 
+       HorizontalAlignment="Center" 
+       FontSize="14" 
+       FontWeight="Bold" 
+       Margin="0,10,0,0"/>
+
+        <!-- TabControl -->
+        <Button Grid.Row="0" Content="Modifier" Command="{Binding ToggleEditCommand}" 
+                HorizontalAlignment="Left" Margin="10,10,0,415" Width="100"/>
+        <TabControl SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}" 
+            Margin="0,40,0,120">
+            <TabItem Header="A - Faritra anaovana fanadihadiana">
+                <local:AlocalisationView DataContext="{Binding Alocalisation}"/>
+            </TabItem>
+            <TabItem Header="B - Filazalazana momba ilay olona hadihadiana">
+                <local:BPersonView DataContext="{Binding BPerson}"/>
+            </TabItem>
+            <TabItem Header="I - Fampiatiana">
+                <local:ItransmissionView DataContext="{Binding Itransmission}"/>
+            </TabItem>
+            <TabItem Header="II - Fampiharana ny CDPH">
+                <local:IIapplicationCDPHView DataContext="{Binding IIapplicationCDPH}"/>
+            </TabItem>
+            <TabItem Header="III - Ny zon'ny olona manana fahasembanana">
+                <local:IIIrightView DataContext="{Binding IIIright}"/>
+            </TabItem>
+            <TabItem Header="IV - Fandraisana andraikitra ny fanjakana">
+                <local:IVdutyGovView DataContext="{Binding IVdutyGov}"/>
+            </TabItem>
+            <TabItem Header="V - Fampiatiana ny olona manana fahasembanana amin'ny fampandrosoana">
+                <local:VdevSupportView DataContext="{Binding VdevSupport}"/>
+            </TabItem>
+            <TabItem Header="VI - Fiarahana amin'ny mpiaramiombon'antoka samihafa">
+                <local:VIpartnerCollabView DataContext="{Binding VIpartnerCollab}"/>
+            </TabItem>
+        </TabControl>
+
+        <!-- Boutons de navigation -->
+        <StackPanel Orientation="Horizontal" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Bottom" 
+            Margin="0,0,0,20">
+            <ui:Button Content="Précédent" 
+               Width="120" 
+               Height="40" 
+               Margin="10" 
+               Command="{Binding PreviousTabCommand}" 
+               IsEnabled="{Binding CanGoPrevious}"/>
+            <ui:Button Content="Suivant" 
+               Width="120" 
+               Height="40" 
+               Margin="10" 
+               Command="{Binding NextTabCommand}" 
+               IsEnabled="{Binding CanGoNext}"/>
+            <ui:Button Content="Sauvegarder" 
+               Width="120" 
+               Height="40" 
+               Margin="10" 
+               Command="{Binding UpdateCommand}" 
+              />
+            <ui:Button Content="Supprimer" 
+               Width="120" 
+               Height="40" 
+               Margin="10" 
+               Command="{Binding DeleteCommand}"
+              />    
+        </StackPanel>
+        <Label Content="FAKAN-KEVITRA ISAM-PARITRA AVY AMIN'NY OLONA MANANA FAHASEMBANANA&#xD;&#xA;" HorizontalAlignment="Left" Margin="152,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.026,0.25" Height="25" Width="495" FontWeight="Bold" Background="White" Foreground="#FF6D6464"/>
+    </Grid>
+</Page>

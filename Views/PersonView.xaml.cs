@@ -15,18 +15,24 @@ using System.Windows.Shapes;
 using gestion_concrets.Models;
 using gestion_concrets.ViewModels;
 
-
 namespace gestion_concrets.Views
 {
-    /// <summary>
-    /// Logique d'interaction pour PersonView.xaml
-    /// </summary>
+    
     public partial class PersonView : Page
     {
         public PersonView()
         {
-            InitializeComponent();
-            this.DataContext = new PersonViewModel();
+            try
+            {
+                InitializeComponent();
+                DataContext = new PersonViewModel();
+                System.Diagnostics.Debug.WriteLine("PersonView initialisé avec succès");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Erreur dans PersonView : {ex.Message}");
+                MessageBox.Show($"Erreur lors du chargement de PersonView : {ex.Message}");
+            }
         }
     }
 }
