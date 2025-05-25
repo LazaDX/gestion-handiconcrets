@@ -26,7 +26,14 @@ namespace gestion_concrets
 
         private void dashBt_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                MainFrame.Navigate(new DashboardView());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur lors de la navigation vers le tableau de bord : {ex.Message}\n{ex.StackTrace}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void gestBtn(object sender, RoutedEventArgs e)

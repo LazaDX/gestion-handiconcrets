@@ -4,6 +4,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Collections.Generic;
 using gestion_concrets.Models;
+using ClosedXML.Excel;
 
 namespace gestion_concrets.Services
 {
@@ -1210,7 +1211,289 @@ namespace gestion_concrets.Services
             }
         }
 
-        
+        public int GetTotalPersonsCount()
+        {
+            using var connection = GetConnection();
+            try
+            {
+                connection.Open();
+                Debug.WriteLine("[DEBUG] Connexion ouverte pour GetTotalPersonsCount");
+                using var command = new SQLiteCommand("SELECT COUNT(*) FROM BPerson", connection);
+                var result = command.ExecuteScalar();
+                Debug.WriteLine("[DEBUG] Requête exécutée pour GetTotalPersonsCount");
+                return Convert.ToInt32(result);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[ERREUR] Erreur dans GetTotalPersonsCount : {ex.Message}\n{ex.StackTrace}");
+                throw new Exception($"Erreur lors du comptage des personnes : {ex.Message}", ex);
+            }
+            finally
+            {
+                connection.Close();
+                Debug.WriteLine("[DEBUG] Connexion fermée pour GetTotalPersonsCount");
+            }
+        }
+
+        public int GetTotalMenCount()
+        {
+            using var connection = GetConnection();
+            try
+            {
+                connection.Open();
+                Debug.WriteLine("[DEBUG] Connexion ouverte pour GetTotalMenCount");
+                using var command = new SQLiteCommand("SELECT COUNT(*) FROM BPerson WHERE B3 = @Gender", connection);
+                command.Parameters.AddWithValue("@Gender", "Lahy");
+                var result = command.ExecuteScalar();
+                Debug.WriteLine("[DEBUG] Requête exécutée pour GetTotalMenCount");
+                return Convert.ToInt32(result);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[ERREUR] Erreur dans GetTotalMenCount : {ex.Message}\n{ex.StackTrace}");
+                throw new Exception($"Erreur lors du comptage des hommes : {ex.Message}", ex);
+            }
+            finally
+            {
+                connection.Close();
+                Debug.WriteLine("[DEBUG] Connexion fermée pour GetTotalMenCount");
+            }
+        }
+
+        public int GetTotalWomenCount()
+        {
+            using var connection = GetConnection();
+            try
+            {
+                connection.Open();
+                Debug.WriteLine("[DEBUG] Connexion ouverte pour GetTotalWomenCount");
+                using var command = new SQLiteCommand("SELECT COUNT(*) FROM BPerson WHERE B3 = @Gender", connection);
+                command.Parameters.AddWithValue("@Gender", "Vavy");
+                var result = command.ExecuteScalar();
+                Debug.WriteLine("[DEBUG] Requête exécutée pour GetTotalWomenCount");
+                return Convert.ToInt32(result);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[ERREUR] Erreur dans GetTotalWomenCount : {ex.Message}\n{ex.StackTrace}");
+                throw new Exception($"Erreur lors du comptage des femmes : {ex.Message}", ex);
+            }
+            finally
+            {
+                connection.Close();
+                Debug.WriteLine("[DEBUG] Connexion fermée pour GetTotalWomenCount");
+            }
+        }
+
+        public void ExportToExcel(string exportType, string bPersonQuery, (string, string)? parameter = null)
+        {
+            using var workbook = new XLWorkbook();
+            using var connection = GetConnection();
+            connection.Open();
+
+            // Exporter BPerson
+            var bPersonHeaders = new[] { "Id", "B1", "B2", "B3", "Adress", "Phone", "Email", "B4", "B42", "B51", "B52", "B6", "B61", "B7", "B71", "B72", "B73", "B74", "B8" };
+            var worksheet = workbook.Worksheets.Add(exportType);
+            for (int i = 0; i < bPersonHeaders.Length; i++)
+            {
+                worksheet.Cell(1, i + 1).Value = bPersonHeaders[i];
+            }
+
+            var ids = new List<int>();
+            using (var command = new SQLiteCommand(bPersonQuery, connection))
+            {
+                if (parameter.HasValue)
+                {
+                    command.Parameters.AddWithValue(parameter.Value.Item1, parameter.Value.Item2);
+                }
+                using var reader = command.ExecuteReader();
+                int row = 2;
+                while (reader.Read())
+                {
+                    ids.Add(reader.GetInt32(0)); // Stocker Id pour les tables liées
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        worksheet.Cell(row, i + 1).Value = reader[i]?.ToString();
+                    }
+                    row++;
+                }
+            }
+
+            // Exporter Alocalisation
+            var alocHeaders = new[] { "Id", "IdBPerson", "A1", "A2", "A3", "A4" };
+            var worksheetAloc = workbook.Worksheets.Add($"{exportType}_Alocalisation");
+            for (int i = 0; i < alocHeaders.Length; i++)
+            {
+                worksheetAloc.Cell(1, i + 1).Value = alocHeaders[i];
+            }
+            string alocQuery = ids.Count > 0 ? $"SELECT * FROM Alocalisation WHERE IdBPerson IN ({string.Join(",", ids)})" : "SELECT * FROM Alocalisation WHERE 1=0";
+            using (var commandAloc = new SQLiteCommand(alocQuery, connection))
+            {
+                using var readerAloc = commandAloc.ExecuteReader();
+                int row = 2;
+                while (readerAloc.Read())
+                {
+                    for (int i = 0; i < readerAloc.FieldCount; i++)
+                    {
+                        worksheetAloc.Cell(row, i + 1).Value = readerAloc[i]?.ToString();
+                    }
+                    row++;
+                }
+            }
+
+            // Exporter IIapplicationCDPH
+            var appHeaders = new[] { "Id", "IdBPerson", "II1", "II2", "II3", "II4", "II5", "II6" };
+            var worksheetApp = workbook.Worksheets.Add($"{exportType}_IIapplicationCDPH");
+            for (int i = 0; i < appHeaders.Length; i++)
+            {
+                worksheetApp.Cell(1, i + 1).Value = appHeaders[i];
+            }
+            string appQuery = ids.Count > 0 ? $"SELECT * FROM IIapplicationCDPH WHERE IdBPerson IN ({string.Join(",", ids)})" : "SELECT * FROM IIapplicationCDPH WHERE 1=0";
+            using (var commandApp = new SQLiteCommand(appQuery, connection))
+            {
+                using var readerApp = commandApp.ExecuteReader();
+                int row = 2;
+                while (readerApp.Read())
+                {
+                    for (int i = 0; i < readerApp.FieldCount; i++)
+                    {
+                        worksheetApp.Cell(row, i + 1).Value = readerApp[i]?.ToString();
+                    }
+                    row++;
+                }
+            }
+
+            // Exporter IIIright
+            var rightHeaders = new[] { "Id", "IdBPerson", "III1", "III2", "III3", "III21", "III22", "III23", "III24", "III25", "III31", "III32", "III33", "III41", "III42", "III43", "III51", "III52", "III53" };
+            var worksheetRight = workbook.Worksheets.Add($"{exportType}_IIIright");
+            for (int i = 0; i < rightHeaders.Length; i++)
+            {
+                worksheetRight.Cell(1, i + 1).Value = rightHeaders[i];
+            }
+            string rightQuery = ids.Count > 0 ? $"SELECT * FROM IIIright WHERE IdBPerson IN ({string.Join(",", ids)})" : "SELECT * FROM IIIright WHERE 1=0";
+            using (var commandRight = new SQLiteCommand(rightQuery, connection))
+            {
+                using var readerRight = commandRight.ExecuteReader();
+                int row = 2;
+                while (readerRight.Read())
+                {
+                    for (int i = 0; i < readerRight.FieldCount; i++)
+                    {
+                        worksheetRight.Cell(row, i + 1).Value = readerRight[i]?.ToString();
+                    }
+                    row++;
+                }
+            }
+
+            // Exporter Itransmission
+            var transHeaders = new[] { "Id", "IdBPerson", "I11", "I12", "I2", "I3", "I4", "I51", "I52", "I53", "I54", "I55", "I56", "I57", "I58", "I59", "I510", "I6", "I7", "I8", "I9" };
+            var worksheetTrans = workbook.Worksheets.Add($"{exportType}_Itransmission");
+            for (int i = 0; i < transHeaders.Length; i++)
+            {
+                worksheetTrans.Cell(1, i + 1).Value = transHeaders[i];
+            }
+            string transQuery = ids.Count > 0 ? $"SELECT * FROM Itransmission WHERE IdBPerson IN ({string.Join(",", ids)})" : "SELECT * FROM Itransmission WHERE 1=0";
+            using (var commandTrans = new SQLiteCommand(transQuery, connection))
+            {
+                using var readerTrans = commandTrans.ExecuteReader();
+                int row = 2;
+                while (readerTrans.Read())
+                {
+                    for (int i = 0; i < readerTrans.FieldCount; i++)
+                    {
+                        worksheetTrans.Cell(row, i + 1).Value = readerTrans[i]?.ToString();
+                    }
+                    row++;
+                }
+            }
+
+            // Exporter IVdutyGov
+            var dutyHeaders = new[] { "Id", "IdBPerson", "IV11", "IV12", "IV13", "IV2", "IV3", "IV4", "IV51", "IV52" };
+            var worksheetDuty = workbook.Worksheets.Add($"{exportType}_IVdutyGov");
+            for (int i = 0; i < dutyHeaders.Length; i++)
+            {
+                worksheetDuty.Cell(1, i + 1).Value = dutyHeaders[i];
+            }
+            string dutyQuery = ids.Count > 0 ? $"SELECT * FROM IVdutyGov WHERE IdBPerson IN ({string.Join(",", ids)})" : "SELECT * FROM IVdutyGov WHERE 1=0";
+            using (var commandDuty = new SQLiteCommand(dutyQuery, connection))
+            {
+                using var readerDuty = commandDuty.ExecuteReader();
+                int row = 2;
+                while (readerDuty.Read())
+                {
+                    for (int i = 0; i < readerDuty.FieldCount; i++)
+                    {
+                        worksheetDuty.Cell(row, i + 1).Value = readerDuty[i]?.ToString();
+                    }
+                    row++;
+                }
+            }
+
+            // Exporter VdevSupport
+            var devHeaders = new[] { "Id", "IdBPerson", "V1", "V2", "V3", "V41", "V42", "V51", "V52", "V53" };
+            var worksheetDev = workbook.Worksheets.Add($"{exportType}_VdevSupport");
+            for (int i = 0; i < devHeaders.Length; i++)
+            {
+                worksheetDev.Cell(1, i + 1).Value = devHeaders[i];
+            }
+            string devQuery = ids.Count > 0 ? $"SELECT * FROM VdevSupport WHERE IdBPerson IN ({string.Join(",", ids)})" : "SELECT * FROM VdevSupport WHERE 1=0";
+            using (var commandDev = new SQLiteCommand(devQuery, connection))
+            {
+                using var readerDev = commandDev.ExecuteReader();
+                int row = 2;
+                while (readerDev.Read())
+                {
+                    for (int i = 0; i < readerDev.FieldCount; i++)
+                    {
+                        worksheetDev.Cell(row, i + 1).Value = readerDev[i]?.ToString();
+                    }
+                    row++;
+                }
+            }
+
+            // Exporter VIpartnerCollab
+            var partnerHeaders = new[] { "Id", "IdBPerson", "VI1", "VI2", "VI3", "VI4" };
+            var worksheetPartner = workbook.Worksheets.Add($"{exportType}_VIpartnerCollab");
+            for (int i = 0; i < partnerHeaders.Length; i++)
+            {
+                worksheetPartner.Cell(1, i + 1).Value = partnerHeaders[i];
+            }
+            string partnerQuery = ids.Count > 0 ? $"SELECT * FROM VIpartnerCollab WHERE IdBPerson IN ({string.Join(",", ids)})" : "SELECT * FROM VIpartnerCollab WHERE 1=0";
+            using (var commandPartner = new SQLiteCommand(partnerQuery, connection))
+            {
+                using var readerPartner = commandPartner.ExecuteReader();
+                int row = 2;
+                while (readerPartner.Read())
+                {
+                    for (int i = 0; i < readerPartner.FieldCount; i++)
+                    {
+                        worksheetPartner.Cell(row, i + 1).Value = readerPartner[i]?.ToString();
+                    }
+                    row++;
+                }
+            }
+
+            // Sauvegarde du fichier et ouverture
+            string filePath = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, $"export_{exportType.ToLower()}.xlsx");
+            workbook.SaveAs(filePath);
+            try
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = filePath,
+                    UseShellExecute = true
+                });
+                Debug.WriteLine($"[DEBUG] Fichier Excel ouvert : {filePath}");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[ERREUR] Impossible d'ouvrir le fichier Excel : {ex.Message}\n{ex.StackTrace}");
+                throw new Exception($"Erreur lors de l'ouverture du fichier Excel : {ex.Message}", ex);
+            }
+
+            // Fermer la connexion
+            connection.Close();
+        }
     }
 }
    

@@ -107,7 +107,7 @@ namespace gestion_concrets.ViewModels
         public ICommand PreviousTabCommand { get; }
 
         // BPerson
-        public ObservableCollection<string> SexeOptions { get; } = new ObservableCollection<string> {"1. Lahy", "2. Vavy" };
+        public ObservableCollection<string> SexeOptions { get; } = new ObservableCollection<string> { "Lahy", "Vavy" };
         public ObservableCollection<string> Skills { get; } = new ObservableCollection<string> { "1. Ambaratonga fototra", "2. Ambaratonga", "3. Ambaratonga ambony", "4. Hafa", "5. Nahavita ambaratonga fototra" };
         public ObservableCollection<string> SkillsSubOptions { get; } = new ObservableCollection<string> { "2.1 Collège", "2.2. lycée" };
         public ObservableCollection<string> Working { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
