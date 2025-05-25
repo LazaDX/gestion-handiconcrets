@@ -13,6 +13,7 @@ using System.Windows;
 using System.Diagnostics;
 using gestion_concrets.Views;
 using System.Windows.Input;
+using System.Windows.Data;
 
 namespace gestion_concrets.ViewModels
 {
@@ -20,7 +21,7 @@ namespace gestion_concrets.ViewModels
     {
         private readonly DatabaseService _databaseService;
         private ObservableCollection<BPerson> _persons;
-
+       
         public ObservableCollection<BPerson> Persons
         {
             get => _persons;
@@ -28,8 +29,11 @@ namespace gestion_concrets.ViewModels
             {
                 _persons = value;
                 OnPropertyChanged();
+                
             }
         }
+
+       
 
         public ICommand ViewDetailsCommand { get; }
 
@@ -50,7 +54,7 @@ namespace gestion_concrets.ViewModels
             {
                 // À adapter selon ton gestionnaire d'erreurs
                 Debug.WriteLine($"[ERREUR LORS DE L'AFFICHAGE] : {ex.Message}");
-                
+
             }
         }
 
@@ -64,7 +68,7 @@ namespace gestion_concrets.ViewModels
                 System.Diagnostics.Debug.WriteLine($"SelectedPerson Id: {selectedPerson.Id}");
                 try
                 {
-                   
+
                     var personViewModel = new PersonViewModel
                     {
                         BPerson = _databaseService.GetBPersonById(selectedPerson.Id) ?? new BPerson(),
@@ -97,5 +101,8 @@ namespace gestion_concrets.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+
+
     }
 }

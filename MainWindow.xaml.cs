@@ -20,6 +20,14 @@ namespace gestion_concrets
         public MainWindow()
         {
             InitializeComponent();
+            try
+            {
+                MainFrame.Navigate(new DashboardView());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur lors de la navigation vers le tableau de bord : {ex.Message}\n{ex.StackTrace}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
      

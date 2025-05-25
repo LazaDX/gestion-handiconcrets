@@ -80,7 +80,6 @@
         <Border Margin="248,0,10,0"  BorderBrush="DarkGray" BorderThickness="2" CornerRadius="30" Grid.ColumnSpan="2" Background="White" Height="684" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1">
             <Frame x:Name="MainFrame" Content="" NavigationUIVisibility="Hidden" Margin="9,8,9,9" BorderBrush="#FF3A46FF"/>
         </Border>
-        
         <ui:Button x:Name="dashBt"
            HorizontalAlignment="Left"
            Margin="25,230,0,0"
