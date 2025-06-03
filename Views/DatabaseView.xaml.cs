@@ -10,26 +10,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using gestion_concrets.ViewModels;
 
 namespace gestion_concrets.Views
 {
     /// <summary>
-    /// Logique d'interaction pour PersonDetailsWindow.xaml
+    /// Logique d'interaction pour DatabaseView.xaml
     /// </summary>
-    public partial class PersonDetailsWindow : Window
+    public partial class DatabaseView : Page
     {
-        public PersonDetailsWindow(PersonViewModel viewModel)
+        public DatabaseView()
         {
             InitializeComponent();
-            DataContext = viewModel;
-            Content = new PersonDetailsView
-            {
-                DataContext = viewModel
-            };
-
-            viewModel.CloseWindowRequested += (s, e) => Close();
+            DataContext = new DatabaseViewModel();
         }
     }
 }

@@ -22,7 +22,9 @@
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="FontWeight" Value="Medium"/>
             <Setter Property="Margin" Value="0,0,2,0"/>
-            <Setter Property="Padding" Value="10,5"/>
+            <Setter
+
+ Property="Padding" Value="10,5"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -118,6 +120,36 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <!-- Style spécifique pour le bouton Rafraîchir -->
+        <Style x:Key="RefreshButtonStyle" TargetType="ui:Button" BasedOn="{StaticResource {x:Type ui:Button}}">
+            <Setter Property="Background" Value="#FF9800"/>
+            <Setter Property="BorderBrush" Value="#F57C00"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ui:Button">
+                        <Border x:Name="Border" 
+                                Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#F57C00"/>
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#EF6C00"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Border" Property="Background" Value="#CCCCCC"/>
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#AAAAAA"/>
+                                <Setter Property="Foreground" Value="#888888"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
 
     <Grid Background="White">
@@ -142,11 +174,11 @@
         <TabControl Grid.Row="1" 
                     SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}" 
                     Margin="10">
-            <TabItem Header="A - Faritra anaovana fanadihadiana">
-                <local:AlocalisationViewAdd/>
-            </TabItem>
             <TabItem Header="B - Filazalazana momba ilay olona hadihadiana">
                 <local:BPersonViewAdd/>
+            </TabItem>
+            <TabItem Header="A - Faritra anaovana fanadihadiana">
+                <local:AlocalisationViewAdd/>
             </TabItem>
             <TabItem Header="I - Fampiatiana">
                 <local:ItransmissionViewAdd/>
@@ -186,6 +218,12 @@
                        Margin="10,0" 
                        Command="{Binding NextTabCommand}" 
                        IsEnabled="{Binding CanGoNext}"/>
+            <ui:Button Content="Rafraîchir" 
+                       Width="120" 
+                       Height="40" 
+                       Margin="10,0" 
+                       Style="{StaticResource RefreshButtonStyle}"
+                       Command="{Binding RefreshCommand}"/>
             <ui:Button Content="Ajouter" 
                        Width="120" 
                        Height="40" 

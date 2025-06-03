@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 using gestion_concrets.Models;
 using gestion_concrets.Services;
+using gestion_concrets.Views;
 
 namespace gestion_concrets.ViewModels
 {
@@ -23,7 +25,7 @@ namespace gestion_concrets.ViewModels
         private VIpartnerCollab _viPartnerCollab = new VIpartnerCollab();
         private int _selectedTabIndex;
         private bool _isReadOnly;
-
+        private DateTime _currentDate = DateTime.Today; // Date
         public BPerson BPerson
         {
             get => _bPerson;
@@ -95,6 +97,13 @@ namespace gestion_concrets.ViewModels
             }
         }
 
+        public DateTime CurrentDate // Date
+        {
+            get => _currentDate;
+            set => SetProperty(ref _currentDate, value);
+        }
+
+
         public bool CanGoNext => SelectedTabIndex < 7;
         public bool CanGoPrevious => SelectedTabIndex > 0;
 
@@ -105,6 +114,11 @@ namespace gestion_concrets.ViewModels
         public ICommand UpdateCommand { get; }
         public ICommand NextTabCommand { get; }
         public ICommand PreviousTabCommand { get; }
+
+        public ICommand RefreshCommand { get; }
+
+        public event EventHandler CloseWindowRequested;
+
 
         // BPerson
         public ObservableCollection<string> SexeOptions { get; } = new ObservableCollection<string> { "Lahy", "Vavy" };
@@ -156,7 +170,8 @@ namespace gestion_concrets.ViewModels
             DeleteCommand = new RelayCommand(DeleteData, CanDeleteData);
             NextTabCommand = new RelayCommand(NextTab, () => CanGoNext);
             PreviousTabCommand = new RelayCommand(PreviousTab, () => CanGoPrevious);
-           
+            RefreshCommand = new RelayCommand(ReinitializeData);
+
             SelectedTabIndex = 0;
 
             if (idBPerson.HasValue)
@@ -175,6 +190,9 @@ namespace gestion_concrets.ViewModels
                 VIpartnerCollab = new VIpartnerCollab();
             }
         }
+
+       
+
 
         private void ToggleEdit(object parameter)
         {
@@ -197,13 +215,87 @@ namespace gestion_concrets.ViewModels
             }
         }
 
-       
+        private bool ValidateFields()
+        {
+            // Valider B2 (Date de naissance)
+            if (!BPerson.DateTime.HasValue ||
+                BPerson.DateTime.Value < new DateTime(1900, 1, 1) ||
+                BPerson.DateTime.Value > DateTime.Today)
+            {
+                MessageBox.Show("La date de naissance est invalide. Veuillez entrer une date entre 1900 et aujourd'hui.",
+                    "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            // Valider Email
+            if (string.IsNullOrEmpty(BPerson.Email) ||
+                !Regex.IsMatch(BPerson.Email, @"^[^@\s]+@[^@\s]+\.com$"))
+            {
+                MessageBox.Show("L'email est invalide. Veuillez entrer un email au format exemple@domaine.com.",
+                    "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            // Valider Phone
+            if (string.IsNullOrEmpty(BPerson.Phone) ||
+                !Regex.IsMatch(BPerson.Phone, @"^(038|034|032|037|033)\d{7}$"))
+            {
+                MessageBox.Show("Le numéro de téléphone est invalide. Il doit comporter 10 chiffres et commencer par 038, 034, 032, 037 ou 033.",
+                    "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool validateDateAlocalisation()
+        {
+            // Valider A1 (Date de resencement)
+            if (!Alocalisation.DateTime.HasValue ||
+                Alocalisation.DateTime.Value < new DateTime(1900, 1, 1) ||
+                Alocalisation.DateTime.Value > DateTime.Today)
+            {
+                MessageBox.Show("La date saisie est invalide. Veuillez entrer une date entre 1900 et aujourd'hui.",
+                    "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+        private void ReinitializeData()
+        {
+            var result = MessageBox.Show("Attention ! Toutes les données saisies seront perdues. Voulez-vous continuer ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.No)
+            {
+                return; // Ne pas réinitialiser si l'utilisateur a choisi "Non"
+            }
+            if (result == MessageBoxResult.Yes)
+            {
+                BPerson = new BPerson();
+                Alocalisation = new Alocalisation();
+                IIapplicationCDPH = new IIapplicationCDPH();
+                IIIright = new IIIright();
+                Itransmission = new Itransmission();
+                IVdutyGov = new IVdutyGov();
+                VdevSupport = new VdevSupport();
+                VIpartnerCollab = new VIpartnerCollab();
+                SelectedTabIndex = 0;
+            }        
+        }
 
         private void SaveData()
         {
+            //if (!ValidateFields() && !validateDateAlocalisation())
+            //{
+            //    return;
+            //}
+
             try
             {
-                
+                var result = MessageBox.Show($"Voulez-vous ajouter ces informations dans la base de donées ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
                     SetNonDefinedValues(BPerson);
                     SetNonDefinedValues(Alocalisation);
                     SetNonDefinedValues(IIapplicationCDPH);
@@ -212,20 +304,35 @@ namespace gestion_concrets.ViewModels
                     SetNonDefinedValues(IVdutyGov);
                     SetNonDefinedValues(VdevSupport);
                     SetNonDefinedValues(VIpartnerCollab);
-              
 
-                _databaseService.AddFullPerson(
-                    BPerson,
-                    Alocalisation,
-                    IIapplicationCDPH,
-                    IIIright,
-                    Itransmission,
-                    IVdutyGov,
-                    VdevSupport,
-                    VIpartnerCollab
-                );
-                Debug.WriteLine($"[ DONNEES ENREGISTREES AVEC SUCCES ]");
-                MessageBox.Show("Données enregistrées avec succès !");
+
+                    _databaseService.AddFullPerson(
+                        BPerson,
+                        Alocalisation,
+                        IIapplicationCDPH,
+                        IIIright,
+                        Itransmission,
+                        IVdutyGov,
+                        VdevSupport,
+                        VIpartnerCollab
+                    );
+                    Debug.WriteLine($"[ DONNEES ENREGISTREES AVEC SUCCES ]");
+                    MessageBox.Show("Données enregistrées avec succès !", "Information", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    
+                    // Réinitialisation du formulaire
+                    BPerson = new BPerson();
+                    Alocalisation = new Alocalisation();
+                    IIapplicationCDPH = new IIapplicationCDPH();
+                    IIIright = new IIIright();
+                    Itransmission = new Itransmission();
+                    IVdutyGov = new IVdutyGov();
+                    VdevSupport = new VdevSupport();
+                    VIpartnerCollab = new VIpartnerCollab();
+                    SelectedTabIndex = 0;
+
+                    DataChangedNotifier.NotifyDataChanged();
+                }
+                    
             }
             catch (Exception ex)
             {
@@ -252,7 +359,11 @@ namespace gestion_concrets.ViewModels
                 Debug.WriteLine($"[DONNEES MISES A JOUR AVEC SUCCES]");
                 MessageBox.Show("Données mises à jour avec succès !", "Succès",
                     MessageBoxButton.OK, MessageBoxImage.Information);
-                
+
+                DataChangedNotifier.NotifyDataChanged();
+
+                CloseWindowRequested?.Invoke(this, EventArgs.Empty);
+
             }
             catch (Exception ex)
             {
@@ -300,7 +411,10 @@ namespace gestion_concrets.ViewModels
                     Debug.WriteLine($"[DONNEES SUPPRIMEES AVEC SUCCES] : Personne ID {BPerson.Id}");
                     MessageBox.Show("Données supprimées avec succès !", "Succès",
                         MessageBoxButton.OK, MessageBoxImage.Information);
-                    
+
+                    DataChangedNotifier.NotifyDataChanged();
+
+                    CloseWindowRequested?.Invoke(this, EventArgs.Empty);
                 }
             }
             catch (Exception ex)
@@ -318,7 +432,14 @@ namespace gestion_concrets.ViewModels
 
         private void LoadData(int idBPerson)
         {
+            //BPerson = _databaseService.GetBPersonById(idBPerson) ?? new BPerson();
+
             BPerson = _databaseService.GetBPersonById(idBPerson) ?? new BPerson();
+            if (BPerson.B2 != "Non définie" && DateTime.TryParseExact(BPerson.B2, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out var date))
+            {
+                BPerson.DateTime = date;
+            }
+
             Alocalisation = _databaseService.GetAlocalisationById(idBPerson) ?? new Alocalisation();
             IIapplicationCDPH = _databaseService.GetIIapplicationCDPHById(idBPerson) ?? new IIapplicationCDPH();
             IIIright = _databaseService.GetIIIrightById(idBPerson) ?? new IIIright();

@@ -41,7 +41,9 @@ namespace gestion_concrets.ViewModels
         {
             _databaseService = databaseService;
             ViewDetailsCommand = new RelayCommand(ViewDetails);
+           
             LoadPersons();
+            DataChangedNotifier.DataChanged += (s, e) => LoadPersons();
         }
 
         private void LoadPersons()

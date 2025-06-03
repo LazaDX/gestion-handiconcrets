@@ -141,12 +141,14 @@
         <!-- TabControl -->
         <TabControl Grid.Row="1" SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}" 
                     Margin="10">
-            <TabItem Header="A - Faritra anaovana fanadihadiana">
-                <local:AlocalisationView DataContext="{Binding Alocalisation}"/>
-            </TabItem>
             <TabItem Header="B - Filazalazana momba ilay olona hadihadiana">
                 <local:BPersonView DataContext="{Binding BPerson}"/>
             </TabItem>
+
+            <TabItem Header="A - Faritra anaovana fanadihadiana">
+                <local:AlocalisationView DataContext="{Binding Alocalisation}"/>
+            </TabItem>
+            
             <TabItem Header="I - Fampiatiana">
                 <local:ItransmissionView DataContext="{Binding Itransmission}"/>
             </TabItem>

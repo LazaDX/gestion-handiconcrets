@@ -147,10 +147,10 @@
             </StackPanel>
         </ui:Button>
 
-        <ui:Button x:Name="bdBt" HorizontalAlignment="Left" Margin="25,468,0,0"
+        <ui:Button x:Name="dataBaseBtn" HorizontalAlignment="Left" Margin="25,468,0,0"
            Grid.Row="1" VerticalAlignment="Top" Height="43" Width="249"
            Background="{x:Null}" Foreground="White" FontSize="14" FontWeight="Bold"
-           Style="{StaticResource CustomButtonStyle}" Grid.ColumnSpan="2">
+           Style="{StaticResource CustomButtonStyle}" Grid.ColumnSpan="2" Click="dataBaseBtn_Click">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                 <Viewbox Width="20" Height="20" Margin="0,0,10,0">
                     <Path Fill="White" Stretch="Uniform"

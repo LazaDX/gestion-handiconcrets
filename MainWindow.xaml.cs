@@ -54,5 +54,10 @@ namespace gestion_concrets
             
             MainFrame.Navigate(new PersonView());
         }
+
+        private void dataBaseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new DatabaseView());
+        }
     }
 }

@@ -15,8 +15,16 @@
             <Label Content="B1. Anarana sy fanampin'anarana&#xD;&#xA;" HorizontalAlignment="Left" Margin="54,77,0,0" VerticalAlignment="Top" FontSize="14"/>
             <ui:TextBox HorizontalAlignment="Left" Margin="54,111,0,0" TextWrapping="Wrap" Text="{Binding BPerson.B1, UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Top" Width="371" Height="29"/>
             <!-- B2 -->
-            <Label Content="B2. Taona&#xD;&#xA;" HorizontalAlignment="Left" Margin="54,157,0,0" VerticalAlignment="Top" FontSize="14"/>
-            <ui:TextBox HorizontalAlignment="Left" Margin="54,191,0,0" TextWrapping="Wrap" Text="{Binding BPerson.B2, UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Top" Width="371" Height="29"/>
+            <Label Content="B2. Taona" HorizontalAlignment="Left" Margin="54,157,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <DatePicker x:Name="B2DatePicker" 
+            HorizontalAlignment="Left" 
+            Margin="54,191,0,0" 
+            VerticalAlignment="Top" 
+            Width="371" 
+            Height="29"
+            SelectedDate="{Binding BPerson.DateTime, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+            DisplayDateStart="1900-01-01" 
+            DisplayDateEnd="{Binding CurrentDate, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
             <!-- B3 -->
             <Label Content="B3. " HorizontalAlignment="Left" Margin="54,237,0,0" VerticalAlignment="Top" FontSize="14"/>
             <ComboBox ItemsSource="{Binding SexeOptions}" HorizontalAlignment="Left" Margin="54,271,0,0" VerticalAlignment="Top" Width="120" Height="32" SelectedItem="{Binding BPerson.B3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -60,11 +68,11 @@
 
             <Label Content="B61. Farito raha 'eny'" HorizontalAlignment="Left" Margin="55,970,0,0" VerticalAlignment="Top" FontSize="14"/>
             <ui:TextBox HorizontalAlignment="Left"   Margin="55,1004,0,0" TextWrapping="Wrap" Text="{Binding BPerson.B61, UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Top" Width="371" Height="29"/>
-           
+
             <Label Content="B73. Hafa&#xD;&#xA;" HorizontalAlignment="Left" Margin="54,1288,0,0" VerticalAlignment="Top" FontSize="14"/>
             <ui:TextBox HorizontalAlignment="Left" Margin="54,1322,0,0" TextWrapping="Wrap" Text="{Binding BPerson.B73, UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Top" Width="371" Height="29"/>
             <Label Content="B74. Fanamarihana manokana amin'ny fitaovana ampiasaina " HorizontalAlignment="Left" Margin="55,1382,0,0" VerticalAlignment="Top" FontSize="14"/>
             <ui:TextBox HorizontalAlignment="Left" Margin="55,1416,0,0" TextWrapping="Wrap" Text="{Binding BPerson.B74, UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Top" Width="371" Height="29"/>
-            </Grid>
+        </Grid>
     </ScrollViewer>
 </UserControl>

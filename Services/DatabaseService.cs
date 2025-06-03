@@ -75,7 +75,7 @@ namespace gestion_concrets.Services
                     CREATE TABLE IF NOT EXISTS BPerson (
                         Id INTEGER PRIMARY KEY AUTOINCREMENT,
                         B1 TEXT NOT NULL,
-                        B2 INTEGER NOT NULL,
+                        B2 TEXT NOT NULL,
                         B3 TEXT NOT NULL,
                         Adress TEXT NOT NULL,
                         Phone TEXT NOT NULL,
@@ -420,8 +420,11 @@ namespace gestion_concrets.Services
             using (var con = GetConnection())
             {
                 con.Open();
-                using (var cmd = new SQLiteCommand("SELECT Id, B1, B2, B3, Adress, Phone, Email FROM BPerson", con))
-                using (var reader = cmd.ExecuteReader())
+                using (var cmd = new SQLiteCommand(@"
+                SELECT BPerson.Id, BPerson.B1, BPerson.B2, BPerson.B3, BPerson.Adress, BPerson.Phone, BPerson.Email, Alocalisation.A1
+                FROM BPerson
+                LEFT JOIN Alocalisation ON BPerson.Id = Alocalisation.IdBPerson", con))
+                    using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -429,16 +432,16 @@ namespace gestion_concrets.Services
                         {
                             Id = reader.GetInt32(0),
                             B1 = reader.GetString(1),
-                            B2 = reader.GetInt32(2),
+                            B2 = reader.GetString(2),
                             B3 = reader.GetString(3),
                             Adress = reader.GetString(4),
                             Phone = reader.GetString(5),
-                            Email = reader.GetString(6)
+                            Email = reader.GetString(6),
+                            A1 =  reader.GetString(7)
                         });
                     }
                 }
             }
-
             return persons;
         }
 
@@ -566,7 +569,7 @@ namespace gestion_concrets.Services
                                 {
                                     Id = reader.GetInt32(0),
                                     B1 = reader.GetString(1),
-                                    B2 = reader.GetInt32(2),
+                                    B2 = reader.GetString(2),
                                     B3 = reader.GetString(3),
                                     Adress = reader.GetString(4),
                                     Phone = reader.GetString(5),
