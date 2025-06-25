@@ -12,19 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using gestion_concrets.ViewModels;
 
 namespace gestion_concrets.Views
 {
     /// <summary>
-    /// Logique d'interaction pour IVdutyGov.xaml
+    /// Logique d'interaction pour DdescriptionView.xaml
     /// </summary>
-    public partial class IVdutyGovView : UserControl
+    public partial class DdescriptionView : UserControl
     {
-        public IVdutyGovView()
+        public DdescriptionView()
         {
             InitializeComponent();
-            
         }
     }
 }

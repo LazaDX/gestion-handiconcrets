@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace gestion_concrets.Views
 {
     /// <summary>
-    /// Logique d'interaction pour IVdutyGovViewAdd.xaml
+    /// Logique d'interaction pour EclimatViewAdd.xaml
     /// </summary>
-    public partial class IVdutyGovViewAdd : UserControl
+    public partial class EclimatViewAdd : UserControl
     {
-        public IVdutyGovViewAdd()
+        public EclimatViewAdd()
         {
             InitializeComponent();
         }

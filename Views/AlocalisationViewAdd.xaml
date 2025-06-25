@@ -6,13 +6,13 @@
              xmlns:local="clr-namespace:gestion_concrets.Views"
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="750" d:DesignWidth="800">
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
             <Grid Background="White" Margin="10,0,0,10">
                 <!-- Alocalisation Section -->
-                <Label Content="A - Faritra anaovana fanadiadihana&#xD;&#xA;" HorizontalAlignment="Left" Margin="45,41,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                <Label Content="A - Faritra anaovana fanadiadihana" HorizontalAlignment="Left" Margin="45,41,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
                 <!-- A1 -->
-                <Label Content="A1. Datin'ny fanadiahadiana&#xD;&#xA;" HorizontalAlignment="Left" Margin="54,77,0,0" VerticalAlignment="Top" FontSize="14"/>
+                <Label Content="A1. Datin'ny fanadiahadiana" HorizontalAlignment="Left" Margin="54,77,0,0" VerticalAlignment="Top" FontSize="14"/>
                 <DatePicker x:Name="B2DatePicker" 
                 HorizontalAlignment="Left" 
                 Margin="54,111,0,0" 
@@ -22,16 +22,27 @@
                 SelectedDate="{Binding Alocalisation.DateTime, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                 DisplayDateStart="1900-01-01" 
                 DisplayDateEnd="{Binding CurrentDate, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
-            <!-- A2 -->
-                <Label Content="A2. Faritra&#xD;&#xA;" HorizontalAlignment="Left" Margin="54,157,0,0" VerticalAlignment="Top" FontSize="14"/>
+                <!-- A2 -->
+                <Label Content="A2. Faritra" HorizontalAlignment="Left" Margin="54,157,0,0" VerticalAlignment="Top" FontSize="14"/>
                 <ui:TextBox HorizontalAlignment="Left" Margin="54,191,0,0" TextWrapping="Wrap" Text="{Binding Alocalisation.A2, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
                 <!-- A3 -->
-                <Label Content="A3. Distrika&#xD;&#xA;" HorizontalAlignment="Left" Margin="54,237,0,0" VerticalAlignment="Top" FontSize="14"/>
+                <Label Content="A3. Distrika" HorizontalAlignment="Left" Margin="54,237,0,0" VerticalAlignment="Top" FontSize="14"/>
                 <ui:TextBox HorizontalAlignment="Left" Margin="54,271,0,0" TextWrapping="Wrap" Text="{Binding Alocalisation.A3, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
-
                 <!-- A4 -->
-                <Label Content="A4. Fikambanana misy azy&#xD;&#xA;" HorizontalAlignment="Left" Margin="54,317,0,0" VerticalAlignment="Top" FontSize="14"/>
+                <Label Content="A4. Fikambanana misy azy" HorizontalAlignment="Left" Margin="54,317,0,0" VerticalAlignment="Top" FontSize="14"/>
                 <ui:TextBox HorizontalAlignment="Left" Margin="54,351,0,0" TextWrapping="Wrap" Text="{Binding Alocalisation.A4, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+                <!-- A5 -->
+                <Label Content="A5. Fokontany" HorizontalAlignment="Left" Margin="54,397,0,0" VerticalAlignment="Top" FontSize="14"/>
+                <ui:TextBox HorizontalAlignment="Left" Margin="54,431,0,0" TextWrapping="Wrap" Text="{Binding Alocalisation.A5, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+                <!-- A6 -->
+                <Label Content="A6. Kaominina" HorizontalAlignment="Left" Margin="54,477,0,0" VerticalAlignment="Top" FontSize="14"/>
+                <ui:TextBox HorizontalAlignment="Left" Margin="54,511,0,0" TextWrapping="Wrap" Text="{Binding Alocalisation.A6, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+                <!-- A7 -->
+                <Label Content="A7. Kaominina" HorizontalAlignment="Left" Margin="54,557,0,0" VerticalAlignment="Top" FontSize="14"/>
+                <ui:TextBox HorizontalAlignment="Left" Margin="54,590,0,0" TextWrapping="Wrap" Text="{Binding Alocalisation.A7, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+                <!-- A8 -->
+                <Label Content="A8. Kaominina" HorizontalAlignment="Left" Margin="54,637,0,0" VerticalAlignment="Top" FontSize="14"/>
+                <ui:TextBox HorizontalAlignment="Left" Margin="54,671,0,0" TextWrapping="Wrap" Text="{Binding Alocalisation.A8, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
             </Grid>
         </ScrollViewer>
 </UserControl>

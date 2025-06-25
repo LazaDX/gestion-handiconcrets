@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="gestion_concrets.Views.DdescriptionViewAdd"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:gestion_concrets.Views"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="800">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <Grid Background="White" Margin="10,0,0,10">
+            <!-- Alocalisation Section -->
+            <Label Content="D - Filazalazana momba ny fahasembanana" HorizontalAlignment="Left" Margin="45,41,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+            <!-- D1 -->
+            <Label Content="D1. Inona no fahasembanana misy aminao ?" HorizontalAlignment="Left" Margin="54,77,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ComboBox ItemsSource="{Binding Disability}" HorizontalAlignment="Left" Margin="54,111,0,0" VerticalAlignment="Top" Width="120" Height="32" SelectedItem="{Binding Ddescription.D1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <!-- D11 -->
+            <Label Content="D11. Hafa: 7" HorizontalAlignment="Left" Margin="54,157,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,191,0,0" TextWrapping="Wrap" Text="{Binding Ddescription.D11, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- D2 -->
+            <Label Content="D2. Mitondra fitaovana manokana ampiasaina ve ianao ?" HorizontalAlignment="Left" Margin="54,237,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ComboBox ItemsSource="{Binding Material}" HorizontalAlignment="Left" Margin="54,271,0,0" VerticalAlignment="Top" Width="120" Height="32" SelectedItem="{Binding Ddescription.D2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <!-- D21 -->
+            <Label Content="D21. Hafa: 5" HorizontalAlignment="Left" Margin="54,317,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,351,0,0" TextWrapping="Wrap" Text="{Binding Ddescription.D21, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+            <!-- D22 -->
+            <Label Content="D22. Fanamarihana amin'ny fitaovana ampiasaina" HorizontalAlignment="Left" Margin="54,397,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,431,0,0" TextWrapping="Wrap" Text="{Binding Ddescription.D22, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+           </Grid>
+    </ScrollViewer>
+</UserControl>

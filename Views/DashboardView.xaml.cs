@@ -62,7 +62,7 @@ namespace gestion_concrets.Views
         {
             try
             {
-                _databaseService.ExportToExcel("Hommes", "SELECT * FROM BPerson WHERE B3 = @Gender", ("@Gender", "Lahy"));
+                _databaseService.ExportToExcel("Hommes", "SELECT * FROM BPerson WHERE B4 = @Gender", ("@Gender", "Lahy"));
             }
             catch (Exception ex)
             {
@@ -74,7 +74,7 @@ namespace gestion_concrets.Views
         {
             try
             {
-                _databaseService.ExportToExcel("Femmes", "SELECT * FROM BPerson WHERE B3 = @Gender", ("@Gender", "Vavy"));
+                _databaseService.ExportToExcel("Femmes", "SELECT * FROM BPerson WHERE B4 = @Gender", ("@Gender", "Vavy"));
             }
             catch (Exception ex)
             {

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace gestion_concrets.Views
 {
     /// <summary>
-    /// Logique d'interaction pour VdevSupportViewAdd.xaml
+    /// Logique d'interaction pour DdescriptionViewAdd.xaml
     /// </summary>
-    public partial class VdevSupportViewAdd : UserControl
+    public partial class DdescriptionViewAdd : UserControl
     {
-        public VdevSupportViewAdd()
+        public DdescriptionViewAdd()
         {
             InitializeComponent();
         }

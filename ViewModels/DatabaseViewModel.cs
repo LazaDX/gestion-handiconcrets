@@ -9,12 +9,18 @@ namespace gestion_concrets.ViewModels
 {
     public class DatabaseViewModel : BaseViewModel
     {
-        private static readonly string projectRoot = Path.GetFullPath(
-            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..")
-        );
-        private static readonly string dataFolder = Path.Combine(projectRoot, "Data");
+        //private static readonly string projectRoot = Path.GetFullPath(
+        //    Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..")
+        //);
+        //private static readonly string dataFolder = Path.Combine(projectRoot, "Data");
+        //private static readonly string dbPath = Path.Combine(dataFolder, "database.db");
+        //private static readonly string connectionString = $"Data Source={dbPath};Version=3;";
+
+        private static readonly string executableDirectory = AppContext.BaseDirectory;
+        private static readonly string dataFolder = Path.Combine(executableDirectory, "Data");
         private static readonly string dbPath = Path.Combine(dataFolder, "database.db");
         private static readonly string connectionString = $"Data Source={dbPath};Version=3;";
+
 
         public ICommand CreateBackupCommand { get; }
         public ICommand ExportDatabaseCommand { get; }

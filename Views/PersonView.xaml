@@ -180,23 +180,11 @@
             <TabItem Header="A - Faritra anaovana fanadihadiana">
                 <local:AlocalisationViewAdd/>
             </TabItem>
-            <TabItem Header="I - Fampiatiana">
-                <local:ItransmissionViewAdd/>
+            <TabItem Header="D - Filazalazana momba ny fahasembanana">
+                <local:DdescriptionViewAdd/>
             </TabItem>
-            <TabItem Header="II - Fampiharana ny CDPH">
-                <local:IIapplicationCDPHViewAdd/>
-            </TabItem>
-            <TabItem Header="III - Ny zon'ny olona manana fahasembanana">
-                <local:IIIrightViewAdd/>
-            </TabItem>
-            <TabItem Header="IV - Fandraisana andraikitra ny fanjakana">
-                <local:IVdutyGovViewAdd/>
-            </TabItem>
-            <TabItem Header="V - Fampiatiana ny olona manana fahasembanana amin'ny fampandrosoana">
-                <local:VdevSupportViewAdd/>
-            </TabItem>
-            <TabItem Header="VI - Fiarahana amin'ny mpiaramiombon'antoka samihafa">
-                <local:VIpartnerCollabViewAdd/>
+            <TabItem Header="E - Fiovan'ny toetr'andro">
+                <local:EclimatViewAdd/>
             </TabItem>
         </TabControl>
 

@@ -43,6 +43,7 @@ namespace gestion_concrets.ViewModels
             ViewDetailsCommand = new RelayCommand(ViewDetails);
            
             LoadPersons();
+        
             DataChangedNotifier.DataChanged += (s, e) => LoadPersons();
         }
 
@@ -75,12 +76,8 @@ namespace gestion_concrets.ViewModels
                     {
                         BPerson = _databaseService.GetBPersonById(selectedPerson.Id) ?? new BPerson(),
                         Alocalisation = _databaseService.GetAlocalisationById(selectedPerson.Id) ?? new Alocalisation(),
-                        IIapplicationCDPH = _databaseService.GetIIapplicationCDPHById(selectedPerson.Id) ?? new IIapplicationCDPH(),
-                        IIIright = _databaseService.GetIIIrightById(selectedPerson.Id) ?? new IIIright(),
-                        Itransmission = _databaseService.GetItransmissionById(selectedPerson.Id) ?? new Itransmission(),
-                        IVdutyGov = _databaseService.GetIVdutyGovById(selectedPerson.Id) ?? new IVdutyGov(),
-                        VdevSupport = _databaseService.GetVdevSupportById(selectedPerson.Id) ?? new VdevSupport(),
-                        VIpartnerCollab = _databaseService.GetVIpartnerCollabById(selectedPerson.Id) ?? new VIpartnerCollab(),
+                        Ddescription = _databaseService.GetDdescriptionById(selectedPerson.Id) ?? new Ddescription(),
+                        Eclimat = _databaseService.GetEclimatById(selectedPerson.Id) ?? new Eclimat(),
                         IsReadOnly = true
                     };
 

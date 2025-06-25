@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace gestion_concrets.Views
 {
     /// <summary>
-    /// Logique d'interaction pour IIapplicationCDPHViewAdd.xaml
+    /// Logique d'interaction pour EclimatView.xaml
     /// </summary>
-    public partial class IIapplicationCDPHViewAdd : UserControl
+    public partial class EclimatView : UserControl
     {
-        public IIapplicationCDPHViewAdd()
+        public EclimatView()
         {
             InitializeComponent();
         }

@@ -17,9 +17,9 @@
                   GridLinesVisibility="All">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*" />
-                <DataGridTextColumn Header="Nom et Prénom (B1)" Binding="{Binding B1}" Width="*" />
-                <DataGridTextColumn Header="Date de naissance (B2)" Binding="{Binding B2}" Width="100" />
-                <DataGridTextColumn Header="Genre (B3)" Binding="{Binding B3}" Width="*" />
+                <DataGridTextColumn Header="Nom et Prénom (B2)" Binding="{Binding B2}" Width="*" />
+                <DataGridTextColumn Header="Date de naissance (B3)" Binding="{Binding B3}" Width="100" />
+                <DataGridTextColumn Header="Genre (B4)" Binding="{Binding B4}" Width="*" />
                 <DataGridTextColumn Header="Adresse" Binding="{Binding Adress}" Width="*" />
                 <DataGridTextColumn Header="Téléphone" Binding="{Binding Phone}" Width="80" />
                 <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*" />

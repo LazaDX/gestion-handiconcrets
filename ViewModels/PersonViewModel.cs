@@ -17,15 +17,13 @@ namespace gestion_concrets.ViewModels
         private readonly DatabaseService _databaseService;
         private BPerson _bPerson = new BPerson();
         private Alocalisation _alocalisation = new Alocalisation();
-        private IIapplicationCDPH _iiApplicationCDPH = new IIapplicationCDPH();
-        private IIIright _iiiright = new IIIright();
-        private Itransmission _itransmission = new Itransmission();
-        private IVdutyGov _ivDutyGov = new IVdutyGov();
-        private VdevSupport _vdevSupport = new VdevSupport();
-        private VIpartnerCollab _viPartnerCollab = new VIpartnerCollab();
+        private Ddescription _ddescription = new Ddescription();
+        private Eclimat _eclimat = new Eclimat();
+
         private int _selectedTabIndex;
         private bool _isReadOnly;
         private DateTime _currentDate = DateTime.Today; // Date
+
         public BPerson BPerson
         {
             get => _bPerson;
@@ -38,41 +36,20 @@ namespace gestion_concrets.ViewModels
             set => SetProperty(ref _alocalisation, value);
         }
 
-        public IIapplicationCDPH IIapplicationCDPH
+        public Ddescription Ddescription
         {
-            get => _iiApplicationCDPH;
-            set => SetProperty(ref _iiApplicationCDPH, value);
+            get => _ddescription;
+            set => SetProperty( ref _ddescription, value);
         }
 
-        public IIIright IIIright
+        public Eclimat Eclimat
         {
-            get => _iiiright;
-            set => SetProperty(ref _iiiright, value);
+            get => _eclimat;
+            set => SetProperty(ref _eclimat, value);
         }
 
-        public Itransmission Itransmission
-        {
-            get => _itransmission;
-            set => SetProperty(ref _itransmission, value);
-        }
 
-        public IVdutyGov IVdutyGov
-        {
-            get => _ivDutyGov;
-            set => SetProperty(ref _ivDutyGov, value);
-        }
 
-        public VdevSupport VdevSupport
-        {
-            get => _vdevSupport;
-            set => SetProperty(ref _vdevSupport, value);
-        }
-
-        public VIpartnerCollab VIpartnerCollab
-        {
-            get => _viPartnerCollab;
-            set => SetProperty(ref _viPartnerCollab, value);
-        }
 
         public bool IsReadOnly
         {
@@ -107,6 +84,106 @@ namespace gestion_concrets.ViewModels
         public bool CanGoNext => SelectedTabIndex < 7;
         public bool CanGoPrevious => SelectedTabIndex > 0;
 
+
+        private bool _isWatterSelected;
+        private bool _isFoodSelected;
+        private bool _isAgricultureSelected;
+        private bool _isBreedingSelected;
+        private bool _isFishingSelected;
+        private bool _isOtherJobSelected;
+        private bool _isLivingHouseSelected;
+        private bool _isHealthSelected;
+
+        public bool IsWatterSelected
+        {
+            get => _isWatterSelected;
+            set
+            {
+                _isWatterSelected = value;
+                OnPropertyChanged();
+                UpdateE5();
+            }
+        }
+
+        public bool IsFoodSelected
+        {
+            get => _isFoodSelected;
+            set
+            {
+                _isFoodSelected = value;
+                OnPropertyChanged();
+                UpdateE5();
+            }
+        }
+       
+        public bool IsAgricultureSelected
+        {
+            get => _isAgricultureSelected;
+            set
+            {
+                _isAgricultureSelected = value;
+                OnPropertyChanged();
+                UpdateE5();
+            }
+        }
+       
+        public bool IsBreedingSelected
+        {
+            get => _isBreedingSelected;
+            set
+            {
+                _isBreedingSelected = value;
+                OnPropertyChanged();
+                UpdateE5();
+            }
+        }
+        
+      
+        public bool IsFishingSelected
+        {
+            get => _isFishingSelected;
+            set
+            {
+                _isFishingSelected = value;
+                OnPropertyChanged();
+                UpdateE5();
+            }
+        }
+       
+        public bool IsOtherJobSelected
+        {
+            get => _isOtherJobSelected;
+            set
+            {
+                _isOtherJobSelected = value;
+                OnPropertyChanged();
+                UpdateE5();
+            }
+        }
+       
+        public bool IsLivingHouseSelected
+        {
+            get => _isLivingHouseSelected;
+            set
+            {
+                _isLivingHouseSelected = value;
+                OnPropertyChanged();
+                UpdateE5();
+            }
+        }
+
+        public bool IsHealthSelected
+        {
+            get => _isHealthSelected;
+            set
+            {
+                _isHealthSelected = value;
+                OnPropertyChanged();
+                UpdateE5();
+            }
+        }
+
+
         public ICommand ToggleEditCommand { get; }
         public ICommand SaveCommand { get; }
 
@@ -121,45 +198,41 @@ namespace gestion_concrets.ViewModels
 
 
         // BPerson
+        public ObservableCollection<string> Questions { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
         public ObservableCollection<string> SexeOptions { get; } = new ObservableCollection<string> { "Lahy", "Vavy" };
-        public ObservableCollection<string> Skills { get; } = new ObservableCollection<string> { "1. Ambaratonga fototra", "2. Ambaratonga", "3. Ambaratonga ambony", "4. Hafa", "5. Nahavita ambaratonga fototra" };
-        public ObservableCollection<string> SkillsSubOptions { get; } = new ObservableCollection<string> { "2.1 Collège", "2.2. lycée" };
-        public ObservableCollection<string> Working { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
-        public ObservableCollection<string> LivingJob { get; } = new ObservableCollection<string> { "Mpiasam-panjakàna", "Mpiasa tsy miankina", "Miasatena" };
-        public ObservableCollection<string> Disability { get; } = new ObservableCollection<string> { "Ara-batana", "ara-tsaian", "ara-pahitana", "ara-pihainoana", "ara-paharanitan-tsaina", "aretina tsy sitrana" };
-        public ObservableCollection<string> DisabilityEquipment { get; } = new ObservableCollection<string> { "Canne blanche", "appareil auditif", "bequille", "Chaise roulante", "Chaussure orthopédique", "Attèle" };
-        public ObservableCollection<string> Worship { get; } = new ObservableCollection<string> { "Mpitovo", "Tokatena", "Mananjanaka", "Tsy manan-janaka", "Manam-bady" };
-        
-        // Itransmission
-        public ObservableCollection<string> Marginalization { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
-        public ObservableCollection<string> I51Options { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
-        public ObservableCollection<string> I52Options { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
-        public ObservableCollection<string> I53Options { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
-        public ObservableCollection<string> I54Options { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
-        public ObservableCollection<string> I55Options { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
-        public ObservableCollection<string> I56Options { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
-        public ObservableCollection<string> I57Options { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
-        public ObservableCollection<string> I58Options { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
-        public ObservableCollection<string> I59Options { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
-        public ObservableCollection<string> I510Options { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
-        
-        // IIapplicationCDPH
-        public ObservableCollection<string> II1Options { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
-        
-        // IVdutyGov
-        public ObservableCollection<string> IV11Options { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
-        public ObservableCollection<string> IV51Options { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
-        
-        // VdevSupport
-        public ObservableCollection<string> V1Options { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
-        public ObservableCollection<string> V41Options { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
-        public ObservableCollection<string> V51Options { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
-        
-        // VIpartnerCollab
-        public ObservableCollection<string> VI1Options { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
-        public ObservableCollection<string> VI3Options { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
-        
-        
+        public ObservableCollection<string> Relationship { get; } = new ObservableCollection<string> { "Mpitovo: 1", "Manambady ara-dalàna: 2", "Nisara-bady: 3", "Maty vady: 4" };
+        public ObservableCollection<string> LivingJob { get; } = new ObservableCollection<string> { "Mpiasam-panjakàna: 1", "Mpiasa tsy miankina: 2", "Miasa tena: 3", "Mpiompy: 4", "Tsy manana asa raikitra: 5", "Mpamboly: 6",  "Mpanjono: 7"};
+
+        // Ddescription
+        public ObservableCollection<string> Disability { get; } = new ObservableCollection<string> { "Ara-batana: 1", "ara-tsaina: 2", "ara-pahitana: 3", "ara-pihainoana: 4", "Ara-paharanitan-tsaina: 5", "aretina tsy sitrana: 6"};
+        public ObservableCollection<string> Material { get; } = new ObservableCollection<string> { "tehina fotsy: 1", "appareil auditif: 2", "canne anglaise: 3", "Chaise roulante: 4", "béquille: 5"};
+
+        // Eclimat
+        public ObservableCollection<string> E4 { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
+        public ObservableCollection<string> E5 { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
+        public ObservableCollection<string> E611 { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
+        public ObservableCollection<string> E621 { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
+        public ObservableCollection<string> E631 { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
+        public ObservableCollection<string> E641 { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
+        public ObservableCollection<string> E651 { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
+        public ObservableCollection<string> E661 { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
+        public ObservableCollection<string> E71 { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
+        public ObservableCollection<string> E81 { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
+        public ObservableCollection<string> E911 { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
+        public ObservableCollection<string> E921 { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
+        public ObservableCollection<string> E931 { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
+        public ObservableCollection<string> E941 { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
+        public ObservableCollection<string> E951 { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
+        public ObservableCollection<string> E961 { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
+        public ObservableCollection<string> E971 { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
+        public ObservableCollection<string> E981 { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
+        public ObservableCollection<string> E101 { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
+        public ObservableCollection<string> E111 { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
+        public ObservableCollection<string> E121 { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
+        public ObservableCollection<string> E131 { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
+        public ObservableCollection<string> E141 { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
+
+
         public PersonViewModel(DatabaseService databaseService = null, int? idBPerson = null)
         {
             _databaseService = databaseService ?? new DatabaseService();
@@ -182,17 +255,10 @@ namespace gestion_concrets.ViewModels
             {
                 BPerson = new BPerson();
                 Alocalisation = new Alocalisation();
-                IIapplicationCDPH = new IIapplicationCDPH();
-                IIIright = new IIIright();
-                Itransmission = new Itransmission();
-                IVdutyGov = new IVdutyGov();
-                VdevSupport = new VdevSupport();
-                VIpartnerCollab = new VIpartnerCollab();
+                Ddescription = new Ddescription();
+                Eclimat = new Eclimat();
             }
         }
-
-       
-
 
         private void ToggleEdit(object parameter)
         {
@@ -202,12 +268,8 @@ namespace gestion_concrets.ViewModels
                 LoadData(BPerson.Id);
                 SetNonDefinedValues(BPerson);
                 SetNonDefinedValues(Alocalisation);
-                SetNonDefinedValues(IIapplicationCDPH);
-                SetNonDefinedValues(IIIright);
-                SetNonDefinedValues(Itransmission);
-                SetNonDefinedValues(IVdutyGov);
-                SetNonDefinedValues(VdevSupport);
-                SetNonDefinedValues(VIpartnerCollab);
+                SetNonDefinedValues(Ddescription);
+                SetNonDefinedValues(Eclimat);
             }
             else if (!IsReadOnly && BPerson.Id != 0)
             {
@@ -247,7 +309,6 @@ namespace gestion_concrets.ViewModels
 
             return true;
         }
-
         private bool validateDateAlocalisation()
         {
             // Valider A1 (Date de resencement)
@@ -274,13 +335,10 @@ namespace gestion_concrets.ViewModels
             {
                 BPerson = new BPerson();
                 Alocalisation = new Alocalisation();
-                IIapplicationCDPH = new IIapplicationCDPH();
-                IIIright = new IIIright();
-                Itransmission = new Itransmission();
-                IVdutyGov = new IVdutyGov();
-                VdevSupport = new VdevSupport();
-                VIpartnerCollab = new VIpartnerCollab();
+                Ddescription = new Ddescription();
+                Eclimat = new Eclimat();
                 SelectedTabIndex = 0;
+                UpdateCheckBoxesFromE5();
             }        
         }
 
@@ -298,23 +356,15 @@ namespace gestion_concrets.ViewModels
                 {
                     SetNonDefinedValues(BPerson);
                     SetNonDefinedValues(Alocalisation);
-                    SetNonDefinedValues(IIapplicationCDPH);
-                    SetNonDefinedValues(IIIright);
-                    SetNonDefinedValues(Itransmission);
-                    SetNonDefinedValues(IVdutyGov);
-                    SetNonDefinedValues(VdevSupport);
-                    SetNonDefinedValues(VIpartnerCollab);
+                    SetNonDefinedValues(Ddescription);
+                    SetNonDefinedValues(Eclimat);
 
 
                     _databaseService.AddFullPerson(
                         BPerson,
                         Alocalisation,
-                        IIapplicationCDPH,
-                        IIIright,
-                        Itransmission,
-                        IVdutyGov,
-                        VdevSupport,
-                        VIpartnerCollab
+                        Ddescription,
+                        Eclimat
                     );
                     Debug.WriteLine($"[ DONNEES ENREGISTREES AVEC SUCCES ]");
                     MessageBox.Show("Données enregistrées avec succès !", "Information", MessageBoxButton.OK, MessageBoxImage.Exclamation);
@@ -322,13 +372,10 @@ namespace gestion_concrets.ViewModels
                     // Réinitialisation du formulaire
                     BPerson = new BPerson();
                     Alocalisation = new Alocalisation();
-                    IIapplicationCDPH = new IIapplicationCDPH();
-                    IIIright = new IIIright();
-                    Itransmission = new Itransmission();
-                    IVdutyGov = new IVdutyGov();
-                    VdevSupport = new VdevSupport();
-                    VIpartnerCollab = new VIpartnerCollab();
+                    Ddescription = new Ddescription();
+                    Eclimat = new Eclimat();
                     SelectedTabIndex = 0;
+                    UpdateCheckBoxesFromE5();
 
                     DataChangedNotifier.NotifyDataChanged();
                 }
@@ -349,12 +396,8 @@ namespace gestion_concrets.ViewModels
                 _databaseService.UpdateFullPerson(
                     BPerson,
                     Alocalisation,
-                    IIapplicationCDPH,
-                    IIIright,
-                    Itransmission,
-                    IVdutyGov,
-                    VdevSupport,
-                    VIpartnerCollab
+                    Ddescription,
+                    Eclimat
                 );
                 Debug.WriteLine($"[DONNEES MISES A JOUR AVEC SUCCES]");
                 MessageBox.Show("Données mises à jour avec succès !", "Succès",
@@ -427,7 +470,7 @@ namespace gestion_concrets.ViewModels
 
         private bool CanDeleteData(object parameter)
         {
-            return BPerson.Id != 0; // Activer la commande si une personne existante est sélectionnée
+            return BPerson.Id != 0; 
         }
 
         private void LoadData(int idBPerson)
@@ -441,21 +484,14 @@ namespace gestion_concrets.ViewModels
             }
 
             Alocalisation = _databaseService.GetAlocalisationById(idBPerson) ?? new Alocalisation();
-            IIapplicationCDPH = _databaseService.GetIIapplicationCDPHById(idBPerson) ?? new IIapplicationCDPH();
-            IIIright = _databaseService.GetIIIrightById(idBPerson) ?? new IIIright();
-            Itransmission = _databaseService.GetItransmissionById(idBPerson) ?? new Itransmission();
-            IVdutyGov = _databaseService.GetIVdutyGovById(idBPerson) ?? new IVdutyGov();
-            VdevSupport = _databaseService.GetVdevSupportById(idBPerson) ?? new VdevSupport();
-            VIpartnerCollab = _databaseService.GetVIpartnerCollabById(idBPerson) ?? new VIpartnerCollab();
+            Ddescription = _databaseService.GetDdescriptionById(idBPerson) ?? new Ddescription();
+            Eclimat = _databaseService.GetEclimatById(idBPerson) ?? new Eclimat();
+            UpdateCheckBoxesFromE5();
 
             OnPropertyChanged(nameof(BPerson));
             OnPropertyChanged(nameof(Alocalisation));
-            OnPropertyChanged(nameof(IIapplicationCDPH));
-            OnPropertyChanged(nameof(IIIright));
-            OnPropertyChanged(nameof(Itransmission));
-            OnPropertyChanged(nameof(IVdutyGov));
-            OnPropertyChanged(nameof(VdevSupport));
-            OnPropertyChanged(nameof(VIpartnerCollab));
+            OnPropertyChanged(nameof(Ddescription));
+            OnPropertyChanged(nameof(Eclimat));
         }
 
         private void NextTab()
@@ -472,6 +508,46 @@ namespace gestion_concrets.ViewModels
             {
                 SelectedTabIndex--;
             }
+        }
+
+        private void UpdateE5()
+        {
+            var selectedOptions = new List<string>();
+            if (IsWatterSelected) selectedOptions.Add("Fisitrahana rano: 1");
+            if (IsFoodSelected) selectedOptions.Add("Sakafo: 2");
+            if (IsAgricultureSelected) selectedOptions.Add("Fambolena: 3");
+            if (IsBreedingSelected) selectedOptions.Add("Fiompiana: 4");
+            if (IsFishingSelected) selectedOptions.Add("Jono: 5");
+            if (IsOtherJobSelected) selectedOptions.Add("Asa fivelomana hafa: 6");
+            if (IsLivingHouseSelected) selectedOptions.Add("trano fonenana: 7");
+            if (IsHealthSelected) selectedOptions.Add("Fahasalamana: 8");
+            Eclimat.E5 = string.Join(", ", selectedOptions);
+        }
+
+        private void UpdateCheckBoxesFromE5()
+        {
+            if (string.IsNullOrEmpty(Eclimat.E5))
+            {
+                IsWatterSelected = false;
+                IsFoodSelected = false;
+                IsAgricultureSelected = false;
+                IsBreedingSelected = false;
+                IsFishingSelected = false;
+                IsOtherJobSelected = false;
+                IsLivingHouseSelected = false;
+                IsHealthSelected = false;
+                return;
+            }
+
+            var selected = Eclimat.E5.Split(',').Select(s => s.Trim()).ToList();
+            IsWatterSelected = selected.Contains("Fisitrahana rano: 1");
+            IsFoodSelected = selected.Contains("Sakafo: 2");
+            IsAgricultureSelected = selected.Contains("Fambolena: 3");
+            IsBreedingSelected = selected.Contains("Fiompiana: 4");
+            IsFishingSelected = selected.Contains("Jono: 5");
+            IsOtherJobSelected = selected.Contains("Asa fivelomana hafa: 6");
+            IsLivingHouseSelected = selected.Contains("trano fonenana: 7");
+            IsHealthSelected = selected.Contains("Fahasalamana: 8");
         }
     }
 }

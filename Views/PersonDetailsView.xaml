@@ -149,23 +149,11 @@
                 <local:AlocalisationView DataContext="{Binding Alocalisation}"/>
             </TabItem>
             
-            <TabItem Header="I - Fampiatiana">
-                <local:ItransmissionView DataContext="{Binding Itransmission}"/>
+            <TabItem Header="D - Filazalazana momba ny fahasembanana">
+                <local:DdescriptionView DataContext="{Binding Ddescription}"/>
             </TabItem>
-            <TabItem Header="II - Fampiharana ny CDPH">
-                <local:IIapplicationCDPHView DataContext="{Binding IIapplicationCDPH}"/>
-            </TabItem>
-            <TabItem Header="III - Ny zon'ny olona manana fahasembanana">
-                <local:IIIrightView DataContext="{Binding IIIright}"/>
-            </TabItem>
-            <TabItem Header="IV - Fandraisana andraikitra ny fanjakana">
-                <local:IVdutyGovView DataContext="{Binding IVdutyGov}"/>
-            </TabItem>
-            <TabItem Header="V - Fampiatiana ny olona manana fahasembanana amin'ny fampandrosoana">
-                <local:VdevSupportView DataContext="{Binding VdevSupport}"/>
-            </TabItem>
-            <TabItem Header="VI - Fiarahana amin'ny mpiaramiombon'antoka samihafa">
-                <local:VIpartnerCollabView DataContext="{Binding VIpartnerCollab}"/>
+            <TabItem Header="E - Fiovan'ny toetr'andro">
+                <local:EclimatView DataContext="{Binding Eclimat}"/>
             </TabItem>
         </TabControl>
 

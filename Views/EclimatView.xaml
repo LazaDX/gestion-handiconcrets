@@ -1,0 +1,166 @@
+﻿<UserControl x:Class="gestion_concrets.Views.EclimatView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:gestion_concrets.Views"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" 
+             mc:Ignorable="d" 
+             d:DesignHeight="4100" d:DesignWidth="800">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <Grid Background="White">
+            <!-- Eclimat Section -->
+            <Label Content="E - Fiovan'ny toetr'andro" HorizontalAlignment="Left" Margin="45,41,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+            <!-- E1 -->
+            <Label Content="E1 - Mahatsapa ny fiantraikan'ny fiovan'ny toetr'andro ve ianao sy ny fiarahamonina misy anao ?" HorizontalAlignment="Left" Margin="54,77,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,111,0,0" TextWrapping="Wrap" Text="{Binding E1, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E2 -->
+            <Label Content="E2 - Raha ENY, ahoana avy no mety fisehony ? " HorizontalAlignment="Left" Margin="54,157,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,191,0,0" TextWrapping="Wrap" Text="{Binding E2, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E3 -->
+            <Label Content="E3 - Nanomboka tamin'ny taona firy no nahatsapanao izany ?" HorizontalAlignment="Left" Margin="54,237,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,271,0,0" TextWrapping="Wrap" Text="{Binding E3, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E4 -->
+            <Label Content="E4 - Misy fiantraikany manokana aminao amin'ny maha-olona manana fahasembanana anao ve izany ?" HorizontalAlignment="Left" Margin="54,317,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,351,0,0" TextWrapping="Wrap" Text="{Binding E4, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E5 -->
+            <Label Content="E5 - Misy fiantraikan'ny fiovan'ny toetrandro taminao ve tamin'ireto lafiny ireto ?" HorizontalAlignment="Left" Margin="54,397,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,431,0,0" TextWrapping="Wrap" Text="{Binding E5, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E611 -->
+            <Label Content="E611 - Heverinao fa misy fiantraikan'ny fiovan'ny toetr'andro ve ireto lafiny manaraka ireto ? Vehivavy :" HorizontalAlignment="Left" Margin="54,477,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,511,0,0" TextWrapping="Wrap" Text="{Binding E611, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E612 -->
+            <Label Content="E612 - Hazavao " HorizontalAlignment="Left" Margin="54,557,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,591,0,0" TextWrapping="Wrap" Text="{Binding E612, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E621 -->
+            <Label Content="E621 - Zokiolona" HorizontalAlignment="Left" Margin="54,637,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,671,0,0" TextWrapping="Wrap" Text="{Binding E621, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E622 -->
+            <Label Content="E622 - Hazavao" HorizontalAlignment="Left" Margin="54,717,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,751,0,0" TextWrapping="Wrap" Text="{Binding E622, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E631 -->
+            <Label Content="E631 - Ankizy" HorizontalAlignment="Left" Margin="54,797,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,831,0,0" TextWrapping="Wrap" Text="{Binding E631, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E632 -->
+            <Label Content="E632 - Hazavao" HorizontalAlignment="Left" Margin="54,877,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,911,0,0" TextWrapping="Wrap" Text="{Binding E632, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E641 -->
+            <Label Content="E641 - Fiarahamonina ankapobeny" HorizontalAlignment="Left" Margin="54,957,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,991,0,0" TextWrapping="Wrap" Text="{Binding E641, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E642 -->
+            <Label Content="E642 - Hazavao" HorizontalAlignment="Left" Margin="54,1037,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,1071,0,0" TextWrapping="Wrap" Text="{Binding E642, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E651 -->
+            <Label Content="E651 - Tontolo iainana sy ny zavaboary amin'ny ankapobeny" HorizontalAlignment="Left" Margin="54,1117,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,1151,0,0" TextWrapping="Wrap" Text="{Binding E651, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E652 -->
+            <Label Content="E652 - Hazavao" HorizontalAlignment="Left" Margin="54,1197,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,1231,0,0" TextWrapping="Wrap" Text="{Binding E652, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E661 -->
+            <Label Content="E661 - Hafa" HorizontalAlignment="Left" Margin="54,1277,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,1311,0,0" TextWrapping="Wrap" Text="{Binding E661, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E662 -->
+            <Label Content="E662 - Hazavao" HorizontalAlignment="Left" Margin="54,1357,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,1391,0,0" TextWrapping="Wrap" Text="{Binding E662, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E71 -->
+            <Label Content="E71 - Fandraisana andraikitra" HorizontalAlignment="Left" Margin="54,1437,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,1471,0,0" TextWrapping="Wrap" Text="{Binding E71, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E72 -->
+            <Label Content="E72 - Hazavao" HorizontalAlignment="Left" Margin="54,1517,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,1551,0,0" TextWrapping="Wrap" Text="{Binding E72, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E81 -->
+            <Label Content="E81 - Fandraisana andraikitra avy amin'ny fiarahamonina" HorizontalAlignment="Left" Margin="54,1597,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,1631,0,0" TextWrapping="Wrap" Text="{Binding E81, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E82 -->
+            <Label Content="E82 - Hazavao" HorizontalAlignment="Left" Margin="54,1677,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,1711,0,0" TextWrapping="Wrap" Text="{Binding E82, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E91 -->
+            <Label Content="E911 - Nisy fandraisana andraikitra ve tamin'ireto lafiny manaraka ireto ? Fisitrahana rano" HorizontalAlignment="Left" Margin="54,1757,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,1791,0,0" TextWrapping="Wrap" Text="{Binding E91, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E92 -->
+            <Label Content="E912 - Hazavao" HorizontalAlignment="Left" Margin="54,1837,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,1871,0,0" TextWrapping="Wrap" Text="{Binding E92, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E921 -->
+            <Label Content="E921 - Fambolena" HorizontalAlignment="Left" Margin="54,1917,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,1951,0,0" TextWrapping="Wrap" Text="{Binding E921, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E922 -->
+            <Label Content="E922 - Hazavao" HorizontalAlignment="Left" Margin="54,1997,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,2031,0,0" TextWrapping="Wrap" Text="{Binding E922, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E931 -->
+            <Label Content="E931 - Fiompiana" HorizontalAlignment="Left" Margin="54,2077,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,2111,0,0" TextWrapping="Wrap" Text="{Binding E931, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E932 -->
+            <Label Content="E932 - Hazavao" HorizontalAlignment="Left" Margin="54,2157,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,2191,0,0" TextWrapping="Wrap" Text="{Binding E932, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E941 -->
+            <Label Content="E941 - Jono" HorizontalAlignment="Left" Margin="54,2237,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,2271,0,0" TextWrapping="Wrap" Text="{Binding E941, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E942 -->
+            <Label Content="E942 - Hazavao" HorizontalAlignment="Left" Margin="54,2317,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,2351,0,0" TextWrapping="Wrap" Text="{Binding E942, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E951 -->
+            <Label Content="E951 - Asa fivelomana hafa" HorizontalAlignment="Left" Margin="54,2397,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,2431,0,0" TextWrapping="Wrap" Text="{Binding E951, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E952 -->
+            <Label Content="E952 - Hazavao" HorizontalAlignment="Left" Margin="54,2477,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,2511,0,0" TextWrapping="Wrap" Text="{Binding E952, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E961 -->
+            <Label Content="E961 - Trano fonenana" HorizontalAlignment="Left" Margin="54,2557,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,2591,0,0" TextWrapping="Wrap" Text="{Binding E961, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E962 -->
+            <Label Content="E962 - Hazavao" HorizontalAlignment="Left" Margin="54,2637,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,2671,0,0" TextWrapping="Wrap" Text="{Binding E962, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E971 -->
+            <Label Content="E971 - Kolontsaina" HorizontalAlignment="Left" Margin="54,2717,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,2751,0,0" TextWrapping="Wrap" Text="{Binding E971, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E972 -->
+            <Label Content="E972 - Hazavao" HorizontalAlignment="Left" Margin="54,2797,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,2831,0,0" TextWrapping="Wrap" Text="{Binding E972, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E981 -->
+            <Label Content="E981 - Hafa" HorizontalAlignment="Left" Margin="54,2877,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,2911,0,0" TextWrapping="Wrap" Text="{Binding E981, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E982 -->
+            <Label Content="E982 - Hazavao" HorizontalAlignment="Left" Margin="54,2957,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,2991,0,0" TextWrapping="Wrap" Text="{Binding E982, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E101 -->
+            <Label Content="E101 - Fahazoam-baovao, mahazo vaovao na fampilazàna momba ny loza voajanahary ve ianao rehefa misy izany ?" HorizontalAlignment="Left" Margin="54,3037,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,3071,0,0" TextWrapping="Wrap" Text="{Binding E101, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E102 -->
+            <Label Content="E102 - Raha eny, amin'ny fomba ahoana ?" HorizontalAlignment="Left" Margin="54,3117,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,3151,0,0" TextWrapping="Wrap" Text="{Binding E102, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E103 -->
+            <Label Content="E103 - Hazavao" HorizontalAlignment="Left" Margin="54,3197,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,3231,0,0" TextWrapping="Wrap" Text="{Binding E103, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E104 -->
+            <Label Content="E104 - Raha tsia, hazavao ny antony ?" HorizontalAlignment="Left" Margin="54,3277,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,3311,0,0" TextWrapping="Wrap" Text="{Binding E104, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E111 -->
+            <Label Content="E111 - Efa nisy andraikitra noraisin'ny fanjakana ve ?" HorizontalAlignment="Left" Margin="54,3357,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,3391,0,0" TextWrapping="Wrap" Text="{Binding E111, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E112 -->
+            <Label Content="E112 - Hazavao" HorizontalAlignment="Left" Margin="54,3437,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,3471,0,0" TextWrapping="Wrap" Text="{Binding E112, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E121 -->
+            <Label Content="E121 - Efa nisy andraikitra noraisin'ny fanjakana hanampiana ireo olona manana fahasembanana hiatrika ny fiovan'ny toetrandro ve ?" HorizontalAlignment="Left" Margin="54,3517,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,3551,0,0" TextWrapping="Wrap" Text="{Binding E121, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E122 -->
+            <Label Content="E122 - Hazavao" HorizontalAlignment="Left" Margin="54,3597,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,3631,0,0" TextWrapping="Wrap" Text="{Binding E122, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E131 -->
+            <Label Content="E131 - Misy fepetra heverinao hahomby sy mety amin'ny olona manana fahasembanana ho entina miatrika ny fiovan'ny toetrandro ve ?" HorizontalAlignment="Left" Margin="54,3677,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,3711,0,0" TextWrapping="Wrap" Text="{Binding E131, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E132 -->
+            <Label Content="E132 - Hazavao" HorizontalAlignment="Left" Margin="54,3757,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,3791,0,0" TextWrapping="Wrap" Text="{Binding E132, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E141 -->
+            <Label Content="E141 - Azo tanterahina ve ireo fepetra ireo ?" HorizontalAlignment="Left" Margin="54,3837,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,3871,0,0" TextWrapping="Wrap" Text="{Binding E141, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E142 -->
+            <Label Content="E142 - Hazavao" HorizontalAlignment="Left" Margin="54,3917,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,3951,0,0" TextWrapping="Wrap" Text="{Binding E142, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <!-- E15 -->
+            <Label Content="E15 - Inona no mety ho ilaina mba ahafahana manatanteraka ireo fepetra ireo ?" HorizontalAlignment="Left" Margin="54,3997,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,4031,0,0" TextWrapping="Wrap" Text="{Binding E15, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+        </Grid>
+    </ScrollViewer>
+</UserControl>
