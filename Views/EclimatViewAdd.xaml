@@ -46,7 +46,7 @@
         <ComboBox ItemsSource="{Binding E621}" SelectedItem="{Binding Eclimat.E621, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="54,671,0,0" VerticalAlignment="Top" Width="120" Height="32"/>
         <!-- E622 -->
         <Label Content="E622 - Hazavao" HorizontalAlignment="Left" Margin="54,717,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <ui:TextBox HorizontalAlignment="Left" Margin="54,751,0,0" TextWrapping="Wrap" Text="{Binding E622, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+        <ui:TextBox HorizontalAlignment="Left" Margin="54,751,0,0" TextWrapping="Wrap" Text="{Binding Eclimat.E622, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
         <!-- E631 -->
         <Label Content="E631 - Ankizy" HorizontalAlignment="Left" Margin="54,797,0,0" VerticalAlignment="Top" FontSize="14"/>
         <ComboBox ItemsSource="{Binding E631}" SelectedItem="{Binding Eclimat.E631, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="54,831,0,0" VerticalAlignment="Top" Width="120" Height="32"/>
