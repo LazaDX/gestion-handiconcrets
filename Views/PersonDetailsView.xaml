@@ -6,8 +6,8 @@
       xmlns:local="clr-namespace:gestion_concrets.Views"
       xmlns:converters="clr-namespace:gestion_concrets.Converters"
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-      mc:Ignorable="d">
-
+      mc:Ignorable="d"
+      Title="PersonDetailsView">
     <Page.Resources>
         <!-- Style pour le TabControl (style Chrome) -->
         <Style TargetType="TabControl">
@@ -19,10 +19,10 @@
         <Style TargetType="TabItem">
             <Setter Property="Background" Value="#E0E0E0"/>
             <Setter Property="Foreground" Value="#333333"/>
-            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontSize" Value="10"/>
             <Setter Property="FontWeight" Value="Medium"/>
             <Setter Property="Margin" Value="0,0,2,0"/>
-            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Padding" Value="8,4"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -34,7 +34,7 @@
                                               ContentSource="Header" 
                                               VerticalAlignment="Center" 
                                               HorizontalAlignment="Center" 
-                                              Margin="10,5"/>
+                                              Margin="8,4"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsSelected" Value="True">
@@ -55,14 +55,15 @@
         <Style TargetType="ui:Button">
             <Setter Property="Background" Value="#0078D4"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontSize" Value="12"/>
             <Setter Property="FontWeight" Value="Medium"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="BorderBrush" Value="#005EA2"/>
-            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Padding" Value="8,4"/>
             <Setter Property="CornerRadius" Value="5"/>
-            <Setter Property="MinWidth" Value="100"/>
-            <Setter Property="MinHeight" Value="35"/>
+            <Setter Property="MinWidth" Value="80"/>
+            <Setter Property="MinHeight" Value="30"/>
+            <Setter Property="Margin" Value="5"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ui:Button">
@@ -123,73 +124,50 @@
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <!-- Pour le titre et l'étape -->
             <RowDefinition Height="*"/>
-            <!-- Pour le TabControl -->
             <RowDefinition Height="Auto"/>
-            <!-- Pour les boutons -->
         </Grid.RowDefinitions>
 
         <!-- Indicateur de progression et titre -->
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
-            <Label Content="FAKAN-KEVITRA ISAM-PARITRA AVY AMIN'NY OLONA MANANA FAHASEMBANANA" 
-                   FontSize="16" FontWeight="Bold" Foreground="#FF6D6464" Margin="0,0,20,0"/>
-            <Label Content="{Binding SelectedTabIndex, StringFormat={}Étape {0} sur 8}" 
-                   FontSize="14" FontWeight="Bold" Foreground="#333333"/>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+            <TextBlock Text="FAKAN-KEVITRA ISAM-PARITRA AVY AMIN'NY OLONA MANAVA FAHASEMBANANA" 
+                       FontSize="14" FontWeight="Bold" Foreground="#FF6D6464" Margin="0,0,10,0" TextWrapping="Wrap"/>
+            <TextBlock Text="{Binding SelectedTabIndex, StringFormat={}Étape {0} sur 8}" 
+                       FontSize="12" FontWeight="Bold" Foreground="#333333" VerticalAlignment="Center"/>
         </StackPanel>
 
         <!-- TabControl -->
-        <TabControl Grid.Row="1" SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}" 
-                    Margin="10">
-            <TabItem Header="B - Filazalazana momba ilay olona hadihadiana">
-                <local:BPersonView DataContext="{Binding BPerson}"/>
-            </TabItem>
-
-            <TabItem Header="A - Faritra anaovana fanadihadiana">
-                <local:AlocalisationView DataContext="{Binding Alocalisation}"/>
-            </TabItem>
-            
-            <TabItem Header="D - Filazalazana momba ny fahasembanana">
-                <local:DdescriptionView DataContext="{Binding Ddescription}"/>
-            </TabItem>
-            <TabItem Header="E - Fiovan'ny toetr'andro">
-                <local:EclimatView DataContext="{Binding Eclimat}"/>
-            </TabItem>
-        </TabControl>
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <TabControl SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}" Margin="5">
+                <TabItem Header="B - Filazalazana momba ilay olona hadihadiana">
+                    <local:BPersonView DataContext="{Binding BPerson}"/>
+                </TabItem>
+                <TabItem Header="A - Faritra anaovana fanadihadiana">
+                    <local:AlocalisationView DataContext="{Binding Alocalisation}"/>
+                </TabItem>
+                <TabItem Header="D - Filazalazana momba ny fahasembanana">
+                    <local:DdescriptionView DataContext="{Binding Ddescription}"/>
+                </TabItem>
+                <TabItem Header="E - Fiovan'ny toetr'andro">
+                    <local:EclimatView DataContext="{Binding Eclimat}"/>
+                </TabItem>
+            </TabControl>
+        </ScrollViewer>
 
         <!-- Boutons de navigation -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal" 
-                    HorizontalAlignment="Center" 
-                    VerticalAlignment="Bottom" 
-                    Margin="0,10,0,20">
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5,10,5,10">
             <ui:Button Content="Précédent" 
-                       Width="100" 
-                       Height="40" 
-                       Margin="10,0" 
                        Command="{Binding PreviousTabCommand}" 
                        IsEnabled="{Binding CanGoPrevious}"/>
             <ui:Button Content="Suivant" 
-                       Width="100" 
-                       Height="40" 
-                       Margin="10,0" 
                        Command="{Binding NextTabCommand}" 
                        IsEnabled="{Binding CanGoNext}"/>
             <ui:Button Content="Sauvegarder" 
-                       Width="100" 
-                       Height="40" 
-                       Margin="10,0" 
                        Command="{Binding UpdateCommand}"/>
             <ui:Button Content="Supprimer" 
-                       Width="100" 
-                       Height="40" 
-                       Margin="10,0" 
                        Command="{Binding DeleteCommand}"/>
-            <!-- Espace pour séparer visuellement -->
-            <Border Width="20"/>
+            <Border Width="10"/>
             <ui:Button Content="Modifier" 
-                       Width="100" 
-                       Height="40" 
-                       Margin="10,0" 
                        Style="{StaticResource ModifierButtonStyle}"
                        Command="{Binding ToggleEditCommand}"/>
         </StackPanel>

@@ -12,7 +12,7 @@ namespace gestion_concrets.Services
     {
 
         //private static readonly string projectRoot = Path.GetFullPath(
-        //    Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..")
+        //    Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..","..")
         //);
         //private static readonly string dataFolder = Path.Combine(projectRoot, "Data");
         //private static readonly string dbPath = Path.Combine(dataFolder, "database.db");
@@ -27,16 +27,19 @@ namespace gestion_concrets.Services
         private static string GetProjectRoot()
         {
             string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+           
 
             // Vérifie si on est dans un environnement de développement (bin\Debug ou bin\Release)
             if (baseDir.Contains(@"\bin\Debug") || baseDir.Contains(@"\bin\Release"))
             {
                 // Remonte jusqu'à la racine du projet
-                return Path.GetFullPath(Path.Combine(baseDir, "..", "..", ".."));
+                return Path.GetFullPath(
+                        Path.Combine(baseDir, "..", "..", "..","..")
+                    );
             }
-
-            // Dans un environnement de build, utilise directement le répertoire de base
+            
             return baseDir;
+          
         }
 
         public static SQLiteConnection GetConnection()
@@ -864,7 +867,7 @@ namespace gestion_concrets.Services
             {
                 connection.Open();
                 Debug.WriteLine("[DEBUG] Connexion ouverte pour GetTotalMenCount");
-                using var command = new SQLiteCommand("SELECT COUNT(*) FROM BPerson WHERE B3 = @Gender", connection);
+                using var command = new SQLiteCommand("SELECT COUNT(*) FROM BPerson WHERE B4 = @Gender", connection);
                 command.Parameters.AddWithValue("@Gender", "Lahy");
                 var result = command.ExecuteScalar();
                 Debug.WriteLine("[DEBUG] Requête exécutée pour GetTotalMenCount");
@@ -889,7 +892,7 @@ namespace gestion_concrets.Services
             {
                 connection.Open();
                 Debug.WriteLine("[DEBUG] Connexion ouverte pour GetTotalWomenCount");
-                using var command = new SQLiteCommand("SELECT COUNT(*) FROM BPerson WHERE B3 = @Gender", connection);
+                using var command = new SQLiteCommand("SELECT COUNT(*) FROM BPerson WHERE B4 = @Gender", connection);
                 command.Parameters.AddWithValue("@Gender", "Vavy");
                 var result = command.ExecuteScalar();
                 Debug.WriteLine("[DEBUG] Requête exécutée pour GetTotalWomenCount");

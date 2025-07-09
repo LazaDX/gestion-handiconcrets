@@ -208,6 +208,7 @@ namespace gestion_concrets.ViewModels
         public ObservableCollection<string> Material { get; } = new ObservableCollection<string> { "tehina fotsy: 1", "appareil auditif: 2", "canne anglaise: 3", "Chaise roulante: 4", "béquille: 5"};
 
         // Eclimat
+        public ObservableCollection<string> E1 { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
         public ObservableCollection<string> E4 { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
         public ObservableCollection<string> E5 { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
         public ObservableCollection<string> E611 { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
@@ -265,16 +266,16 @@ namespace gestion_concrets.ViewModels
             IsReadOnly = !IsReadOnly;
             if (IsReadOnly && BPerson.Id != 0)
             {
-                LoadData(BPerson.Id);
-                SetNonDefinedValues(BPerson);
-                SetNonDefinedValues(Alocalisation);
-                SetNonDefinedValues(Ddescription);
-                SetNonDefinedValues(Eclimat);
+                    LoadData(BPerson.Id);
+                    SetNonDefinedValues(BPerson);
+                    SetNonDefinedValues(Alocalisation);
+                    SetNonDefinedValues(Ddescription);
+                    SetNonDefinedValues(Eclimat);
             }
             else if (!IsReadOnly && BPerson.Id != 0)
             {
-                LoadData(BPerson.Id); 
-            }
+                LoadData(BPerson.Id);
+            }    
         }
 
         private bool ValidateFields()
@@ -316,7 +317,7 @@ namespace gestion_concrets.ViewModels
                 Alocalisation.DateTime.Value < new DateTime(1900, 1, 1) ||
                 Alocalisation.DateTime.Value > DateTime.Today)
             {
-                MessageBox.Show("La date saisie est invalide. Veuillez entrer une date entre 1900 et aujourd'hui.",
+                MessageBox.Show("La date saisie dans la localisation ou dans le grand titre A et sous titre A1 est invalide ou ne doit pas être vide. Veuillez entrer une date entre 1900 et aujourd'hui.",
                     "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
@@ -344,14 +345,14 @@ namespace gestion_concrets.ViewModels
 
         private void SaveData()
         {
-            //if (!ValidateFields() && !validateDateAlocalisation())
-            //{
-            //    return;
-            //}
+            if (!validateDateAlocalisation())
+            {
+                return;
+            }
 
             try
             {
-                var result = MessageBox.Show($"Voulez-vous ajouter ces informations dans la base de donées ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                var result = MessageBox.Show($"Confirmer l'insertion si tout les informations que vous voulez enregistrer sont toutes saisies sinon, veuillez compléter et affirmer que tout les informations saisies sont correctes avant d'enregistrer dans la base de données !", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)
                 {
                     SetNonDefinedValues(BPerson);

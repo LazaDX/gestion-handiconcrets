@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using gestion_concrets.ViewModels;
+using System.Globalization;
 
 namespace gestion_concrets.Views
 {

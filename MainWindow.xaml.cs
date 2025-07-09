@@ -59,5 +59,10 @@ namespace gestion_concrets
         {
             MainFrame.Navigate(new DatabaseView());
         }
+
+        private void MainFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+
+        }
     }
 }

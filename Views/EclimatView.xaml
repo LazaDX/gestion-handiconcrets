@@ -76,10 +76,10 @@
             <ui:TextBox HorizontalAlignment="Left" Margin="54,1711,0,0" TextWrapping="Wrap" Text="{Binding E82, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
             <!-- E91 -->
             <Label Content="E911 - Nisy fandraisana andraikitra ve tamin'ireto lafiny manaraka ireto ? Fisitrahana rano" HorizontalAlignment="Left" Margin="54,1757,0,0" VerticalAlignment="Top" FontSize="14"/>
-            <ui:TextBox HorizontalAlignment="Left" Margin="54,1791,0,0" TextWrapping="Wrap" Text="{Binding E91, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,1791,0,0" TextWrapping="Wrap" Text="{Binding E911, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
             <!-- E92 -->
             <Label Content="E912 - Hazavao" HorizontalAlignment="Left" Margin="54,1837,0,0" VerticalAlignment="Top" FontSize="14"/>
-            <ui:TextBox HorizontalAlignment="Left" Margin="54,1871,0,0" TextWrapping="Wrap" Text="{Binding E92, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
+            <ui:TextBox HorizontalAlignment="Left" Margin="54,1871,0,0" TextWrapping="Wrap" Text="{Binding E912, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>
             <!-- E921 -->
             <Label Content="E921 - Fambolena" HorizontalAlignment="Left" Margin="54,1917,0,0" VerticalAlignment="Top" FontSize="14"/>
             <ui:TextBox HorizontalAlignment="Left" Margin="54,1951,0,0" TextWrapping="Wrap" Text="{Binding E921, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsReadOnly, RelativeSource={RelativeSource AncestorType=Page}}" VerticalAlignment="Top" Width="682" Height="29"/>

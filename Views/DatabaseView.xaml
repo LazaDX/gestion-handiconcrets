@@ -5,21 +5,26 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:gestion_concrets.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
       Title="DatabaseView">
     <Page.Resources>
         <Style x:Key="PrimaryButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="#007ACC"/>
+            <Setter Property="Background" Value="{x:Null}"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Padding" Value="15,10"/>
-            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="MinWidth" Value="150"/>
+            <Setter Property="MinHeight" Value="35"/>
+            <Setter Property="Margin" Value="5"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="8"
                                 RenderTransformOrigin="0.5,0.5">
                             <Border.RenderTransform>
@@ -35,7 +40,9 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#005F9E"/>
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="Foreground" Value="#808080"/>
+                    <Setter Property="BorderBrush" Value="#808080"/>
                     <Setter Property="Effect">
                         <Setter.Value>
                             <DropShadowEffect BlurRadius="8" ShadowDepth="3" Opacity="0.4"/>
@@ -53,18 +60,20 @@
         </Style>
 
         <Style x:Key="SuccessButtonStyle" TargetType="Button" BasedOn="{StaticResource PrimaryButtonStyle}">
-            <Setter Property="Background" Value="#6BCE50"/>
+            <Setter Property="BorderBrush" Value="White"/>
             <Setter Property="Effect">
                 <Setter.Value>
-                    <DropShadowEffect BlurRadius="5" ShadowDepth="2" Color="#6BCE50" Opacity="0.3"/>
+                    <DropShadowEffect BlurRadius="5" ShadowDepth="2" Color="White" Opacity="0.3"/>
                 </Setter.Value>
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#5AB740"/>
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="Foreground" Value="#808080"/>
+                    <Setter Property="BorderBrush" Value="#808080"/>
                     <Setter Property="Effect">
                         <Setter.Value>
-                            <DropShadowEffect BlurRadius="8" ShadowDepth="3" Color="#6BCE50" Opacity="0.4"/>
+                            <DropShadowEffect BlurRadius="8" ShadowDepth="3" Color="White" Opacity="0.4"/>
                         </Setter.Value>
                     </Setter>
                 </Trigger>
@@ -73,22 +82,22 @@
     </Page.Resources>
 
     <Grid Background="#FAFAFA">
-        <Button Content="Créer un backup" 
-                Command="{Binding CreateBackupCommand}"
-                Style="{StaticResource SuccessButtonStyle}" 
-                Width="320" Height="50"
-                Margin="440,96,40,304"/>
-
-        <Button Content="Importer une base de données" 
-                Command="{Binding ImportDatabaseCommand}"
-                Style="{StaticResource PrimaryButtonStyle}" 
-                Width="320" Height="50"
-                Margin="40,96,440,304"/>
-
-        <Button Content="Exporter la base de données" 
-                Command="{Binding ExportDatabaseCommand}"
-                Style="{StaticResource PrimaryButtonStyle}" 
-                Width="320" Height="50"
-                Margin="40,175,440,225"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalAlignment="Center">
+            <StackPanel Orientation="Vertical" Margin="10">
+                <Button Content="Importer une base de données" 
+                        Command="{Binding ImportDatabaseCommand}"
+                        Style="{StaticResource PrimaryButtonStyle}"/>
+                <Button Content="Exporter la base de données" 
+                        Command="{Binding ExportDatabaseCommand}"
+                        Style="{StaticResource PrimaryButtonStyle}"/>
+                <Button Content="Créer un backup" 
+                        Command="{Binding CreateBackupCommand}"
+                        Style="{StaticResource SuccessButtonStyle}"/>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>
