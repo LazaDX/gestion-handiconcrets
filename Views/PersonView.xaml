@@ -8,6 +8,7 @@
       mc:Ignorable="d"
       Title="PersonView">
 
+    <!-- Page.Resources remain unchanged -->
     <Page.Resources>
         <!-- Style pour le TabControl (style Chrome) -->
         <Style TargetType="TabControl">
@@ -166,22 +167,28 @@
         </StackPanel>
 
         <!-- TabControl -->
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-            <TabControl SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}" Margin="5">
-                <TabItem Header="B - Filazalazana momba ilay olona hadihadiana">
+        <TabControl Grid.Row="1" SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}" Margin="5">
+            <TabItem Header="B - Filazalazana momba ilay olona hadihadiana">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                     <local:BPersonViewAdd/>
-                </TabItem>
-                <TabItem Header="A - Faritra anaovana fanadihadiana">
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="A - Faritra anaovana fanadihadiana">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                     <local:AlocalisationViewAdd/>
-                </TabItem>
-                <TabItem Header="D - Filazalazana momba ny fahasembanana">
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="D - Filazalazana momba ny fahasembanana">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                     <local:DdescriptionViewAdd/>
-                </TabItem>
-                <TabItem Header="E - Fiovan'ny toetr'andro">
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="E - Fiovan'ny toetr'andro">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                     <local:EclimatViewAdd/>
-                </TabItem>
-            </TabControl>
-        </ScrollViewer>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
 
         <!-- Boutons de navigation -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5,10,5,10">

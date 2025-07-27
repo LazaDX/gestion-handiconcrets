@@ -27,5 +27,10 @@ namespace gestion_concrets.Views
             InitializeComponent();
             DataContext = new PersonListViewModel(new DatabaseService());
         }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

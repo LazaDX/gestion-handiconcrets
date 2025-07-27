@@ -355,7 +355,7 @@ namespace gestion_concrets.Services
                 con.Open();
                 using (var cmd = new SQLiteCommand(@"
                     SELECT BPerson.Id, BPerson.B1, BPerson.B2, BPerson.B3, BPerson.B4, BPerson.Adress, 
-                           BPerson.Phone, BPerson.Email, BPerson.B5, BPerson.B6, BPerson.B61, Alocalisation.A1
+                           BPerson.Phone, BPerson.Email, BPerson.B5, BPerson.B6, BPerson.B61, Alocalisation.A1, Alocalisation.A2
                     FROM BPerson
                     LEFT JOIN Alocalisation ON BPerson.Id = Alocalisation.IdBPerson", con))
                 using (var reader = cmd.ExecuteReader())
@@ -375,7 +375,8 @@ namespace gestion_concrets.Services
                             B5 = reader.GetString(8),
                             B6 = reader.GetString(9),
                             B61 = reader.GetString(10),
-                            A1 = reader.IsDBNull(11) ? null : reader.GetString(11)
+                            A1 = reader.IsDBNull(11) ? null : reader.GetString(11),
+                            A2 = reader.GetString(12)
                         });
                     }
                 }
@@ -1033,6 +1034,203 @@ namespace gestion_concrets.Services
             }
 
             connection.Close();
+        }
+
+
+        /// <summary>
+        /// Get a list of unique regions from the Alocalisation table.
+        /// </summary>
+        /// <returns></returns>
+
+        public List<string> GetUniqueRegions()
+        {
+            var regions = new List<string>();
+            using (var con = GetConnection())
+            {
+                con.Open();
+                using (var cmd = new SQLiteCommand("SELECT DISTINCT A2 FROM Alocalisation", con))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        if (!reader.IsDBNull(0))
+                        {
+                            regions.Add(reader.GetString(0));
+                        }
+                    }
+                }
+            }
+            return regions;
+        }
+
+        public (int enyCount, int tsiaCount) GetE1Counts(string region = null)
+        {
+            using (var con = GetConnection())
+            {
+                con.Open();
+                string query = string.IsNullOrEmpty(region) ?
+                    @"SELECT 
+                        COUNT(CASE WHEN E1 = 'Eny' THEN 1 END) as enyCount,
+                        COUNT(CASE WHEN E1 = 'Tsia' THEN 1 END) as tsiaCount
+                      FROM Eclimat" :
+                    @"SELECT 
+                        COUNT(CASE WHEN E1 = 'Eny' THEN 1 END) as enyCount,
+                        COUNT(CASE WHEN E1 = 'Tsia' THEN 1 END) as tsiaCount
+                      FROM Eclimat
+                      INNER JOIN Alocalisation ON Eclimat.IdBPerson = Alocalisation.IdBPerson
+                      WHERE Alocalisation.A2 = @region";
+
+                using (var cmd = new SQLiteCommand(query, con))
+                {
+                    if (!string.IsNullOrEmpty(region))
+                    {
+                        cmd.Parameters.AddWithValue("@region", region);
+                    }
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            int enyCount = reader.IsDBNull(0) ? 0 : reader.GetInt32(0);
+                            int tsiaCount = reader.IsDBNull(1) ? 0 : reader.GetInt32(1);
+                            return (enyCount, tsiaCount);
+                        }
+                    }
+                }
+            }
+            return (0, 0);
+        }
+
+        public (int enyCount, int tsiaCount) GetE101Counts(string region = null)
+        {
+            using (var con = GetConnection())
+            {
+                con.Open();
+                string query = string.IsNullOrEmpty(region) ?
+                    @"SELECT 
+                        COUNT(CASE WHEN E101 = 'Eny' THEN 1 END) as enyCount,
+                        COUNT(CASE WHEN E101 = 'Tsia' THEN 1 END) as tsiaCount
+                      FROM Eclimat" :
+                    @"SELECT 
+                        COUNT(CASE WHEN E101 = 'Eny' THEN 1 END) as enyCount,
+                        COUNT(CASE WHEN E101 = 'Tsia' THEN 1 END) as tsiaCount
+                      FROM Eclimat
+                      INNER JOIN Alocalisation ON Eclimat.IdBPerson = Alocalisation.IdBPerson
+                      WHERE Alocalisation.A2 = @region";
+
+                using (var cmd = new SQLiteCommand(query, con))
+                {
+                    if (!string.IsNullOrEmpty(region))
+                    {
+                        cmd.Parameters.AddWithValue("@region", region);
+                    }
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            int enyCount = reader.IsDBNull(0) ? 0 : reader.GetInt32(0);
+                            int tsiaCount = reader.IsDBNull(1) ? 0 : reader.GetInt32(1);
+                            return (enyCount, tsiaCount);
+                        }
+                    }
+                }
+            }
+            return (0, 0);
+        }
+
+        public (int enyCount, int tsiaCount) GetE121Counts(string region = null)
+        {
+            using (var con = GetConnection())
+            {
+                con.Open();
+                string query = string.IsNullOrEmpty(region) ?
+                    @"SELECT 
+                        COUNT(CASE WHEN E121 = 'Eny' THEN 1 END) as enyCount,
+                        COUNT(CASE WHEN E121 = 'Tsia' THEN 1 END) as tsiaCount
+                      FROM Eclimat" :
+                    @"SELECT 
+                        COUNT(CASE WHEN E121 = 'Eny' THEN 1 END) as enyCount,
+                        COUNT(CASE WHEN E121 = 'Tsia' THEN 1 END) as tsiaCount
+                      FROM Eclimat
+                      INNER JOIN Alocalisation ON Eclimat.IdBPerson = Alocalisation.IdBPerson
+                      WHERE Alocalisation.A2 = @region";
+
+                using (var cmd = new SQLiteCommand(query, con))
+                {
+                    if (!string.IsNullOrEmpty(region))
+                    {
+                        cmd.Parameters.AddWithValue("@region", region);
+                    }
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            int enyCount = reader.IsDBNull(0) ? 0 : reader.GetInt32(0);
+                            int tsiaCount = reader.IsDBNull(1) ? 0 : reader.GetInt32(1);
+                            return (enyCount, tsiaCount);
+                        }
+                    }
+                }
+            }
+            return (0, 0);
+        }
+
+        public Dictionary<string, int> GetE5Counts(string region = null)
+        {
+            var counts = new Dictionary<string, int>
+    {
+        { "Fisitrahana rano: 1", 0 },
+        { "Sakafo: 2", 0 },
+        { "Fambolena: 3", 0 },
+        { "Fiompiana: 4", 0 },
+        { "Jono: 5", 0 },
+        { "Asa fivelomana hafa: 6", 0},
+        { "Trano fonenana: 7", 0 },
+        { "Fahasalamana: 8", 0}
+    };
+
+            using (var con = GetConnection())
+            {
+                con.Open();
+                string query = string.IsNullOrEmpty(region) ?
+                   @"SELECT E5 
+              FROM Eclimat 
+              WHERE E5 IS NOT NULL" :
+            @"SELECT E5 
+              FROM Eclimat 
+              INNER JOIN Alocalisation ON Eclimat.IdBPerson = Alocalisation.IdBPerson 
+              WHERE Alocalisation.A2 = @region 
+              AND E5 IS NOT NULL";
+
+                using (var cmd = new SQLiteCommand(query, con))
+                {
+                    if (!string.IsNullOrEmpty(region))
+                    {
+                        cmd.Parameters.AddWithValue("@region", region);
+                    }
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string e5Value = reader.GetString(0);
+                            var values = e5Value.Split(',').Select(v => v.Trim());
+                            foreach (var value in values)
+                            {
+                                if (counts.ContainsKey(value))
+                                {
+                                    counts[value]++;
+                                    System.Diagnostics.Debug.WriteLine($"Incrémenté {value}: {counts[value]}");
+                                }
+                                else
+                                {
+                                    System.Diagnostics.Debug.WriteLine($"Valeur inattendue: {value}");
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+            return counts;
         }
     }
 }

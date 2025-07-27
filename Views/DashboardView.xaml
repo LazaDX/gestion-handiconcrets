@@ -93,7 +93,7 @@
                                FontWeight="Bold" 
                                Foreground="#2196F3" 
                                Margin="0,12,0,16"/>
-                    <Button Content="Exporter" 
+                    <Button Content="Export excel" 
                             x:Name="ExportTotalButton" 
                             Style="{StaticResource CardButtonStyle}"
                             Background="#2196F3"
@@ -114,7 +114,7 @@
                                FontWeight="Bold" 
                                Foreground="#4CAF50" 
                                Margin="0,12,0,16"/>
-                    <Button Content="Exporter" 
+                    <Button Content="Export Excel" 
                             x:Name="ExportMenButton" 
                             Style="{StaticResource CardButtonStyle}"
                             Background="#4CAF50"
@@ -135,7 +135,7 @@
                                FontWeight="Bold" 
                                Foreground="#E91E63" 
                                Margin="0,12,0,16"/>
-                    <Button Content="Exporter" 
+                    <Button Content="Export excel" 
                             x:Name="ExportWomenButton" 
                             Style="{StaticResource CardButtonStyle}"
                             Background="#E91E63"

@@ -1,0 +1,257 @@
+﻿<Page x:Class="gestion_concrets.Views.StatisticView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Background="White">
+    <Page.Resources>
+        <!-- Style for the card -->
+        <Style TargetType="Border" x:Key="CardStyle">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#E0E0E0"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.1"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Style for the button -->
+        <Style TargetType="Button" x:Key="CardButtonStyle">
+            <Setter Property="Background" Value="#2196F3"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="10,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="6"
+                                RenderTransformOrigin="0.5,0.5">
+                            <Border.RenderTransform>
+                                <ScaleTransform ScaleX="1" ScaleY="1"/>
+                            </Border.RenderTransform>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#1976D2"/>
+                    <Setter Property="RenderTransform">
+                        <Setter.Value>
+                            <ScaleTransform ScaleX="1.02" ScaleY="1.02"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="RenderTransform">
+                        <Setter.Value>
+                            <ScaleTransform ScaleX="0.98" ScaleY="0.98"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Title and ComboBox -->
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,20">
+                <TextBlock Text="Impact du changement climatique par région" 
+                           FontSize="18" 
+                           FontWeight="SemiBold"
+                           Foreground="#333333"
+                           VerticalAlignment="Center"/>
+                <ComboBox ItemsSource="{Binding Regions}" 
+                          SelectedItem="{Binding SelectedRegion}" 
+                          Margin="20,0,0,0"
+                          Width="200"
+                          VerticalAlignment="Center"
+                          MinWidth="150"/>
+            </StackPanel>
+
+            <!-- Card for PieChart (E1) -->
+            <Border Grid.Row="1" Style="{StaticResource CardStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- PieChart Title -->
+                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                               Text="Impact du changement climatique"
+                               FontSize="14"
+                               FontWeight="SemiBold"
+                               Margin="0,0,0,10"/>
+
+                    <!-- PieChart for E1 -->
+                    <lvc:PieChart Grid.Row="1" Grid.Column="0"
+                                  Series="{Binding PieSeries}" 
+                                  LegendPosition="Right"
+                                  Name="PieChart"
+                                  Margin="0,0,10,0"
+                                  Height="250"/>
+
+                    <!-- Counts Display for E1 -->
+                    <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding EnyCount, StringFormat='Eny: {0}'}" 
+                                   FontSize="16" 
+                                   FontWeight="SemiBold" 
+                                   Foreground="#333333"
+                                   Margin="0,0,0,10"/>
+                        <TextBlock Text="{Binding TsiaCount, StringFormat='Tsia: {0}'}" 
+                                   FontSize="16" 
+                                   Foreground="#333333"
+                                   FontWeight="SemiBold"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Card for CartesianChart (E5) -->
+            <Border Grid.Row="2" Style="{StaticResource CardStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- CartesianChart Title -->
+                    <TextBlock Grid.Row="0" 
+                               Text="Impact sur la vie quotidienne"
+                               FontSize="14"
+                               FontWeight="SemiBold"
+                               Margin="0,0,0,10"/>
+
+                    <!-- Bar Chart for E5 -->
+                    <lvc:CartesianChart Grid.Row="1"
+                                        Series="{Binding BarSeries}"
+                                        XAxes="{Binding XAxes}"
+                                        YAxes="{Binding YAxes}"
+                                        Name="BarChart"
+                                        Margin="0,0,0,10"
+                                        Height="300"/>
+                </Grid>
+            </Border>
+
+            <!-- Card for PieChart (E101) -->
+            <Border Grid.Row="3" Style="{StaticResource CardStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- PieChart Title -->
+                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                               Text="Sources d'information"
+                               FontSize="14"
+                               FontWeight="SemiBold"
+                               Margin="0,0,0,10"/>
+
+                    <!-- PieChart for E101 -->
+                    <lvc:PieChart Grid.Row="1" Grid.Column="0"
+                                  Series="{Binding PieSeriesE101}" 
+                                  LegendPosition="Right"
+                                  Name="PieChartE101"
+                                  Margin="0,0,10,0"
+                                  Height="250"/>
+
+                    <!-- Counts Display for E101 -->
+                    <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding EnyCountE101, StringFormat='Eny: {0}'}" 
+                                   FontSize="16" 
+                                   FontWeight="SemiBold" 
+                                   Foreground="#333333"
+                                   Margin="0,0,0,10"/>
+                        <TextBlock Text="{Binding TsiaCountE101, StringFormat='Tsia: {0}'}" 
+                                   FontSize="16" 
+                                   Foreground="#333333"
+                                   FontWeight="SemiBold"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Card for PieChart (E121) -->
+            <Border Grid.Row="4" Style="{StaticResource CardStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- PieChart Title -->
+                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                               Text="Aide par le gouvernement"
+                               FontSize="14"
+                               FontWeight="SemiBold"
+                               Margin="0,0,0,10"/>
+
+                    <!-- PieChart for E121 -->
+                    <lvc:PieChart Grid.Row="1" Grid.Column="0"
+                                  Series="{Binding PieSeriesE121}" 
+                                  LegendPosition="Right"
+                                  Name="PieChartE121"
+                                  Margin="0,0,10,0"
+                                  Height="250"/>
+
+                    <!-- Counts Display for E121 -->
+                    <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding EnyCountE121, StringFormat='Eny: {0}'}" 
+                                   FontSize="16" 
+                                   FontWeight="SemiBold" 
+                                   Foreground="#333333"
+                                   Margin="0,0,0,10"/>
+                        <TextBlock Text="{Binding TsiaCountE121, StringFormat='Tsia: {0}'}" 
+                                   FontSize="16" 
+                                   Foreground="#333333"
+                                   FontWeight="SemiBold"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Export Button -->
+            <Button Grid.Row="5"
+                    Content=" Export world " 
+                    Style="{StaticResource CardButtonStyle}"
+                    HorizontalAlignment="Right"
+                    Margin="0,20,10,10"
+                    Click="ExportToWord"/>
+        </Grid>
+    </ScrollViewer>
+</Page>

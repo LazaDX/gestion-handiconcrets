@@ -4,30 +4,194 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:gestion_concrets.Views"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      >
+      d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <Style x:Key="DataGridTextStyle" TargetType="TextBlock">
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <!-- Style moderne pour le DataGrid -->
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E0E0E0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="GridLinesVisibility" Value="None"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="SelectionUnit" Value="FullRow"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="CanUserDeleteRows" Value="False"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="RowHeight" Value="35"/>
+            <Setter Property="ColumnHeaderHeight" Value="40"/>
+        </Style>
+
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#F5F5F5"/>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="BorderBrush" Value="#E0E0E0"/>
+        </Style>
+
+        <Style TargetType="DataGridRow">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#F5F5F5"/>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#E3F2FD"/>
+                    <Setter Property="BorderBrush" Value="#BBDEFB"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="DataGridCell">
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="DataGridCell">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Style pour le bouton "Voir plus" -->
+        <Style x:Key="ActionButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#0078D4"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#005EA2"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
 
     <Grid Margin="10">
-        <DataGrid ItemsSource="{Binding Persons}"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Barre de recherche -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBox Width="300" 
+                     Height="35" 
+                     Padding="10,5"
+                     Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                    >
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="BorderBrush" Value="#CCCCCC"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="Background" Value="White"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="#999999"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="#0078D4"/>
+                                <Setter Property="BorderThickness" Value="2"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+
+            <Button Content="Rechercher" 
+                    Width="100" 
+                    Height="35" 
+                    Margin="10,0,0,0"
+                    Command="{Binding SearchCommand}"
+                    Style="{StaticResource ActionButtonStyle}"/>
+
+            <Button Content="Réinitialiser" 
+                    Width="100" 
+                    Height="35" 
+                    Margin="10,0,0,0"
+                    Command="{Binding ResetSearchCommand}"
+                    Style="{StaticResource ActionButtonStyle}"
+                    Background="#666666"/>
+        </StackPanel>
+
+        <!-- DataGrid -->
+        <DataGrid Grid.Row="1" 
+                  ItemsSource="{Binding FilteredPersons}"
                   AutoGenerateColumns="False"
-                  IsReadOnly="True"
-                  CanUserAddRows="False"
-                  SelectionMode="Single"
-                  GridLinesVisibility="All">
+                  CanUserSortColumns="True" SelectionChanged="DataGrid_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*" />
-                <DataGridTextColumn Header="Nom et Prénom (B2)" Binding="{Binding B2}" Width="*" />
-                <DataGridTextColumn Header="Date de naissance (B3)" Binding="{Binding B3}" Width="100" />
-                <DataGridTextColumn Header="Genre (B4)" Binding="{Binding B4}" Width="*" />
-                <DataGridTextColumn Header="Adresse" Binding="{Binding Adress}" Width="*" />
-                <DataGridTextColumn Header="Téléphone" Binding="{Binding Phone}" Width="80" />
-                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*" />
-                <DataGridTextColumn Header="Date de recensement" Binding="{Binding A1}" Width="120" />
-                <DataGridTemplateColumn Header="Actions" Width="100">
+                <DataGridTextColumn Header="ID" 
+                                   Binding="{Binding Id}" 
+                                   Width="0.5*"
+                                   ElementStyle="{StaticResource DataGridTextStyle}"/>
+
+                <DataGridTextColumn Header="Nom et Prénom" 
+                                   Binding="{Binding B2}" 
+                                   Width="1.5*"
+                                   SortDirection="Ascending"/>
+
+                <DataGridTextColumn Header="Date naissance" 
+                                   Binding="{Binding B3, StringFormat=d}" 
+                                   Width="0.8*"/>
+
+                <DataGridTextColumn Header="Genre" 
+                                   Binding="{Binding B4}" 
+                                   Width="0.6*"/>
+
+                <DataGridTextColumn Header="Adresse" 
+                                   Binding="{Binding Adress}" 
+                                   Width="1.5*"/>
+
+                <DataGridTextColumn Header="Téléphone" 
+                                   Binding="{Binding Phone}" 
+                                   Width="1*"/>
+
+                <DataGridTextColumn Header="Email" 
+                                   Binding="{Binding Email}" 
+                                   Width="1.5*"/>
+
+                <DataGridTextColumn Header="Date recensement" 
+                                   Binding="{Binding A1, StringFormat=d}" 
+                                   Width="1*"/>
+                <DataGridTextColumn Header="Region" 
+                    Binding="{Binding A2}" 
+                    Width="1.5*"/>
+
+                <DataGridTemplateColumn Header="Actions" 
+                                       Width="0.8*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Voir plus" Command="{Binding DataContext.ViewDetailsCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Margin="5" Padding="5,2" />
+                            <Button Content="Voir plus" 
+                                    Command="{Binding DataContext.ViewDetailsCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
+                                    CommandParameter="{Binding}"
+                                    Style="{StaticResource ActionButtonStyle}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

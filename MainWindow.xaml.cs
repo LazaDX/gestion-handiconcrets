@@ -64,5 +64,10 @@ namespace gestion_concrets
         {
 
         }
+
+        private void statBt_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new StatisticView());
+        }
     }
 }

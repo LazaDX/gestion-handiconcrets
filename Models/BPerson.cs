@@ -34,6 +34,7 @@ namespace gestion_concrets.Models
                 A1 = _dateAndTime?.ToString("dd/MM/yyyy") ?? "Non définie";
             }
         }
+        public string A2 { get; set; }
         public string B4 { get; set; }
         public string Adress { get; set; }
         public string Phone { get; set; }

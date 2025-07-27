@@ -21,7 +21,37 @@ namespace gestion_concrets.ViewModels
     {
         private readonly DatabaseService _databaseService;
         private ObservableCollection<BPerson> _persons;
-       
+
+        private string _searchText;
+        private ICollectionView _filteredPersons;
+
+        public ICollectionView FilteredPersons
+        {
+            get
+            {
+                if (_filteredPersons == null)
+                {
+                    _filteredPersons = CollectionViewSource.GetDefaultView(Persons);
+                    _filteredPersons.Filter = PersonFilter;
+                }
+                return _filteredPersons;
+            }
+        }
+
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+                FilteredPersons.Refresh(); // Actualise le filtre quand le texte change
+            }
+        }
+
+        public ICommand SearchCommand { get; }
+        public ICommand ResetSearchCommand { get; }
+
         public ObservableCollection<BPerson> Persons
         {
             get => _persons;
@@ -29,11 +59,11 @@ namespace gestion_concrets.ViewModels
             {
                 _persons = value;
                 OnPropertyChanged();
-                
+
             }
         }
 
-       
+
 
         public ICommand ViewDetailsCommand { get; }
 
@@ -41,11 +71,56 @@ namespace gestion_concrets.ViewModels
         {
             _databaseService = databaseService;
             ViewDetailsCommand = new RelayCommand(ViewDetails);
-           
+            SearchCommand = new RelayCommand(ExecuteSearch);
+            ResetSearchCommand = new RelayCommand(ExecuteResetSearch);
+
+
             LoadPersons();
-        
+
             DataChangedNotifier.DataChanged += (s, e) => LoadPersons();
         }
+
+
+        private bool PersonFilter(object item)
+        {
+            if (string.IsNullOrWhiteSpace(SearchText))
+                return true;
+
+            var person = item as BPerson;
+            if (person == null)
+                return false;
+
+            // Recherche dans plusieurs propriétés
+            return person.B2?.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                   person.B3?.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                   person.B4?.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                   person.Adress?.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                   person.Email?.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                   person.A1?.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                   person.A2?.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                   person.Phone?.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
+        private void ExecuteViewDetails(object parameter)
+        {
+            if (parameter is BPerson selectedPerson)
+            {
+                // Logique pour afficher les détails
+            }
+        }
+
+        private void ExecuteSearch()
+        {
+            FilteredPersons.Refresh();
+        }
+
+        private void ExecuteResetSearch()
+        {
+            SearchText = string.Empty;
+            FilteredPersons.Refresh();
+        }
+
+
 
         private void LoadPersons()
         {

@@ -115,7 +115,7 @@
                     </StackPanel>
                 </ui:Button>
                 <ui:Button x:Name="statBt"
-                           Style="{StaticResource CustomButtonStyle}">
+                           Style="{StaticResource CustomButtonStyle}" Click="statBt_Click">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <Viewbox Width="16" Height="16" Margin="0,0,8,0">
                             <Path Fill="White" Stretch="Uniform"
