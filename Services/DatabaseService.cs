@@ -18,7 +18,7 @@ namespace gestion_concrets.Services
         //private static readonly string dbPath = Path.Combine(dataFolder, "database.db");
         //private static readonly string connectionString = $"Data Source={dbPath};";
 
-
+        public static event EventHandler DataChanged;
         private static readonly string projectRoot = GetProjectRoot();
         private static readonly string dataFolder = Path.Combine(projectRoot, "Data");
         private static readonly string dbPath = Path.Combine(dataFolder, "database.db");
@@ -801,6 +801,8 @@ namespace gestion_concrets.Services
                         }
 
                         transaction.Commit();
+
+                        DataChanged?.Invoke(this, EventArgs.Empty);
                     }
                     catch (Exception e)
                     {
@@ -826,6 +828,8 @@ namespace gestion_concrets.Services
                             command.ExecuteNonQuery();
                         }
                         transaction.Commit();
+
+                        DataChanged?.Invoke(this, EventArgs.Empty);
                     }
                     catch (Exception ex)
                     {
@@ -1036,6 +1040,32 @@ namespace gestion_concrets.Services
             connection.Close();
         }
 
+        private static readonly Dictionary<string, string> AllowedRegions = new Dictionary<string, string>
+        {
+            { "SAVA", "SAVA" },
+            { "DIANA", "DIANA" },
+            { "ITASY", "ITASY" },
+            { "ANALAMANAGA", "ANALAMANAGA" },
+            { "VAKINANANKARATRA", "VAKINANANKARATRA" },
+            { "BONGOLAVA", "BONGOLAVA" },
+            { "SOFIA", "SOFIA" },
+            { "BOENY", "BOENY" },
+            { "BETSIBOKA", "BETSIBOKA" },
+            { "MELAKY", "MELAKY" },
+            { "ATSIMO ATSINANANA", "ATSIMO ATSINANANA" },
+            { "AMORON'I MANIA", "AMORON'I MANIA" },
+            { "HAUTE MATSIATRA", "HAUTE MATSIATRA" },
+            { "VATOVAVY", "VATOVAVY" },
+            { "FITOVINANY", "FITOVINANY" },
+            { "ATSIMO ANDREFANA", "ATSIMO ANDREFANA" },
+            { "ANOSY", "ANOSY" },
+            { "ANDROY", "ANDROY" },
+            { "MENABE", "MENABE" },
+            { "BETSIBOKA", "BETSIBOKA" },
+            {  "ALAOTRA MANGORO", "ALAOTRA MANGORO" },
+            { "ANALANJIROFO", "ANALANJIROFO" },
+            { "IHOROMBE", "IHOROMBE" }
+        };
 
         /// <summary>
         /// Get a list of unique regions from the Alocalisation table.
@@ -1045,21 +1075,40 @@ namespace gestion_concrets.Services
         public List<string> GetUniqueRegions()
         {
             var regions = new List<string>();
+
+            if (AllowedRegions.Count == 0)
+            {
+                return regions;
+            }
+
             using (var con = GetConnection())
             {
                 con.Open();
-                using (var cmd = new SQLiteCommand("SELECT DISTINCT A2 FROM Alocalisation", con))
-                using (var reader = cmd.ExecuteReader())
+                string query = "SELECT DISTINCT A2 FROM Alocalisation WHERE A2 IN (" +
+                              string.Join(",", AllowedRegions.Keys.Select((_, i) => $"@p{i}")) + ")";
+
+                using (var cmd = new SQLiteCommand(query, con))
                 {
-                    while (reader.Read())
+                    int i = 0;
+                    foreach (var region in AllowedRegions.Keys)
                     {
-                        if (!reader.IsDBNull(0))
+                        cmd.Parameters.AddWithValue($"@p{i}", region);
+                        i++;
+                    }
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
                         {
-                            regions.Add(reader.GetString(0));
+                            if (!reader.IsDBNull(0))
+                            {
+                                regions.Add(reader.GetString(0));
+                            }
                         }
                     }
                 }
             }
+
             return regions;
         }
 

@@ -60,6 +60,8 @@ namespace gestion_concrets.ViewModels
                 _persons = value;
                 OnPropertyChanged();
 
+                _filteredPersons = null; // Réinitialiser pour forcer la recréation
+                OnPropertyChanged(nameof(FilteredPersons));
             }
         }
 
@@ -77,7 +79,7 @@ namespace gestion_concrets.ViewModels
 
             LoadPersons();
 
-            DataChangedNotifier.DataChanged += (s, e) => LoadPersons();
+            DatabaseService.DataChanged += (s, e) => LoadPersons();
         }
 
 

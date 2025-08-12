@@ -196,6 +196,8 @@ namespace gestion_concrets.ViewModels
 
         public event EventHandler CloseWindowRequested;
 
+        // Alocalisation
+        public ObservableCollection<string> A2 { get; } = new ObservableCollection<string> { "SAVA", "DIANA", "ITASY", "ANALAMANAGA", "VAKINANANKARATRA", "BONGOLAVA", "SOFIA", "BOENY", "BETSIBOKA", "MELAKY", "ATSIMO ATSINANANA", "AMORON'I MANIA", "HAUTE MATSIATRA", "VATOVAVY", "FITOVINANY", "ATSIMO ANDREFANA", "ANOSY", "ANDROY", "MENABE", "BETSIBOKA", "ALAOTRA MANGORO", "ANALANJIROFO", "IHOROMBE"};
 
         // BPerson
         public ObservableCollection<string> Questions { get; } = new ObservableCollection<string> { "Eny", "Tsia" };

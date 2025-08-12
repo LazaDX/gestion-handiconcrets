@@ -24,7 +24,7 @@
                 DisplayDateEnd="{Binding CurrentDate, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
                 <!-- A2 -->
                 <Label Content="A2. Faritra" HorizontalAlignment="Left" Margin="54,157,0,0" VerticalAlignment="Top" FontSize="14"/>
-                <ui:TextBox HorizontalAlignment="Left" Margin="54,191,0,0" TextWrapping="Wrap" Text="{Binding Alocalisation.A2, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
+                <ComboBox ItemsSource="{Binding A2}" SelectedItem="{Binding Alocalisation.A2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="54,191,0,0" VerticalAlignment="Top" Width="371" Height="29"/>
                 <!-- A3 -->
                 <Label Content="A3. Distrika" HorizontalAlignment="Left" Margin="54,237,0,0" VerticalAlignment="Top" FontSize="14"/>
                 <ui:TextBox HorizontalAlignment="Left" Margin="54,271,0,0" TextWrapping="Wrap" Text="{Binding Alocalisation.A3, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="371" Height="29"/>
