@@ -168,14 +168,14 @@
 
         <!-- TabControl -->
         <TabControl Grid.Row="1" SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}" Margin="5">
-            <TabItem Header="B - Filazalazana momba ilay olona hadihadiana">
-                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                    <local:BPersonViewAdd/>
-                </ScrollViewer>
-            </TabItem>
             <TabItem Header="A - Faritra anaovana fanadihadiana">
                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                     <local:AlocalisationViewAdd/>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="B - Filazalazana momba ilay olona hadihadiana">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <local:BPersonViewAdd/>
                 </ScrollViewer>
             </TabItem>
             <TabItem Header="D - Filazalazana momba ny fahasembanana">
@@ -192,28 +192,29 @@
 
         <!-- Boutons de navigation -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5,10,5,10">
-            <ui:Button Content="Précédent" 
+            <ui:Button Content="précedent" 
                        Width="120" 
                        Height="40" 
                        Margin="5" 
                        Command="{Binding PreviousTabCommand}" 
                        IsEnabled="{Binding CanGoPrevious}"/>
-            <ui:Button Content="Suivant" 
-                       Width="120" Height="40" 
-                       Margin="5" 
-                       Command="{Binding NextTabCommand}" 
-                       IsEnabled="{Binding CanGoNext}"/>
-            <ui:Button Content="Rafraîchir" 
-                       Width="120" Height="40" 
+           
+            <ui:Button Content="Vider les champs" 
+                       Width="134" Height="40" 
                        Margin="5" 
                        Style="{StaticResource RefreshButtonStyle}" 
                        Command="{Binding RefreshCommand}"/>
             <Border Width="5"/>
-            <ui:Button Content="Ajouter" 
-                       Width="120" Height="40" 
+            <ui:Button Content="Enregistrer les informations" 
+                       Width="204" Height="40" 
                        Margin="5" 
                        Style="{StaticResource AjouterButtonStyle}" 
                        Command="{Binding SaveCommand}"/>
+            <ui:Button Content="suivant" 
+                        Width="120" Height="40" 
+                        Margin="5" 
+                        Command="{Binding NextTabCommand}" 
+                        IsEnabled="{Binding CanGoNext}" Click="Button_Click"/>  
         </StackPanel>
     </Grid>
 </Page>

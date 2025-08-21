@@ -17,185 +17,204 @@ namespace gestion_concrets.Services
         //private static readonly string dataFolder = Path.Combine(projectRoot, "Data");
         //private static readonly string dbPath = Path.Combine(dataFolder, "database.db");
         //private static readonly string connectionString = $"Data Source={dbPath};";
+            public static event EventHandler DataChanged;
+           
 
-        public static event EventHandler DataChanged;
-        private static readonly string projectRoot = GetProjectRoot();
-        private static readonly string dataFolder = Path.Combine(projectRoot, "Data");
-        private static readonly string dbPath = Path.Combine(dataFolder, "database.db");
-        private static readonly string connectionString = $"Data Source={dbPath};";
 
-        private static string GetProjectRoot()
-        {
-            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
-            Debug.WriteLine($"[DEBUG] Base directory: {baseDir}");
-            if (baseDir.Contains(@"\bin\Debug") || baseDir.Contains(@"\bin\Release"))
+            // Lazy initialization des chemins pour éviter les exceptions statiques
+            private static string _projectRoot;
+            private static string ProjectRoot => _projectRoot ??= GetProjectRoot();
+
+            private static string _dataFolder;
+            private static string DataFolder => _dataFolder ??= Path.Combine(ProjectRoot, "Data");
+
+            private static string _dbPath;
+            private static string DbPath => _dbPath ??= Path.Combine(DataFolder, "database.db");
+
+            private static string _connectionString;
+            private static string ConnectionString => _connectionString ??= $"Data Source={DbPath};";
+
+            private static string GetProjectRoot()
             {
-                string root = Path.GetFullPath(Path.Combine(baseDir, "..", "..", "..", ".."));
-                Debug.WriteLine($"[DEBUG] Resolved project root: {root}");
-                return root;
+                string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+
+                Debug.WriteLine($"[INFO] Base directory: {baseDir}");
+
+                if (baseDir.Contains(@"\bin\Debug") || baseDir.Contains(@"\bin\Release"))
+                {
+                    string root = Path.GetFullPath(Path.Combine(baseDir, "..", "..", "..", ".."));
+                    Debug.WriteLine($"[INFO] Project root detected: {root}");
+                    return root;
+                }
+
+                return baseDir;
             }
-            Debug.WriteLine($"[DEBUG] Using base directory as root: {baseDir}");
-            return baseDir;
-        }
-        
-        public static SQLiteConnection GetConnection()
-        {
-            Debug.WriteLine($"[INFO] Project root : {projectRoot}");
-            Debug.WriteLine($"[INFO] Data folder  : {dataFolder}");
 
-            try
+            public static SQLiteConnection GetConnection()
             {
-                if (!Directory.Exists(dataFolder))
+                try
                 {
-                    Debug.WriteLine($"[INFO] Création du dossier racine Data : {dataFolder}");
-                    Directory.CreateDirectory(dataFolder);
-                }
-                else
-                {
-                    Debug.WriteLine($"[INFO] Dossier racine Data existe déjà : {dataFolder}");
-                }
+                    // Création du dossier Data si inexistant
+                    if (!Directory.Exists(DataFolder))
+                    {
+                        Debug.WriteLine($"[INFO] Création du dossier Data: {DataFolder}");
+                        Directory.CreateDirectory(DataFolder);
+                    }
+                    else
+                    {
+                        Debug.WriteLine($"[INFO] Dossier Data existe déjà: {DataFolder}");
+                    }
 
-                if (!File.Exists(dbPath))
-                {
-                    Debug.WriteLine($"[INFO] Création du fichier database.db : {dbPath}");
-                    SQLiteConnection.CreateFile(dbPath);
+                    // Création du fichier SQLite si inexistant
+                    if (!File.Exists(DbPath))
+                    {
+                        Debug.WriteLine($"[INFO] Création du fichier database.db: {DbPath}");
+                        SQLiteConnection.CreateFile(DbPath);
+                    }
+                    else
+                    {
+                        Debug.WriteLine($"[INFO] Fichier database.db existe déjà: {DbPath}");
+                    }
+
+                    return new SQLiteConnection(ConnectionString);
                 }
-                else
+                catch (Exception ex)
                 {
-                    Debug.WriteLine($"[INFO] Fichier database.db existe déjà : {dbPath}");
+                    Debug.WriteLine($"[ERREUR] Impossible d'initialiser la connexion SQLite : {ex.Message}");
+                    throw;
                 }
-                return new SQLiteConnection(connectionString);
             }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"[ERREUR] Impossible d'initialiser la connexion SQLite : {ex.Message}");
-                throw;
-            }
-        }
-    
-        public void InitializeTableDatabase()
-        {
-            Debug.WriteLine("[INFO] Initialisation des tables SQLite...");
 
-            try
+            public void InitializeTableDatabase()
             {
-                using var con = GetConnection();
-                con.Open();
-                Debug.WriteLine("[INFO] Connexion SQLite ouverte.");
+                Debug.WriteLine("[INFO] Initialisation des tables SQLite...");
 
-                using (var pragmaCmd = new SQLiteCommand("PRAGMA foreign_keys = ON;", con))
+                try
                 {
-                    pragmaCmd.ExecuteNonQuery();
-                    Debug.WriteLine("[INFO] PRAGMA foreign_keys activé.");
+                    using var con = GetConnection();
+                    con.Open();
+                    Debug.WriteLine("[INFO] Connexion SQLite ouverte.");
+
+                    using (var pragmaCmd = new SQLiteCommand("PRAGMA foreign_keys = ON;", con))
+                    {
+                        pragmaCmd.ExecuteNonQuery();
+                        Debug.WriteLine("[INFO] PRAGMA foreign_keys activé.");
+                    }
+
+                    // Création table par table
+                    CreateTable(con, @"CREATE TABLE IF NOT EXISTS BPerson (
+                     Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                     B1 TEXT NOT NULL,
+                     B2 TEXT NOT NULL,
+                     B3 TEXT NOT NULL,
+                     B4 TEXT NOT NULL,
+                     Adress TEXT NOT NULL,
+                     Phone TEXT NOT NULL,
+                     Email TEXT NOT NULL,
+                     B5 TEXT NOT NULL,
+                     B6 TEXT NOT NULL,
+                     B61 TEXT NOT NULL
+                 );");
+
+                    CreateTable(con, @"CREATE TABLE IF NOT EXISTS Alocalisation (
+                     Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                     IdBPerson INTEGER NOT NULL,
+                     A1 TEXT NOT NULL,
+                     A2 TEXT NOT NULL,
+                     A3 TEXT NOT NULL,
+                     A4 TEXT NOT NULL,
+                     A5 TEXT NOT NULL,
+                     A6 TEXT NOT NULL,
+                     A7 TEXT NOT NULL,
+                     A8 TEXT NOT NULL,
+                     FOREIGN KEY(IdBPerson) REFERENCES BPerson(Id) ON DELETE CASCADE
+                 );");
+
+                    CreateTable(con, @"CREATE TABLE IF NOT EXISTS Ddescription (
+                     Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                     IdBPerson INTEGER NOT NULL,
+                     D1 TEXT NOT NULL,
+                     D11 TEXT NOT NULL,
+                     D2 TEXT NOT NULL,
+                     D21 TEXT NOT NULL,
+                     D22 TEXT NOT NULL,
+                     FOREIGN KEY(IdBPerson) REFERENCES BPerson(Id) ON DELETE CASCADE
+                 );");
+
+                    CreateTable(con, @"CREATE TABLE IF NOT EXISTS Eclimat (
+                     Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                     IdBPerson INTEGER NOT NULL,
+                     E1 TEXT NOT NULL,
+                     E2 TEXT NOT NULL,
+                     E3 TEXT NOT NULL,
+                     E4 TEXT NOT NULL,
+                     E5 TEXT NOT NULL,
+                     E611 TEXT NOT NULL,
+                     E612 TEXT NOT NULL,
+                     E621 TEXT NOT NULL,
+                     E622 TEXT NOT NULL,
+                     E631 TEXT NOT NULL,
+                     E632 TEXT NOT NULL,
+                     E641 TEXT NOT NULL,
+                     E642 TEXT NOT NULL,
+                     E651 TEXT NOT NULL,
+                     E652 TEXT NOT NULL,
+                     E661 TEXT NOT NULL,
+                     E662 TEXT NOT NULL,
+                     E71 TEXT NOT NULL,
+                     E72 TEXT NOT NULL,
+                     E81 TEXT NOT NULL,
+                     E82 TEXT NOT NULL,
+                     E911 TEXT NOT NULL,
+                     E912 TEXT NOT NULL,
+                     E921 TEXT NOT NULL,
+                     E922 TEXT NOT NULL,
+                     E931 TEXT NOT NULL,
+                     E932 TEXT NOT NULL,
+                     E941 TEXT NOT NULL,
+                     E942 TEXT NOT NULL,
+                     E951 TEXT NOT NULL,
+                     E952 TEXT NOT NULL,
+                     E961 TEXT NOT NULL,
+                     E962 TEXT NOT NULL,
+                     E971 TEXT NOT NULL,
+                     E972 TEXT NOT NULL,
+                     E981 TEXT NOT NULL,
+                     E982 TEXT NOT NULL,
+                     E101 TEXT NOT NULL,
+                     E102 TEXT NOT NULL,
+                     E103 TEXT NOT NULL,
+                     E104 TEXT NOT NULL,
+                     E111 TEXT NOT NULL,
+                     E112 TEXT NOT NULL,
+                     E121 TEXT NOT NULL,
+                     E122 TEXT NOT NULL,
+                     E131 TEXT NOT NULL,
+                     E132 TEXT NOT NULL,
+                     E141 TEXT NOT NULL,
+                     E142 TEXT NOT NULL,
+                     E15 TEXT NOT NULL,
+                     FOREIGN KEY(IdBPerson) REFERENCES BPerson(Id) ON DELETE CASCADE
+                 );");
+
+                    Debug.WriteLine("[SUCCÈS] Tables créées ou déjà existantes.");
                 }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"[ERREUR] Initialisation tables échouée : {ex.GetType().Name} - {ex.Message}");
+                    throw;
+                }
+            }
 
-                const string sql = @"
-                    CREATE TABLE IF NOT EXISTS BPerson (
-                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        B1 TEXT NOT NULL,
-                        B2 TEXT NOT NULL,
-                        B3 TEXT NOT NULL,
-                        B4 TEXT NOT NULL,
-                        Adress TEXT NOT NULL,
-                        Phone TEXT NOT NULL,
-                        Email TEXT NOT NULL,
-                        B5 TEXT NOT NULL,
-                        B6 TEXT NOT NULL,
-                        B61 TEXT NOT NULL
-                    );
-                    CREATE TABLE IF NOT EXISTS Alocalisation (
-                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        IdBPerson INTEGER NOT NULL,
-                        A1 TEXT NOT NULL,
-                        A2 TEXT NOT NULL,
-                        A3 TEXT NOT NULL,
-                        A4 TEXT NOT NULL,
-                        A5 TEXT NOT NULL,
-                        A6 TEXT NOT NULL,
-                        A7 TEXT NOT NULL,
-                        A8 TEXT NOT NULL,
-                        FOREIGN KEY(IdBPerson) REFERENCES BPerson(Id) ON DELETE CASCADE
-                    );
-                    CREATE TABLE IF NOT EXISTS Ddescription (
-                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        IdBPerson INTEGER NOT NULL,
-                        D1 TEXT NOT NULL,
-                        D11 TEXT NOT NULL,
-                        D2 TEXT NOT NULL,
-                        D21 TEXT NOT NULL,
-                        D22 TEXT NOT NULL,
-                        FOREIGN KEY(IdBPerson) REFERENCES BPerson(Id) ON DELETE CASCADE
-                    );
-                    CREATE TABLE IF NOT EXISTS Eclimat (
-                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        IdBPerson INTEGER NOT NULL,
-                        E1 TEXT NOT NULL,
-                        E2 TEXT NOT NULL,
-                        E3 TEXT NOT NULL,
-                        E4 TEXT NOT NULL,
-                        E5 TEXT NOT NULL,
-                        E611 TEXT NOT NULL,
-                        E612 TEXT NOT NULL,
-                        E621 TEXT NOT NULL,
-                        E622 TEXT NOT NULL,
-                        E631 TEXT NOT NULL,
-                        E632 TEXT NOT NULL,
-                        E641 TEXT NOT NULL,
-                        E642 TEXT NOT NULL,
-                        E651 TEXT NOT NULL,
-                        E652 TEXT NOT NULL,
-                        E661 TEXT NOT NULL,
-                        E662 TEXT NOT NULL,
-                        E71 TEXT NOT NULL,
-                        E72 TEXT NOT NULL,
-                        E81 TEXT NOT NULL,
-                        E82 TEXT NOT NULL,
-                        E911 TEXT NOT NULL,
-                        E912 TEXT NOT NULL,
-                        E921 TEXT NOT NULL,
-                        E922 TEXT NOT NULL,
-                        E931 TEXT NOT NULL,
-                        E932 TEXT NOT NULL,
-                        E941 TEXT NOT NULL,
-                        E942 TEXT NOT NULL,
-                        E951 TEXT NOT NULL,
-                        E952 TEXT NOT NULL,
-                        E961 TEXT NOT NULL,
-                        E962 TEXT NOT NULL,
-                        E971 TEXT NOT NULL,
-                        E972 TEXT NOT NULL,
-                        E981 TEXT NOT NULL,
-                        E982 TEXT NOT NULL,
-                        E101 TEXT NOT NULL,
-                        E102 TEXT NOT NULL,
-                        E103 TEXT NOT NULL,
-                        E104 TEXT NOT NULL,
-                        E111 TEXT NOT NULL,
-                        E112 TEXT NOT NULL,
-                        E121 TEXT NOT NULL,
-                        E122 TEXT NOT NULL,
-                        E131 TEXT NOT NULL,
-                        E132 TEXT NOT NULL,
-                        E141 TEXT NOT NULL,
-                        E142 TEXT NOT NULL,
-                        E15 TEXT NOT NULL,
-                        FOREIGN KEY(IdBPerson) REFERENCES BPerson(Id) ON DELETE CASCADE
-                    );
-                    ";
-
+            private void CreateTable(SQLiteConnection con, string sql)
+            {
                 using var cmd = new SQLiteCommand(sql, con);
                 cmd.ExecuteNonQuery();
-                Debug.WriteLine("[SUCCÈS] Tables créée ou déjà existante avec contraintes FK activés.");
             }
-            catch (Exception ex) when (ex is SQLiteException || ex is IOException)
-            {
-                Debug.WriteLine($"[ERREUR] {ex.GetType().Name} : {ex.Message}");
-                throw;
-            }
-        }
 
-        // ADD all information of person
-        public void AddFullPerson(BPerson person, Alocalisation localisation, Ddescription description, Eclimat climat)
+
+    // ADD all information of person
+    public void AddFullPerson(BPerson person, Alocalisation localisation, Ddescription description, Eclimat climat)
         {
             using (var con = GetConnection())
             {
@@ -1037,15 +1056,9 @@ namespace gestion_concrets.Services
             connection.Close();
         }
 
+        // Renvoye erreur parce que dans la base de données il n'y a pas encore ces données alors il faut faire une condition 
         private static readonly Dictionary<string, string> AllowedRegions = new Dictionary<string, string>
         {
-            { "SAVA", "SAVA" },
-            { "DIANA", "DIANA" },
-            { "ITASY", "ITASY" },
-            { "ANALAMANAGA", "ANALAMANAGA" },
-            { "VAKINANANKARATRA", "VAKINANANKARATRA" },
-            { "BONGOLAVA", "BONGOLAVA" },
-            { "SOFIA", "SOFIA" },
             { "BOENY", "BOENY" },
             { "BETSIBOKA", "BETSIBOKA" },
             { "MELAKY", "MELAKY" },
@@ -1058,52 +1071,82 @@ namespace gestion_concrets.Services
             { "ANOSY", "ANOSY" },
             { "ANDROY", "ANDROY" },
             { "MENABE", "MENABE" },
-            { "BETSIBOKA", "BETSIBOKA" },
-            {  "ALAOTRA MANGORO", "ALAOTRA MANGORO" },
+            { "ALAOTRA MANGORO", "ALAOTRA MANGORO" },
             { "ANALANJIROFO", "ANALANJIROFO" },
-            { "IHOROMBE", "IHOROMBE" }
+            { "IHOROMBE", "IHOROMBE" },
+            { "SAVA", "SAVA" },
+            { "DIANA", "DIANA" },
+            { "ITASY", "ITASY" },
+            { "ANALAMANAGA", "ANALAMANAGA" },
+            { "VAKINANANKARATRA", "VAKINANANKARATRA" },
+            { "BONGOLAVA", "BONGOLAVA" },
+            { "SOFIA", "SOFIA" }
         };
 
         /// <summary>
-        /// Get a list of unique regions from the Alocalisation table.
+        /// Get a list of unique regions from the Alocalisation table that exist in both the table and AllowedRegions.
         /// </summary>
-        /// <returns></returns>
-
+        /// <returns>A list of unique regions that exist in the database and are allowed</returns>
         public List<string> GetUniqueRegions()
         {
             var regions = new List<string>();
 
-            if (AllowedRegions.Count == 0)
+            try
             {
-                return regions;
-            }
-
-            using (var con = GetConnection())
-            {
-                con.Open();
-                string query = "SELECT DISTINCT A2 FROM Alocalisation WHERE A2 IN (" +
-                              string.Join(",", AllowedRegions.Keys.Select((_, i) => $"@p{i}")) + ")";
-
-                using (var cmd = new SQLiteCommand(query, con))
+                if (AllowedRegions.Count == 0)
                 {
-                    int i = 0;
-                    foreach (var region in AllowedRegions.Keys)
-                    {
-                        cmd.Parameters.AddWithValue($"@p{i}", region);
-                        i++;
-                    }
+                    Console.WriteLine("AllowedRegions dictionary is empty.");
+                    return regions;
+                }
 
-                    using (var reader = cmd.ExecuteReader())
+                using (var con = GetConnection())
+                {
+                    con.Open();
+                    string query = @"
+                SELECT DISTINCT A2 
+                FROM Alocalisation 
+                WHERE A2 IN (" + string.Join(",", AllowedRegions.Keys.Select((_, i) => $"@p{i}")) + @") 
+                AND A2 IS NOT NULL";
+
+                    using (var cmd = new SQLiteCommand(query, con))
                     {
-                        while (reader.Read())
+                        int i = 0;
+                        foreach (var region in AllowedRegions.Keys)
                         {
-                            if (!reader.IsDBNull(0))
+                            cmd.Parameters.AddWithValue($"@p{i}", region);
+                            i++;
+                        }
+
+                        try
+                        {
+                            using (var reader = cmd.ExecuteReader())
                             {
-                                regions.Add(reader.GetString(0));
+                                while (reader.Read())
+                                {
+                                    if (!reader.IsDBNull(0))
+                                    {
+                                        string region = reader.GetString(0);
+                                        if (AllowedRegions.ContainsKey(region))
+                                        {
+                                            regions.Add(region);
+                                        }
+                                    }
+                                }
                             }
+                        }
+                        catch (SQLiteException ex)
+                        {
+                            Console.WriteLine($"SQLite error executing query: {ex.Message}, ErrorCode: {ex.ErrorCode}");
+                            // Retourne une liste vide si la requête échoue (par exemple, table vide ou inexistante)
+                            return regions;
                         }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Unexpected error: {ex.Message}");
+                return regions; // Retourne une liste vide en cas d'erreur inattendue
             }
 
             return regions;

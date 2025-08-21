@@ -90,8 +90,38 @@
             </Setter>
         </Style>
 
-        <!-- Style spécifique pour le bouton Modifier -->
+        <!-- Style spécifique pour le bouton Modifier (orange) -->
         <Style x:Key="ModifierButtonStyle" TargetType="ui:Button" BasedOn="{StaticResource {x:Type ui:Button}}">
+            <Setter Property="Background" Value="#FF9800"/>
+            <Setter Property="BorderBrush" Value="#F57C00"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ui:Button">
+                        <Border x:Name="Border" 
+                                Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#F57C00"/>
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#EF6C00"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Border" Property="Background" Value="#CCCCCC"/>
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#AAAAAA"/>
+                                <Setter Property="Foreground" Value="#888888"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Style spécifique pour le bouton Sauvegarder (vert) -->
+        <Style x:Key="SauvegarderButtonStyle" TargetType="ui:Button" BasedOn="{StaticResource {x:Type ui:Button}}">
             <Setter Property="Background" Value="#4CAF50"/>
             <Setter Property="BorderBrush" Value="#388E3C"/>
             <Setter Property="Template">
@@ -108,6 +138,36 @@
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="Border" Property="Background" Value="#388E3C"/>
                                 <Setter TargetName="Border" Property="BorderBrush" Value="#2E7D32"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Border" Property="Background" Value="#CCCCCC"/>
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#AAAAAA"/>
+                                <Setter Property="Foreground" Value="#888888"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Style spécifique pour le bouton Supprimer (rouge) -->
+        <Style x:Key="SupprimerButtonStyle" TargetType="ui:Button" BasedOn="{StaticResource {x:Type ui:Button}}">
+            <Setter Property="Background" Value="#D32F2F"/>
+            <Setter Property="BorderBrush" Value="#B71C1C"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ui:Button">
+                        <Border x:Name="Border" 
+                                Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#B71C1C"/>
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#9C0000"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter TargetName="Border" Property="Background" Value="#CCCCCC"/>
@@ -139,11 +199,11 @@
         <!-- TabControl -->
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <TabControl SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}" Margin="5">
-                <TabItem Header="B - Filazalazana momba ilay olona hadihadiana">
-                    <local:BPersonView DataContext="{Binding BPerson}"/>
-                </TabItem>
                 <TabItem Header="A - Faritra anaovana fanadihadiana">
                     <local:AlocalisationView DataContext="{Binding Alocalisation}"/>
+                </TabItem>
+                <TabItem Header="B - Filazalazana momba ilay olona hadihadiana">
+                    <local:BPersonView DataContext="{Binding BPerson}"/>
                 </TabItem>
                 <TabItem Header="D - Filazalazana momba ny fahasembanana">
                     <local:DdescriptionView DataContext="{Binding Ddescription}"/>
@@ -155,21 +215,35 @@
         </ScrollViewer>
 
         <!-- Boutons de navigation -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5,10,5,10">
-            <ui:Button Content="Précédent" 
-                       Command="{Binding PreviousTabCommand}" 
-                       IsEnabled="{Binding CanGoPrevious}"/>
-            <ui:Button Content="Suivant" 
-                       Command="{Binding NextTabCommand}" 
-                       IsEnabled="{Binding CanGoNext}"/>
-            <ui:Button Content="Sauvegarder" 
-                       Command="{Binding UpdateCommand}"/>
-            <ui:Button Content="Supprimer" 
+        <Grid Grid.Row="2" Margin="5,10,5,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Groupe de boutons centrés -->
+            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                <ui:Button Content="Précédent" 
+                           Command="{Binding PreviousTabCommand}" 
+                           IsEnabled="{Binding CanGoPrevious}"/>
+                <ui:Button Content="Sauvegarder" 
+                           Style="{StaticResource SauvegarderButtonStyle}"
+                           Command="{Binding UpdateCommand}"/>
+                <Border Width="10"/>
+                <ui:Button Content="Activer la modification des champs" 
+                           Style="{StaticResource ModifierButtonStyle}"
+                           Command="{Binding ToggleEditCommand}" 
+                           Width="208"/>
+                <ui:Button Content="Suivant" 
+                           Command="{Binding NextTabCommand}" 
+                           IsEnabled="{Binding CanGoNext}"/>
+            </StackPanel>
+
+            <!-- Bouton Supprimer isolé à droite -->
+            <ui:Button Grid.Column="1" 
+                       Content="Supprimer" 
+                       Style="{StaticResource SupprimerButtonStyle}"
                        Command="{Binding DeleteCommand}"/>
-            <Border Width="10"/>
-            <ui:Button Content="Modifier" 
-                       Style="{StaticResource ModifierButtonStyle}"
-                       Command="{Binding ToggleEditCommand}"/>
-        </StackPanel>
+        </Grid>
     </Grid>
 </Page>
