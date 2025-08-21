@@ -196,6 +196,8 @@ namespace gestion_concrets.ViewModels
 
         public event EventHandler CloseWindowRequested;
 
+        // Alocalisation
+        public ObservableCollection<string> A2 { get; } = new ObservableCollection<string> { "SAVA", "DIANA", "ITASY", "ANALAMANAGA", "VAKINANANKARATRA", "BONGOLAVA", "SOFIA", "BOENY", "BETSIBOKA", "MELAKY", "ATSIMO ATSINANANA", "AMORON'I MANIA", "HAUTE MATSIATRA", "VATOVAVY", "FITOVINANY", "ATSIMO ANDREFANA", "ANOSY", "ANDROY", "MENABE", "BETSIBOKA", "ALAOTRA MANGORO", "ANALANJIROFO", "IHOROMBE"};
 
         // BPerson
         public ObservableCollection<string> Questions { get; } = new ObservableCollection<string> { "Eny", "Tsia" };
@@ -325,6 +327,19 @@ namespace gestion_concrets.ViewModels
             return true;
         }
 
+        private bool validateBPersonFullname()
+        {
+            // Valider B1 (Nom et prénom)
+            if (string.IsNullOrWhiteSpace(BPerson.B2))
+            {
+                MessageBox.Show("Le nom (Anarana) et prénom (Fanampin'anarana) ne doivent pas être vides.",
+                    "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            
+            return true;
+        }   
+
         private void ReinitializeData()
         {
             var result = MessageBox.Show("Attention ! Toutes les données saisies seront perdues. Voulez-vous continuer ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning);
@@ -348,45 +363,48 @@ namespace gestion_concrets.ViewModels
             if (!validateDateAlocalisation())
             {
                 return;
+            }else if (!validateBPersonFullname())
+            {
+                return;
             }
 
-            try
-            {
-                var result = MessageBox.Show($"Confirmer l'insertion si tout les informations que vous voulez enregistrer sont toutes saisies sinon, veuillez compléter et affirmer que tout les informations saisies sont correctes avant d'enregistrer dans la base de données !", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (result == MessageBoxResult.Yes)
+                try
                 {
-                    SetNonDefinedValues(BPerson);
-                    SetNonDefinedValues(Alocalisation);
-                    SetNonDefinedValues(Ddescription);
-                    SetNonDefinedValues(Eclimat);
+                    var result = MessageBox.Show($"Confirmer l'insertion si tout les informations que vous voulez enregistrer sont toutes saisies sinon, veuillez compléter et affirmer que tout les informations saisies sont correctes avant d'enregistrer dans la base de données !", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        SetNonDefinedValues(BPerson);
+                        SetNonDefinedValues(Alocalisation);
+                        SetNonDefinedValues(Ddescription);
+                        SetNonDefinedValues(Eclimat);
 
 
-                    _databaseService.AddFullPerson(
-                        BPerson,
-                        Alocalisation,
-                        Ddescription,
-                        Eclimat
-                    );
-                    Debug.WriteLine($"[ DONNEES ENREGISTREES AVEC SUCCES ]");
-                    MessageBox.Show("Données enregistrées avec succès !", "Information", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                    
-                    // Réinitialisation du formulaire
-                    BPerson = new BPerson();
-                    Alocalisation = new Alocalisation();
-                    Ddescription = new Ddescription();
-                    Eclimat = new Eclimat();
-                    SelectedTabIndex = 0;
-                    UpdateCheckBoxesFromE5();
+                        _databaseService.AddFullPerson(
+                            BPerson,
+                            Alocalisation,
+                            Ddescription,
+                            Eclimat
+                        );
+                        Debug.WriteLine($"[ DONNEES ENREGISTREES AVEC SUCCES ]");
+                        MessageBox.Show("Données enregistrées avec succès !", "Information", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 
-                    DataChangedNotifier.NotifyDataChanged();
+                        // Réinitialisation du formulaire
+                        BPerson = new BPerson();
+                        Alocalisation = new Alocalisation();
+                        Ddescription = new Ddescription();
+                        Eclimat = new Eclimat();
+                        SelectedTabIndex = 0;
+                        UpdateCheckBoxesFromE5();
+
+                        DataChangedNotifier.NotifyDataChanged();
+                    }
+
                 }
-                    
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erreur lors de l'enregistrement : " + ex.Message);
-                Debug.WriteLine($"[ERREUR DE L'AJOUT] : {ex.Message}");
-            }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erreur lors de l'enregistrement : " + ex.Message);
+                    Debug.WriteLine($"[ERREUR DE L'AJOUT] : {ex.Message}");
+                }
         }
 
         private void UpdateData()

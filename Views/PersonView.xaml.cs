@@ -34,5 +34,10 @@ namespace gestion_concrets.Views
                 MessageBox.Show($"Erreur lors du chargement de PersonView : {ex.Message}");
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
