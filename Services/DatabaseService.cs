@@ -11,37 +11,33 @@ namespace gestion_concrets.Services
     public class DatabaseService
     {
 
-        private static readonly string projectRoot = Path.GetFullPath(
-            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "..")
-        );
-        private static readonly string dataFolder = Path.Combine(projectRoot, "Data");
-        private static readonly string dbPath = Path.Combine(dataFolder, "database.db");
-        private static readonly string connectionString = $"Data Source={dbPath};";
-
-        public static event EventHandler DataChanged;
-        //private static readonly string projectRoot = GetProjectRoot();
+        //private static readonly string projectRoot = Path.GetFullPath(
+        //    Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "..")
+        //);
         //private static readonly string dataFolder = Path.Combine(projectRoot, "Data");
         //private static readonly string dbPath = Path.Combine(dataFolder, "database.db");
         //private static readonly string connectionString = $"Data Source={dbPath};";
 
+        public static event EventHandler DataChanged;
+        private static readonly string projectRoot = GetProjectRoot();
+        private static readonly string dataFolder = Path.Combine(projectRoot, "Data");
+        private static readonly string dbPath = Path.Combine(dataFolder, "database.db");
+        private static readonly string connectionString = $"Data Source={dbPath};";
+
         private static string GetProjectRoot()
         {
             string baseDir = AppDomain.CurrentDomain.BaseDirectory;
-           
-
-            // Vérifie si on est dans un environnement de développement (bin\Debug ou bin\Release)
+            Debug.WriteLine($"[DEBUG] Base directory: {baseDir}");
             if (baseDir.Contains(@"\bin\Debug") || baseDir.Contains(@"\bin\Release"))
             {
-                // Remonte jusqu'à la racine du projet
-                return Path.GetFullPath(
-                        Path.Combine(baseDir, "..", "..", "..","..")
-                    );
+                string root = Path.GetFullPath(Path.Combine(baseDir, "..", "..", "..", ".."));
+                Debug.WriteLine($"[DEBUG] Resolved project root: {root}");
+                return root;
             }
-            
+            Debug.WriteLine($"[DEBUG] Using base directory as root: {baseDir}");
             return baseDir;
-          
         }
-
+        
         public static SQLiteConnection GetConnection()
         {
             Debug.WriteLine($"[INFO] Project root : {projectRoot}");
