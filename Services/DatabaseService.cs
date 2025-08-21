@@ -11,18 +11,18 @@ namespace gestion_concrets.Services
     public class DatabaseService
     {
 
-        //private static readonly string projectRoot = Path.GetFullPath(
-        //    Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..","..")
-        //);
-        //private static readonly string dataFolder = Path.Combine(projectRoot, "Data");
-        //private static readonly string dbPath = Path.Combine(dataFolder, "database.db");
-        //private static readonly string connectionString = $"Data Source={dbPath};";
-
-        public static event EventHandler DataChanged;
-        private static readonly string projectRoot = GetProjectRoot();
+        private static readonly string projectRoot = Path.GetFullPath(
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "..")
+        );
         private static readonly string dataFolder = Path.Combine(projectRoot, "Data");
         private static readonly string dbPath = Path.Combine(dataFolder, "database.db");
         private static readonly string connectionString = $"Data Source={dbPath};";
+
+        public static event EventHandler DataChanged;
+        //private static readonly string projectRoot = GetProjectRoot();
+        //private static readonly string dataFolder = Path.Combine(projectRoot, "Data");
+        //private static readonly string dbPath = Path.Combine(dataFolder, "database.db");
+        //private static readonly string connectionString = $"Data Source={dbPath};";
 
         private static string GetProjectRoot()
         {
@@ -336,6 +336,7 @@ namespace gestion_concrets.Services
                         }
 
                         transaction.Commit();
+                        DataChanged?.Invoke(this, EventArgs.Empty);
                     }
                     catch (Exception e)
                     {
